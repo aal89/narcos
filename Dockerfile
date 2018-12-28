@@ -6,8 +6,6 @@ COPY . /app
 
 RUN composer install --optimize-autoloader --no-dev
 
-# RUN php artisan config:cache
-
 RUN php artisan route:cache
 
 CMD php artisan serve --host=0.0.0.0 --port=8189

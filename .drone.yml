@@ -1,0 +1,34 @@
+pipeline:
+  test:
+    image: phpunit/phpunit
+    commands:
+      - phpunit
+  build:
+    image: plugins/docker
+    secrets: [ docker_username, docker_password ]
+    repo: aal89/slaravel
+    tags: latest
+    when:
+      event: push
+  deploy:
+    image: appleboy/drone-ssh
+    host: alexapp.nl
+    secrets: [ ssh_username, ssh_password ]
+    port: 22
+    script:
+      - ((docker stop slaravel && docker rm slaravel) || true)
+      - docker pull aal89/slaravel
+      - docker image prune --force
+      - docker run -d -p 127.0.0.1:1313:8189 --env-file ./dropper2/.env --name slaravel --network socialnet aal89/slaravel
+      - docker exec slaravel sh -c 'php artisan migrate'
+    when:
+      event: push
+  report:
+    image: appleboy/drone-discord
+    secrets: [ discord_webhook_id, discord_webhook_token ]
+    avatar_url: https://git.alexapp.nl/avatars/11
+    message: Build **{{build.number}}** for **{{repo.name}}** reported **{{build.status}}**. Review {{build.event}} on {{build.branch}}? https://build.alexapp.nl/{{repo.owner}}/{{repo.name}}/{{build.number}}
+    when:
+      status:  [failure, success]
+
+branches: master
