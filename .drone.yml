@@ -2,6 +2,7 @@ pipeline:
   test:
     image: phpunit/phpunit
     commands:
+      - cp .env.example .env
       - composer dump-autoload
       - phpunit
   build:
