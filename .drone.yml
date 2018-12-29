@@ -1,6 +1,6 @@
 pipeline:
   test:
-    image: phpunit/phpunit
+    image: composer
     commands:
       - cp .env.example .env
       - composer install
