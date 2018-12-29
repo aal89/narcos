@@ -2,7 +2,7 @@ pipeline:
   test:
     image: phpunit/phpunit
     commands:
-      - composer install
+      - composer dump-autoload
       - phpunit
   build:
     image: plugins/docker
