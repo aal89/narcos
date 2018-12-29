@@ -3,7 +3,7 @@ pipeline:
     image: phpunit/phpunit
     commands:
       - cp .env.example .env
-      - composer dump-autoload
+      - composer dump-autoload --no-scripts
       - phpunit
   build:
     image: plugins/docker
