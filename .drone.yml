@@ -4,7 +4,7 @@ pipeline:
     commands:
       - cp .env.example .env
       - composer install
-      - phpunit
+      - vendor/bin/phpunit
   build:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
