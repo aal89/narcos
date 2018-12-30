@@ -11,11 +11,6 @@
 |
 */
 
-// Force https schema when a production environment is detected.
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
