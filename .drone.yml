@@ -21,7 +21,7 @@ pipeline:
       - ((docker stop slaravel && docker rm slaravel) || true)
       - docker pull aal89/slaravel
       - docker image prune --force
-      - docker run -d -p 127.0.0.1:1313:8189 --env-file ./dropper2/.env --name slaravel --network socialnet aal89/slaravel
+      - docker run -d -p 127.0.0.1:9797:8189 --env-file ./dropper2/.env --name slaravel --network socialnet aal89/slaravel
       - docker exec slaravel sh -c 'php artisan migrate'
     when:
       event: push
