@@ -8,7 +8,7 @@ pipeline:
   build:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
-    repo: aal89/slaravel
+    repo: aal89/narcos
     tags: latest
     when:
       event: push
@@ -18,11 +18,11 @@ pipeline:
     secrets: [ ssh_username, ssh_password ]
     port: 22
     script:
-      - ((docker stop slaravel && docker rm slaravel) || true)
-      - docker pull aal89/slaravel
+      - ((docker stop narcos && docker rm narcos) || true)
+      - docker pull aal89/narcos
       - docker image prune --force
-      - docker run -d -p 127.0.0.1:9797:8189 --env-file ./dropper2/.env --name slaravel --network socialnet aal89/slaravel
-      - docker exec slaravel sh -c 'php artisan migrate'
+      - docker run -d -p 127.0.0.1:9797:8189 --env-file ./narcos/.env --name narcos --network mysqlnet aal89/narcos
+      - docker exec narcos sh -c 'php artisan migrate'
     when:
       event: push
   report:
