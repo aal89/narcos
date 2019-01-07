@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10 col-lg-8">
             <form method="POST" action="{{ route('login') }}">
             @csrf
                 <table class="table table-sm table-dark">
@@ -19,7 +19,7 @@
                                 <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
                             </td>
                             <td>
-                                <div class="col-md-6">
+                                <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                                     </div>
@@ -36,7 +36,7 @@
                                 <label for="password" class="col-form-label">{{ __('Password') }}</label>
                             </td>
                             <td>
-                                <div class="col-md-6">
+                                <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
                                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                     </div>
@@ -53,7 +53,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <div class="col-md-6">
+                                <div class="col-md-8 col-lg-6">
                                     <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label class="mb-0" for="remember">{{ __('Remember Me') }}</label>
                                 </div>
@@ -64,7 +64,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <div class="col-md-8">
+                                <div class="col-md-8 col-lg-8">
                                     <button type="submit" class="btn btn-secondary">
                                         {{ __('Login') }}
                                     </button>
