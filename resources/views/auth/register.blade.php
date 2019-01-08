@@ -14,7 +14,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><label for="name" class="col-form-label">{{ __('Name') }}</label></td>
+                            <td class="w-25"><label for="name" class="col-form-label">{{ __('Name') }}</label></td>
                             <td>
                                 <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">

@@ -15,7 +15,7 @@
 
                     <tbody>
                         <tr>
-                            <td>
+                            <td class="w-25">
                                 <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
                             </td>
                             <td>
