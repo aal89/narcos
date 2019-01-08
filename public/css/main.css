@@ -74,6 +74,9 @@ input, textarea {
     font-weight: bold;
     box-shadow: 0px 0px 1px gray;
 }
+table tbody tr td:first-child {
+    width: 150px;
+}
 .table thead {
     font-size: 12px;    
     background: linear-gradient(#4E4F4F, #383838);
