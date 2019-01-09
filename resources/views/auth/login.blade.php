@@ -64,7 +64,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <div class="col-md-8 col-lg-8">
+                                <div class="col-md-10 col-lg-8">
                                     <button type="submit" class="btn btn-secondary">
                                         {{ __('Login') }}
                                     </button>

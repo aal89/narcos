@@ -24,6 +24,10 @@ nav {
 .navbar-nav > li > .dropdown-menu > .dropdown-item:hover {
     color: #212529 !important;
 }
+.navbar-nav > li > .dropdown-menu > .dropdown-item:active {
+    color: white !important;
+    background-color: #292B2E !important;
+}
 .navbar-nav > li > .dropdown-menu > .dropdown-item:focus {
     color: white !important;
     background-color: #292B2E !important;
