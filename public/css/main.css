@@ -15,13 +15,33 @@ body {
 nav {
     border-bottom: 1px solid #555;
 }
-.nav-link {
-    font-size: 14px;
+.navbar-nav > li > .dropdown-menu {
+    border: 1px solid #555;
+}
+.navbar-nav > li > .dropdown-menu > .dropdown-item {
+    color: white !important;
+}
+.navbar-nav > li > .dropdown-menu > .dropdown-item:hover {
+    color: #212529 !important;
+}
+.navbar-nav > li > .dropdown-menu > .dropdown-item:active {
+    color: white !important;
+    background-color: #292B2E !important;
+}
+.navbar-nav > li > .dropdown-menu > .dropdown-item:focus {
+    color: white !important;
+    background-color: #292B2E !important;
+}
+small {
+    font-size: 10px;
 }
 .btn {
     font-weight: bold !important;
     font-size: 11px;
     text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+.bg-dark {
+    background-color: #292B2E !important;
 }
 .btn-link {
     text-decoration: underline;

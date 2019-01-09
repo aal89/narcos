@@ -22,12 +22,12 @@
                                 <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -39,12 +39,12 @@
                                 <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
                                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -64,7 +64,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <div class="col-md-8 col-lg-8">
+                                <div class="col-md-10 col-lg-8">
                                     <button type="submit" class="btn btn-secondary">
                                         {{ __('Login') }}
                                     </button>

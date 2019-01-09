@@ -16,9 +16,10 @@
                         <tr>
                             <td class="w-25"><label for="name" class="col-form-label">{{ __('Name') }}</label></td>
                             <td>
-                                <div class="col-md-8 col-lg-6">
-                                    <div class="input-group input-group-sm">
+                                <div class="col-md-8 col-lg-8">
+                                    <div class="form-group input-group-sm mb-0">
                                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                        <small class="form-text text-muted">This will be your publicly visible character name.</small>
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -33,9 +34,10 @@
                                 <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
                             </td>
                             <td>
-                                <div class="col-md-8 col-lg-6">
-                                    <div class="input-group input-group-sm">
+                                <div class="col-md-8 col-lg-8">
+                                    <div class="form-group input-group-sm mb-0">
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                        <small class="form-text text-muted">A valid e-mail address is required to login, it will never be visible to anyone else.</small>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -77,10 +79,16 @@
                         <tr>
                             <td>&nbsp;</td>
                             <td>
-                            <div class="col-md-8 col-lg-6">
+                            <div class="col-md-10 col-lg-8">
                                 <button type="submit" class="btn btn-secondary">
                                     {{ __('Register') }}
                                 </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     </tbody>
