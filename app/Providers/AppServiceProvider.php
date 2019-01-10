@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
         // Force https schema when a production environment is detected.
         if (env('APP_ENV') === 'production') {
             URL::forceScheme('https');
+            $kernel->prependMiddleware(\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class);
         }
 
         view()->composer('*', function($view){
