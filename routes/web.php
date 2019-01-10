@@ -11,6 +11,10 @@
 |
 */
 
+$productionMiddlewares = App::isLocal() ? [] : ['verified'];
+
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::group(['middleware' => $productionMiddlewares], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});
