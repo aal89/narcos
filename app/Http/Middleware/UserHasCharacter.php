@@ -17,10 +17,10 @@ class UserHasCharacter
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user())
+        if(Auth::check() && Auth::user()->exists() && Auth::user()->hasCharacter())
         {
-            var_dump(Auth::user()->hasCharacter());
+            return $next($request);
         }
-        return $next($request);
+        return redirect('/character/create');
     }
 }

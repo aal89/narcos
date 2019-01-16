@@ -13,7 +13,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // We could add middleware specific for this controller like so:
+        // $this->middleware('auth');
     }
 
     /**
