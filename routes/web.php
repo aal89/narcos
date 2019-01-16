@@ -11,10 +11,17 @@
 |
 */
 
-$productionMiddlewares = App::isLocal() ? [] : ['verified'];
+function verifiedWhenLocal($var)
+{
+    return App::isLocal() && $var !== 'verified';
+}
+
+$condMiddlewares = ['auth', 'verified', 'user.has.character'];
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => $productionMiddlewares], function () {
+Route::group(['middleware' => array_filter($condMiddlewares, 'verifiedWhenLocal')], function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
+
+Route::get('/character/create', 'CharacterController@index');
