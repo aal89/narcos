@@ -28,6 +28,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    /**
+     * Checks if this model's Character exists and is alive.
+     */
+    public function hasCharacter()
+    {
+        return $this->character() && $this->character()->life > 0;
+    }
+
     public function character()
     {
         return $this->hasOne('App\Character');
