@@ -1,5 +1,5 @@
 <?php
-if (!function_exists('notVerifiedWhenLocal')) {
+if (!function_exists('notVerified')) {
 
     /**
      * Returns true if the application is in development mode and the given variable is not equal to: 'verified'.
@@ -7,8 +7,8 @@ if (!function_exists('notVerifiedWhenLocal')) {
      * @param string $var
      * @return boolean
      */
-    function notVerifiedWhenLocal($var)
+    function notVerified($var)
     {
-        return App::isLocal() && $var !== 'verified';
+        return $var !== 'verified';
     }
 }

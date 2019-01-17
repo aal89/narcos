@@ -12,10 +12,11 @@
 */
 
 $condMiddlewares = ['auth', 'verified', 'user.has.character'];
+$condMiddlewares = App::isLocal() ? array_filter($condMiddlewares, 'notVerified') : $condMiddlewares;
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => array_filter($condMiddlewares, 'notVerifiedWhenLocal')], function () {
+Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
 
