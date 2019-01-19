@@ -9,7 +9,7 @@ class UserHasCharacter
 {
     /**
      * Checks whether the user associated with the request has a Character and if this Character is alive.
-     * Life column mustn't be 0.
+     * Life column mustn't be 0. Redirects the user to character creation if not.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -17,10 +17,10 @@ class UserHasCharacter
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->exists() && Auth::user()->hasCharacter())
+        if(Auth::check() && Auth::user()->hasCharacter())
         {
             return $next($request);
         }
-        return redirect('/character/create');
+        return redirect('character');
     }
 }
