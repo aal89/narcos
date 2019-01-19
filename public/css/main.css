@@ -12,6 +12,18 @@ body {
     background-repeat: no-repeat;
     height: 100%;
 }
+a {
+    color: #F1C047;
+}
+a:hover {
+    color: #b79235;
+}
+.btn-link {
+    color: #F1C047;
+}
+.btn-link:hover {
+    color: #b79235;
+}
 nav {
     border-bottom: 1px solid #555;
 }
