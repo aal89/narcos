@@ -52,13 +52,13 @@
                         <td>
                             <div class="container">
                                 <div class="row">
-                                    <h6 class="mb-0">Development</h6>
+                                    <h5 class="">Development</h5>
                                 </div>
                                 <div class="row">
                                     Groundwork done.
                                 </div>
                                 <div class="row">
-                                    <span class="small">13-01-2019 21:43 by aal</span>
+                                    <span class="small mt-2">13-01-2019 21:43 by aal</span>
                                 </div>
                             </div>
                         </td>
