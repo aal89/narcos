@@ -55,6 +55,9 @@ small {
 .bg-dark {
     background-color: #292B2E !important;
 }
+.bg-dark-linear {
+    background: linear-gradient(#292b2e, #212225) !important;
+}
 .btn-link {
     text-decoration: underline;
 }
