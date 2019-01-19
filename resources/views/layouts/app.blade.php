@@ -64,7 +64,7 @@
                             @if (Auth::user()->hasCharacter())
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle h6 mb-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->character()->name }} <span class="caret"></span>
+                                        {{ Auth::user()->character->name }} <span class="caret"></span>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right bg-dark pt-1 pb-1" aria-labelledby="navbarDropdown">
