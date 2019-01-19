@@ -18,21 +18,21 @@
                     <tr>
                         <td>
                             <span>
-                                <span aria-hidden="true" class="li_user"></span> aal
+                                <span aria-hidden="true" class="li_user"></span> {{ Auth::user()->character->name }}
                                 <a href="#" class="float-right">(edit profile)</a>
                                 <br>
-                                <span aria-hidden="true" class="li_heart"></span> 100%
-                                <span aria-hidden="true" class="li_data pl-2"></span> Low-life
+                                <span aria-hidden="true" class="li_heart"></span> {{ Auth::user()->character->life }}%
+                                <span aria-hidden="true" class="li_data pl-2"></span> {{ Auth::user()->character->experience }}
                             </span>
                             <span class="float-right"><span aria-hidden="true" class="li_stack"></span> Messages (0)</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span aria-hidden="true" class="li_banknote"></span> &euro; 322.000,-
-                            <span aria-hidden="true" class="li_truck pl-2"></span> 12kg
-                            <span aria-hidden="true" class="li_location pl-2"></span> United States of America
-                            <span aria-hidden="true" class="li_world pl-2"></span> Plane
+                            <span aria-hidden="true" class="li_banknote"></span> &euro; {{ Auth::user()->character->money }},-
+                            <span aria-hidden="true" class="li_truck pl-2"></span> {{ Auth::user()->character->contraband }}kg
+                            <span aria-hidden="true" class="li_location pl-2"></span> {{ Auth::user()->character->country }}
+                            <span aria-hidden="true" class="li_world pl-2"></span> {{ Auth::user()->character->transport }}
                         </td>
                     </tr>
                 </tbody>

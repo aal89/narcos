@@ -15,15 +15,15 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->string('name')->unique();
-            $table->integer('life');
-            $table->integer('experience');
-            $table->integer('money');
-            $table->integer('contraband');
-            $table->enum('country', ['colombia', 'mexico', 'puerto rico', 'united states of america']);
-            $table->enum('vehicle', ['motor', 'boat', 'plane']);
+            $table->integer('life')->default('100');
+            $table->integer('experience')->default('0');
+            $table->bigInteger('money')->default('0');
+            $table->integer('contraband')->default('0');
+            $table->enum('country', ['colombia', 'mexico', 'puerto rico', 'united states of america'])->default('colombia');
+            $table->enum('transport', ['none', 'motor', 'boat', 'plane'])->default('none');
             $table->timestamps();
         });
     }

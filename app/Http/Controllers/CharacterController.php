@@ -25,7 +25,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->character()->exists() && Auth::user()->character()->life === 0)
+        if(Auth::user()->character()->exists() && Auth::user()->character->life === 0)
         {
             return redirect('/character/death');
         }
@@ -37,9 +37,27 @@ class CharacterController extends Controller
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function create()
+    public function getCreate()
     {
         return view('character.create');
+    }
+
+    /**
+     * Creates a character for the logged in user. Redirects to home if succesful.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postCreate(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        Auth::user()->character()->create([
+            'name' => $request->name
+        ]);
+
+        return redirect('/');
     }
 
     /**
