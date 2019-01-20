@@ -15,6 +15,14 @@ class Character extends Model
         'name',
     ];
 
+    /**
+     * Checks if this character could be released.
+     */
+    public function isReleasable()
+    {
+        return $this->user_id !== null && $this->life === 0;
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

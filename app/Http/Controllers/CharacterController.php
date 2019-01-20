@@ -84,21 +84,12 @@ class CharacterController extends Controller
      */
     public function postDeath(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:25|unique:characters',
-        ]);
-
-        try {
-            Auth::user()->character()->create([
-                'name' => $request->name
-            ]);
-        } catch(\Exception $e) {
-            // For any error given during the creation of the character handle it by discarding
-            // the entire process and begin again by redirecting them back to /character.
-            return redirect('/character');
+        if (Auth::user()->character->isReleasable())
+        {
+            Auth::user()->character->user_id = null;
+            Auth::user()->character->save();
         }
-        
 
-        return redirect('/');
+        return redirect('/character');
     }
 }
