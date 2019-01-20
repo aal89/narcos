@@ -26,4 +26,5 @@ Route::group(['middleware' => $condMiddlewares], function () {
 Route::get('/character', 'CharacterController@index');
 Route::get('/character/create', 'CharacterController@getCreate');
 Route::post('/character/create', 'CharacterController@postCreate')->name('character.create');
-Route::get('/character/death', 'CharacterController@death');
+Route::get('/character/death', 'CharacterController@getDeath');
+Route::post('/character/death', 'CharacterController@postDeath')->name('character.release');
