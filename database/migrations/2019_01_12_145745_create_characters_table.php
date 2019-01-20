@@ -15,7 +15,7 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->string('name')->unique();
             $table->integer('life')->default('100');
