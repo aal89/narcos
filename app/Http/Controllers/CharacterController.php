@@ -50,12 +50,19 @@ class CharacterController extends Controller
     public function postCreate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:25|unique:characters',
         ]);
 
-        Auth::user()->character()->create([
-            'name' => $request->name
-        ]);
+        try {
+            Auth::user()->character()->create([
+                'name' => $request->name
+            ]);
+        } catch(\Exception $e) {
+            // For any error given during the creation of the character handle it by discarding
+            // the entire process and begin again by redirecting them back to /character.
+            return redirect('/character');
+        }
+        
 
         return redirect('/');
     }
