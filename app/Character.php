@@ -16,6 +16,15 @@ class Character extends Model
     ];
 
     /**
+     * Calculates the rank belonging to this character based on it's experience.
+     * It is a derived value.
+     */
+    public function rank()
+    {
+        return integerToRank($this->experience);
+    }
+
+    /**
      * Indication if this character has died.
      */
     public function isDead()
