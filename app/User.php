@@ -33,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function hasCharacter()
     {
-        return $this->character()->exists() && $this->character->life > 0;
+        return $this->character()->exists() && $this->character->isAlive();
     }
 
     public function character()

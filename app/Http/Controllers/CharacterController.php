@@ -25,7 +25,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->character()->exists() && Auth::user()->character->life === 0)
+        if(Auth::user()->character()->exists() && Auth::user()->character->isDead())
         {
             return redirect('/character/death');
         }
@@ -84,12 +84,7 @@ class CharacterController extends Controller
      */
     public function postDeath(Request $request)
     {
-        if (Auth::user()->character->isReleasable())
-        {
-            Auth::user()->character->user_id = null;
-            Auth::user()->character->save();
-        }
-
+        Auth::user()->character->release();
         return redirect('/character');
     }
 }
