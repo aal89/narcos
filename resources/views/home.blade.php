@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
+        <div class="col-md-10 col-lg-10">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">asd
                     {{ session('status') }}
@@ -13,7 +13,10 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
+        <div class="col-md-2 col-lg-2">
+            @include('layouts.menu')
+        </div>
+        <div class="col-md-8 col-lg-8">
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
