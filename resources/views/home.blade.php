@@ -3,44 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
-            <table class="table table-sm table-dark">
-                <tbody>
-                    @if (session('status'))
-                        <tr>
-                            <td>
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            </td>
-                        </tr>
-                    @endif
-                    <tr>
-                        <td>
-                            <span>
-                                <span aria-hidden="true" class="li_user"></span> {{ Auth::user()->character->name }}
-                                <a href="#" class="float-right">(edit profile)</a>
-                                <br>
-                                <span aria-hidden="true" class="li_heart"></span> {{ Auth::user()->character->life }}%
-                                <span aria-hidden="true" class="li_data pl-2"></span> {{ Auth::user()->character->experience }}
-                            </span>
-                            <span class="float-right"><span aria-hidden="true" class="li_stack"></span> Messages (0)</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span aria-hidden="true" class="li_banknote"></span> &euro; {{ Auth::user()->character->money }},-
-                            <span aria-hidden="true" class="li_truck pl-2"></span> {{ Auth::user()->character->contraband }}kg
-                            <span aria-hidden="true" class="li_location pl-2"></span> {{ Auth::user()->character->country }}
-                            <span aria-hidden="true" class="li_world pl-2"></span> {{ Auth::user()->character->transport }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-md-10 col-lg-10">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">asd
+                    {{ session('status') }}
+                </div>
+            @endif
+            @include('character.info')
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
+        <div class="col-md-2 col-lg-2">
+            @include('layouts.menu')
+        </div>
+        <div class="col-md-8 col-lg-8">
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
@@ -52,10 +28,28 @@
                         <td>
                             <div class="container">
                                 <div class="row">
+                                    <h5 class="">Update #1</h5>
+                                </div>
+                                <div class="row">
+                                    - Created character creation and death controllers, views and migrations.<br>
+                                    - Created middleware to respond accordingly to character state (see above line).<br>
+                                    - Cleanup code a lot.<br>
+                                    - Added comments throughout code base.<br>
+                                </div>
+                                <div class="row">
+                                    <span class="small mt-2">21-01-2019 21:23 by aal</span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="row">
                                     <h5 class="">Development</h5>
                                 </div>
                                 <div class="row">
-                                    Groundwork done.
+                                    Groundwork done.<br>
+                                    - Scaffoulded out a authentication system.<br>
+                                    - Created a css to reflect a mafia/narcos style game.<br>
+                                    - Created logo.<br>
+                                    - Setup environmental variables, so that emailing and verifying works etc.<br>
+                                    - Setup deployment pipeline.<br>
                                 </div>
                                 <div class="row">
                                     <span class="small mt-2">13-01-2019 21:43 by aal</span>
