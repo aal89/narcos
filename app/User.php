@@ -29,6 +29,14 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Indicates whether this user is banned or not.
+     */
+    public function isBanned()
+    {
+        return $this->banned;
+    }
+
+    /**
      * Checks if this model's Character exists and is alive.
      */
     public function hasCharacter()
