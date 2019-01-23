@@ -61,7 +61,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.has.character' => \App\Http\Middleware\UserHasCharacter::class,
-        'user.misses.character' => \App\Http\Middleware\UserMissesCharacter::class
+        'user.misses.character' => \App\Http\Middleware\UserMissesCharacter::class,
+        'is.allowed.access' => \App\Http\Middleware\IsAllowedAccess::class,
+        'is.not.allowed.access' => \App\Http\Middleware\IsBanned::class
     ];
 
     /**

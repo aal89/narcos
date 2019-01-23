@@ -15,6 +15,7 @@ class CharacterController extends Controller
     public function __construct()
     {
         // We could add middleware specific for this controller like so:
+        $this->middleware('is.allowed.access');
         $this->middleware('user.misses.character');
     }
 
