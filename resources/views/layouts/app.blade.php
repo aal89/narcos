@@ -68,14 +68,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right bg-dark pt-1 pb-1" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" href="{{ route('introduction') }}">
                                                 {{ __('Introduction') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" href="{{ route('documentation') }}">
                                                 {{ __('Documentation') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -86,7 +82,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Contact') }}
+                                                {{ __('Helpdesk') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
