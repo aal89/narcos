@@ -19,7 +19,11 @@ Auth::routes(['verify' => true]);
 // The routing group for this application. All controller should reside in this group (except for the Character controller).
 Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/', 'HomeController@index');
+    Route::view('/introduction', 'navigation.introduction')->name('introduction');
+    Route::view('/documentation', 'navigation.documentation')->name('documentation');
 });
+
+// SPECIAL CASES
 
 // Character creation and such is the one state an user can land in when it has an account but no player yet. Therefore
 // its the only controller outside the routing group above where all the regular middlewares apply. This is a special case.
@@ -31,4 +35,8 @@ Route::get('/character/death', 'CharacterController@getDeath');
 Route::post('/character/death', 'CharacterController@postDeath')->name('character.release');
 
 // Also a special case; the banned case
-Route::get('/banned', 'BannedController@index');
+Route::view('/banned', 'banned')->middleware('is.not.allowed.access');
+
+// Because we encourage people who are banned to contact the helpdesk we should also consider such an endpoint as a
+// special case.
+Route::view('/helpdesk', 'navigation.helpdesk');

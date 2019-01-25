@@ -41,6 +41,7 @@
                     - Organized crime<br>
                     - Car theft<br>
                     - Narcotics trade<br>
+                    - Kill<br>
                 </div>
             </td>
         </tr>
