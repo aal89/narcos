@@ -19,9 +19,12 @@ Auth::routes(['verify' => true]);
 // The routing group for this application. All controller should reside in this group (except for the Character controller).
 Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/', 'HomeController@index');
+
     Route::view('/introduction', 'navigation.introduction')->name('introduction');
     Route::view('/documentation', 'navigation.documentation')->name('documentation');
     Route::get('/reset/password', 'PasswordController@now');
+
+    Route::get('/profile/{character}', 'ProfileController@getProfile');
 });
 
 // SPECIAL CASES

@@ -15,6 +15,11 @@ class Character extends Model
         'name',
     ];
 
+    public static function findByName($name)
+    {
+        return Character::where('name', $name)->first();
+    }
+
     /**
      * Calculates the rank belonging to this character based on it's experience.
      * It is a derived value.

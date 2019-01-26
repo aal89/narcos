@@ -4,7 +4,7 @@
             <td>
                 <span>
                     <span aria-hidden="true" class="li_user"></span> 
-                    <a href="#" class="">{{ Auth::user()->character->name }}</a>
+                    <a href="/profile/{{ Auth::user()->character->name }}" class="">{{ Auth::user()->character->name }}</a>
                     <br>
                     <span aria-hidden="true" class="li_heart"></span> {{ Auth::user()->character->life }}%
                     <span aria-hidden="true" class="li_data pl-2"></span> {{ Auth::user()->character->rank() }}
