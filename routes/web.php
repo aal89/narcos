@@ -21,6 +21,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/', 'HomeController@index');
     Route::view('/introduction', 'navigation.introduction')->name('introduction');
     Route::view('/documentation', 'navigation.documentation')->name('documentation');
+    Route::get('/reset/password', 'PasswordController@now');
 });
 
 // SPECIAL CASES

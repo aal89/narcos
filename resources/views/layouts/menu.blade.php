@@ -13,8 +13,7 @@
         <tr>
             <td>
                 <div class="collapse show" id="col">
-                    - News<br>
-                    - Jail<br>
+                    - <a href="/">News</a><br>
                     - Banking<br>
                     - Travel<br>
                     - Assets<br>
