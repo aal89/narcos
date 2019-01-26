@@ -33,6 +33,20 @@
             <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
             <div class="container">
                 <div class="row">
+                    <h5 class="text-secondary">Update #2</h5>
+                </div>
+                <div class="row">
+                    - Rewrote great portions of the code.<br>
+                    - Added code to collapse menus by default on smaller devices.<br>
+                    - Deleted unused components.<br>
+                    - Added password reset for logged in users.<br>
+                    - Added errors (top) dialog.<br>
+                    - Finalized the top menu regarding functionality.<br>
+                </div>
+                <div class="row">
+                    <span class="small mt-2 mb-2">26-01-2019 13:28 by aal</span>
+                </div>
+                <div class="row">
                     <h5 class="text-secondary">Update #1</h5>
                 </div>
                 <div class="row">
