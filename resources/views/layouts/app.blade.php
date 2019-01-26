@@ -103,4 +103,16 @@
         </main>
     </div>
 </body>
+<script>
+    function hide(id) {
+        document.getElementById(id).classList.remove("show");
+        document.getElementById(id).classList.add("hide");
+    }
+    if (window.innerWidth < 768) {
+        hide('col');
+        hide('col2');
+        hide('col3');
+        hide('col4');
+    }
+</script>
 </html>
