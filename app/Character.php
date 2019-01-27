@@ -30,6 +30,42 @@ class Character extends Model
     }
 
     /**
+     * This Characters money formatted in a human preferable way. E.g. 132.844,
+     * instead of 132844.
+     */
+    public function money()
+    {
+        return number_format($this->money, 0, '.', '.');
+    }
+
+    /**
+     * This Characters country formatted in a human preferable way. E.g. United
+     * States of America, instead of united states of america.
+     */
+    public function country()
+    {
+        return str_replace('Of', 'of', ucwords($this->country));
+    }
+
+    /**
+     * This Characters contraband formatted in a human preferable way. E.g. 1.200,
+     * instead of 1200.
+     */
+    public function contraband()
+    {
+        return number_format($this->contraband, 0, '.', '.');
+    }
+
+    /**
+     * This Characters transport formatted in a human preferable way. E.g. Plane,
+     * instead of plane.
+     */
+    public function transport()
+    {
+        return ucfirst($this->transport);
+    }
+
+    /**
      * Indication if this character has died.
      */
     public function isDead()
@@ -69,5 +105,10 @@ class Character extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
     }
 }
