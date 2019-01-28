@@ -44,7 +44,8 @@ class CharacterController extends Controller
     }
 
     /**
-     * Creates a character for the logged in user. Redirects to home if succesful.
+     * Creates a character for the logged in user. Redirects to home if successful. Back to
+     * /character for any error that occurs during creation process.
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -63,7 +64,6 @@ class CharacterController extends Controller
             // the entire process and begin again by redirecting them back to /character.
             return redirect('/character');
         }
-        
 
         return redirect('/');
     }

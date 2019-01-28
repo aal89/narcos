@@ -131,6 +131,9 @@ table tbody tr td:first-child {
 .w-15 {
     width: 15% !important;
 }
+.text-normal {
+    font-weight: normal !important;
+}
 .transparant-overlay {
     content: '';
     display: block;

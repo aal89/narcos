@@ -25,6 +25,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/reset/password', 'PasswordController@now');
 
     Route::get('/profile/{character}', 'ProfileController@getProfile');
+    Route::post('/profile', 'ProfileController@updateProfile');
 });
 
 // SPECIAL CASES

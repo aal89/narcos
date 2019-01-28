@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Character;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -26,5 +27,24 @@ class ProfileController extends Controller
             return view('character.profile')->with('character', $char);
         }
         return redirect('/');
+    }
+
+    /**
+     * Creates or updates a profile for the character currently logged in. Redirects to home if successful.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function updateProfile(Request $request)
+    {
+        var_dump($request->description);
+        if (Auth::check()) {
+            Profile::updateOrCreate([
+                'character_id' => Auth::user()->character->id
+            ],[
+                'description' => $request->description
+            ]);
+        }
+
+        return redirect()->back();
     }
 }

@@ -17,7 +17,7 @@ class CreateProfileTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('character_id')->nullable()->unique();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
