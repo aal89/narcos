@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('character_id')->nullable()->unique();
+            $table->unsignedInteger('character_id')->unique();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->timestamps();

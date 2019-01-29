@@ -36,11 +36,8 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        var_dump($request->description);
         if (Auth::check()) {
-            Profile::updateOrCreate([
-                'character_id' => Auth::user()->character->id
-            ],[
+            Auth::user()->character->profile()->update([
                 'description' => $request->description
             ]);
         }
