@@ -64,7 +64,7 @@
                 <span>{{ __('Description') }}</span>
             </td>
             <td class="text-normal">
-                {!! $character->profile()->exists() ? $character->profile->description() : '<i>This player surrounds itself with mystery.</i>' !!}
+                {!! isset($character->profile()->description) ? $character->profile->description() : '<i>This player surrounds itself with mystery.</i>' !!}
             </td>
         </tr>
     </tbody>
@@ -83,7 +83,7 @@
                     <td>
                         You can use Narcoscript to enhance your profile: <a href="#">show help</a>.
                         <div class="form-group mb-2 mt-2">
-                            <textarea class="form-control" rows="5" id="comment" name="description" required>{{ $character->profile()->exists() ? $character->profile->description : '' }}</textarea>
+                            <textarea class="form-control" rows="5" id="comment" name="description" required>{{ $character->profile->description }}</textarea>
                         </div>
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-secondary">Save</button>
