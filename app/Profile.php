@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Facades\NarcoScript;
 
 class Profile extends Model
 {
@@ -18,6 +19,6 @@ class Profile extends Model
      */
     public function description()
     {
-        return convertNarcoScript(htmlentities($this->description));
+        return NarcoScript::parse(htmlentities($this->description));
     }
 }

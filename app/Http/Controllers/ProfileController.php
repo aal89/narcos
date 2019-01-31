@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Character;
 use App\Profile;
 
+use App\Facades\NarcoScript;
+
 class ProfileController extends Controller
 {
     /**
