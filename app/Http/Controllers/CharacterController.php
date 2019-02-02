@@ -56,9 +56,13 @@ class CharacterController extends Controller
         ]);
 
         try {
-            Auth::user()->character()->create([
-                'name' => $request->name
-            ])->profile()->create();
+            if(!isForbiddenCharacterName($request->name)) {
+                Auth::user()->character()->create([
+                    'name' => $request->name
+                ])->profile()->create();
+            } else {
+                return redirect()->back()->withErrors(['name' => 'This name is not allowed. Please pick another.']);
+            }
         } catch(\Exception $e) {
             // For any error given during the creation of the character handle it by discarding
             // the entire process and begin again by redirecting them back to /character.
