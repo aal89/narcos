@@ -64,7 +64,7 @@
                 <span>{{ __('Description') }}</span>
             </td>
             <td class="text-normal">
-                {!! isset($character->profile->description) ? $character->profile->description() : '<i>This player surrounds itself with mystery.</i>' !!}
+                {!! isset($character->profile->description) ? $character->profile->description() : '<i>This player prefers to keep an air of mystery about them.</i>' !!}
             </td>
         </tr>
     </tbody>

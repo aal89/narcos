@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #3</h5>
+    </div>
+    <div class="row">
+        - You can now view and edit your profile and see other peoples profiles.<br>
+        - Designed and created NarcoScript to enhance profile editing.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">02-02-2019 13:58 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #2</h5>
     </div>
     <div class="row">
