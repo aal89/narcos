@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function getProfile($character)
     {
         $char = Character::findByName($character);
-        if ($char->exists()) {
+        if ($char) {
             $char->isOwn = false;
             if (Auth::check() && Auth::user()->character->name === $char->name) {
                 $char->isOwn = true;
@@ -41,6 +41,20 @@ class ProfileController extends Controller
         if (Auth::check()) {
             Auth::user()->character->profile()->update([
                 'description' => $request->description
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Sets profile description to null, does not delete the relationship.
+     */
+    public function deleteProfile()
+    {
+        if (Auth::check()) {
+            Auth::user()->character->profile()->update([
+                'description' => null
             ]);
         }
 

@@ -4,6 +4,12 @@ namespace App\Tools;
   
 class NarcoScript
 {
+    // hey future Alex, you might be wondering why I created tagsets and singles. In a tagset the pairs are constraint
+    // a lot more than with singles, so a single :b: (without a :/b:) will never parse. Singles, however, will always
+    // parse if they are found. The trade-off? Singles are more flexibel (see for example the :link: tags), but require
+    // the user to be more precise or f it all up. The constraint pair are more user friendly but also more restrictive.
+    // With the current implementation you cant reference a link in a tagset, but you can in a singles. The rule
+    // becomes 1st) :link: 2) :-link: 3) :/link:. Do it any other way and the link wont show up in your profile.
     private $tagSets = array(
         array(
             ':b:' => '<b>',
@@ -11,11 +17,23 @@ class NarcoScript
         ),
         array(
             ':img:' => '<img src="',
-            ':\/img:' => '" style="max-width: 100%;"></img>'
+            ':\/img:' => '" style="max-width: 100%;" />'
+        ),
+        array(
+            ':img-center:' => '<img class="mx-auto d-block" src="',
+            ':\/img-center:' => '" style="max-width: 100%;" />'
+        ),
+        array(
+            ':center:' => '<p class="text-center mb-0">',
+            ':\/center:' => '</p>'
         )
     );
     private $singles = array(
-        ':br:' => '<br>'
+        ':br:' => '<br>',
+        ':link:' => '<a href="',
+        ':-link:' => '">',
+        ':/link:' => '</a>'
+
     );
 
     /**
