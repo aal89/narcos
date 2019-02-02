@@ -79,7 +79,7 @@
         <tbody>
             <tr>
                 <td>
-                    You can use Narcoscript to enhance your profile: <a href="#">show help</a>.
+                    You can use Narcoscript to enhance your profile: <a href="/documentation#profile">show help</a>.
                     <form method="POST" action="/profile">
                         @csrf
                         <div class="form-group mb-2 mt-2">
