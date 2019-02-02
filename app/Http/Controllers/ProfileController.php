@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function getProfile($character)
     {
         $char = Character::findByName($character);
-        if ($char->exists()) {
+        if ($char) {
             $char->isOwn = false;
             if (Auth::check() && Auth::user()->character->name === $char->name) {
                 $char->isOwn = true;
