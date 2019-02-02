@@ -27,6 +27,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/profile/delete', 'ProfileController@deleteProfile');
     Route::get('/profile/{character}', 'ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@updateProfile');
+
+    Route::get('/messages', 'MessageController@index');
 });
 
 // SPECIAL CASES
