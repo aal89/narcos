@@ -24,6 +24,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::view('/documentation', 'navigation.documentation')->name('documentation');
     Route::get('/reset/password', 'PasswordController@now');
 
+    Route::get('/profile/delete', 'ProfileController@deleteProfile');
     Route::get('/profile/{character}', 'ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@updateProfile');
 });

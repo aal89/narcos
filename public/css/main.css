@@ -128,8 +128,8 @@ table tbody tr td:first-child {
     padding: 5px;
     border: 1px solid #141414;
 }
-.w-15 {
-    width: 15% !important;
+.w-20 {
+    width: 20% !important;
 }
 .text-normal {
     font-weight: normal !important;

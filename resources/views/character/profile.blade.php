@@ -5,7 +5,7 @@
 <table class="table table-sm table-dark">
     <tbody>
         <tr>
-            <td class="w-15">
+            <td class="w-20">
                 <span aria-hidden="true" class="li_heart"></span>
                 <span>{{ __('Health') }}</span>
             </td>
@@ -70,29 +70,29 @@
     </tbody>
 </table>
 @if ($character->isOwn)
-    <form method="POST" action="/profile">
-    @csrf
-        <table class="table table-sm table-dark">
-            <thead>
-                <th>
-                    <span>Edit description</span>
-                </th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        You can use Narcoscript to enhance your profile: <a href="#">show help</a>.
+    <table class="table table-sm table-dark">
+        <thead>
+            <th>
+                <span>Edit description</span>
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    You can use Narcoscript to enhance your profile: <a href="#">show help</a>.
+                    <form method="POST" action="/profile">
+                        @csrf
                         <div class="form-group mb-2 mt-2">
                             <textarea class="form-control" rows="5" id="comment" name="description" required>{{ $character->profile->description }}</textarea>
                         </div>
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-secondary">Save</button>
-                            <button type="submit" class="btn btn-danger float-right">Delete profile (only text)</button>
+                            <a href="/profile/delete" class="btn btn-danger float-right">Delete description</a>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 @endif
 @endsection

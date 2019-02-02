@@ -46,4 +46,18 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Sets profile description to null, does not delete the relationship.
+     */
+    public function deleteProfile()
+    {
+        if (Auth::check()) {
+            Auth::user()->character->profile()->update([
+                'description' => null
+            ]);
+        }
+
+        return redirect()->back();
+    }
 }
