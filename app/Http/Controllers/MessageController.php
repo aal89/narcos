@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function __construct()
     {
         // We could add middleware specific for this controller like so:
-        $this->middleware('mark.messages.read');
+        $this->middleware('mark.messages.read', ['except' => ['getOutbox', 'getCompose']]);
     }
 
     /**
