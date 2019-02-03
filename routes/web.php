@@ -31,6 +31,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/messages/inbox', 'MessageController@getInbox');
     Route::get('/messages/outbox', 'MessageController@getOutbox');
     Route::get('/messages/compose', 'MessageController@getCompose');
+    Route::post('/messages/compose', 'MessageController@postCompose');
 });
 
 // SPECIAL CASES

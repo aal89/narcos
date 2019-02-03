@@ -16,11 +16,11 @@ class MessageController extends Controller
     public function __construct()
     {
         // We could add middleware specific for this controller like so:
-        $this->middleware('mark.messages.read', ['except' => ['getOutbox', 'getCompose']]);
+        $this->middleware('mark.messages.read', ['only' => ['getInbox']]);
     }
 
     /**
-     * Show the messages overview also marks all messages as read.
+     * Show the messages overview (inbox) also marks all messages as read.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -30,11 +30,32 @@ class MessageController extends Controller
     }
 
     /**
-     * Show the messages overview also marks all messages as read.
+     * Show the messages outbox.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getOutbox()
+    {
+        return view('menu.messages.outbox');
+    }
+
+    /**
+     * Show the message compose view.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getCompose()
+    {
+        return view('menu.messages.compose');
+    }
+
+    /**
+     * Add new messages to the database one for the recipient (inbox) and one
+     * for the sender (outbox).
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postCompose()
     {
         return view('menu.messages.outbox');
     }
