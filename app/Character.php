@@ -102,6 +102,11 @@ class Character extends Model
         return $this->user_id !== null && $this->isDead();
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message', 'owner_id');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');
