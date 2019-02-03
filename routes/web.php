@@ -28,7 +28,9 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/profile/{character}', 'ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@updateProfile');
 
-    Route::get('/messages', 'MessageController@index');
+    Route::get('/messages/inbox', 'MessageController@getInbox');
+    Route::get('/messages/outbox', 'MessageController@getOutbox');
+    Route::get('/messages/compose', 'MessageController@getCompose');
 });
 
 // SPECIAL CASES

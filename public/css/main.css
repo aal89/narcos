@@ -134,6 +134,10 @@ table tbody tr td:first-child {
 .text-normal {
     font-weight: normal !important;
 }
+.nav-link.active {
+    color: #1C1C1C !important;
+    background-color: #fff !important;
+}
 .transparant-overlay {
     content: '';
     display: block;
