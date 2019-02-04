@@ -148,6 +148,9 @@ table tbody tr td:first-child {
     height: 100%;
     background-color: rgba(0,0,0,0.3);
 }
+.w-10 {
+    width: 10% !important;
+}
 .news-item .page-header {
     margin-top: 0;
     margin-bottom: 7px;
