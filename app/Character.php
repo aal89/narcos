@@ -17,7 +17,7 @@ class Character extends Model
 
     public static function findByName($name)
     {
-        return Character::where('name', $name)->first();
+        return Character::where('name', $name)->firstOrFail();
     }
 
     /**
@@ -100,6 +100,24 @@ class Character extends Model
     public function isReleasable()
     {
         return $this->user_id !== null && $this->isDead();
+    }
+
+    /**
+     * Gets all your messages, inbox and outbox mixed together.
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Message', 'owner_id');
+    }
+
+    public function messagesOutbox()
+    {
+        return $this->hasMany('App\Message', 'sender_id')->where('owner_id', $this->id);
+    }
+
+    public function messagesInbox()
+    {
+        return $this->hasMany('App\Message', 'recipient_id')->where('owner_id', $this->id);
     }
 
     public function user()

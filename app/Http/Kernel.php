@@ -63,7 +63,8 @@ class Kernel extends HttpKernel
         'user.has.character' => \App\Http\Middleware\UserHasCharacter::class,
         'user.misses.character' => \App\Http\Middleware\UserMissesCharacter::class,
         'is.allowed.access' => \App\Http\Middleware\IsAllowedAccess::class,
-        'is.not.allowed.access' => \App\Http\Middleware\IsBanned::class
+        'is.not.allowed.access' => \App\Http\Middleware\IsBanned::class,
+        'mark.messages.read' => \App\Http\Middleware\MarkMessagesRead::class
     ];
 
     /**

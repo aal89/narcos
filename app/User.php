@@ -44,6 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->character()->exists() && $this->character->isAlive();
     }
 
+    /**
+     * Returns the character belonging to this user.
+     */
     public function character()
     {
         return $this->hasOne('App\Character');

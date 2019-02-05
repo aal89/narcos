@@ -27,6 +27,13 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/profile/delete', 'ProfileController@deleteProfile');
     Route::get('/profile/{character}', 'ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@updateProfile');
+
+    Route::get('/messages/inbox', 'MessageController@getInbox');
+    Route::get('/messages/outbox', 'MessageController@getOutbox');
+    Route::get('/messages/compose/{character?}/{subject?}', 'MessageController@getCompose');
+    Route::post('/messages/compose', 'MessageController@postCompose');
+    Route::get('/messages/delete/{id}', 'MessageController@postDelete');
+    
 });
 
 // SPECIAL CASES

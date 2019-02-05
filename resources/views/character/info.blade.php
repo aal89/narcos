@@ -11,7 +11,7 @@
                 </span>
                 <span class="float-right">
                     <span aria-hidden="true" class="li_stack"></span>
-                    <a href="#" class="">Messages (0)</a>
+                    <a href="/messages/inbox" class="">Messages ({{ App\Message::countUnread(Auth::user()->character) }})</a>
                 </span>
             </td>
         </tr>
