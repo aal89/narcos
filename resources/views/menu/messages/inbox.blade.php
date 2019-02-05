@@ -19,7 +19,7 @@
                             <span>Subject</span>
                         </td>
                         <td>
-                            <span class="not-bold">{{ $message->subject }}</span>
+                            <span class="not-bold text-wrap">{{ $message->subject }}</span>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +27,7 @@
                             <span>Message</span>
                         </td>
                         <td>
-                            <span class="not-bold">{{ $message->message }}</span>
+                            <span class="not-bold text-wrap">{{ $message->message }}</span>
                         </td>
                     </tr>
                     <tr>

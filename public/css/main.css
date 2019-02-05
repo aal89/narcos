@@ -24,6 +24,9 @@ a:hover {
 .btn-link:hover {
     color: #b79235;
 }
+.text-wrap {
+    word-break: break-all; 
+}
 nav {
     border-bottom: 1px solid #555;
 }
