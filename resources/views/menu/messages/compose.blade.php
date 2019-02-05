@@ -19,7 +19,7 @@
                         <td>
                             <div class="col-md-8 col-lg-6">
                                 <div class="input-group input-group-sm">
-                                    <input id="character" type="input" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') ? old('character') : $character }}" required>
+                                    <input id="character" type="input"  minlength="3" maxlength="25" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') ? old('character') : $character }}" required>
                                     <br><small class="form-text text-muted">Enter the exact character name for which this message is meant.</small>
                                     @if ($errors->has('character'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                         <td>
                             <div class="col-md-8 col-lg-6">
                                 <div class="input-group input-group-sm">
-                                    <input id="subject" type="input" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" name="subject" value="{{ old('subject') ? old('subject') : $subject }}" required>
+                                    <input id="subject" type="input" maxlength="255" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" name="subject" value="{{ old('subject') ? old('subject') : $subject }}" required maxlength="500">
                                     @if ($errors->has('subject'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('subject') }}</strong>
@@ -54,7 +54,7 @@
                         <td>
                             <div class="col-md-12 col-lg-12">
                                 <div class="form-group mb-0">
-                                    <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" rows="5" id="message" name="message" required autofocus>{{ old('message') }}</textarea>
+                                    <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" rows="5" id="message" name="message" required autofocus maxlength="500">{{ old('message') }}</textarea>
                                     @if ($errors->has('message'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('message') }}</strong>

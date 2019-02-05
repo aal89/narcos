@@ -68,11 +68,11 @@ class MessageController extends Controller
             $me = Auth::user()->character;
             $recipient = Character::findByName($request->character);
         } catch(\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['unknown_recipient' => 'Character '.$request->character.' does not exist, please double check the character name.']);
+            return redirect()->back()->withInput()->withErrors(['character' => 'Character '.$request->character.' does not exist, please double check the character name.']);
         }
 
         if ($me->name === $recipient->name) {
-            return redirect()->back()->withInput()->withErrors(['self_recipient' => 'You cannot send yourself a message.']);
+            return redirect()->back()->withInput()->withErrors(['character' => 'You cannot send yourself a message.']);
         }
 
         $msg = new Message($request->all());
@@ -103,7 +103,7 @@ class MessageController extends Controller
             Message::where('id', $id)->where('owner_id', Auth::user()->character->id)->firstOrFail()->delete();
             return redirect()->back();
         } catch(\Exception $e) {
-            return redirect()->back()->withErrors(['unknown_message' => 'Hmm, this message does not seem to belong to you.']);
+            return redirect()->back()->withErrors(['top' => 'Hmm, this message does not seem to belong to you.']);
         }
     }
 }

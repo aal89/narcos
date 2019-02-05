@@ -63,7 +63,7 @@
                 <span aria-hidden="true" class="li_tag"></span>
                 <span>{{ __('Description') }}</span>
             </td>
-            <td class="text-normal">
+            <td class="text-normal text-wrap">
                 {!! isset($character->profile->description) ? $character->profile->description() : '<i>This player prefers to keep an air of mystery about them.</i>' !!}
             </td>
         </tr>
