@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Message;
+use App\Character;
 
 class MessageController extends Controller
 {
@@ -55,8 +56,38 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function postCompose()
+    public function postCompose(Request $request)
     {
+        $this->validate($request, [
+            'character' => 'required|max:255',
+            'subject' => 'required|max:255',
+            'message' => 'required|max:500',
+        ]);
+
+        try {
+            $me = Auth::user()->character;
+            $recipient = Character::findByName($request->character);
+        } catch(\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['unknown_recipient' => 'Character '.$request->character.' does not exist, please double check the character name.']);
+        }
+
+        if ($me->name === $recipient->name) {
+            return redirect()->back()->withInput()->withErrors(['self_recipient' => 'You cannot send yourself a message.']);
+        }
+
+        $msg = new Message($request->all());
+        $msg->owner_id = $me->id;
+        $msg->sender_id = $me->id;
+        $msg->recipient_id = $recipient->id;
+        $msg->read = true;
+        $msg->save();
+
+        $msg = new Message($request->all());
+        $msg->owner_id = $recipient->id;
+        $msg->sender_id = $me->id;
+        $msg->recipient_id = $recipient->id;
+        $msg->save();
+
         return view('menu.messages.outbox');
     }
 }

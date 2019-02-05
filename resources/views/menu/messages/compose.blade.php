@@ -19,7 +19,8 @@
                         <td>
                             <div class="col-md-8 col-lg-6">
                                 <div class="input-group input-group-sm">
-                                    <input id="character" type="input" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') }}" required autofocus>
+                                    <input id="character" type="input" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') }}" required>
+                                    <br><small class="form-text text-muted">Enter the exact character name for which this message is meant.</small>
                                     @if ($errors->has('character'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('character') }}</strong>
@@ -51,9 +52,9 @@
                             <label for="message" class="col-form-label">Message</label>
                         </td>
                         <td>
-                            <div class="col-md-8 col-lg-6">
+                            <div class="col-md-12 col-lg-12">
                                 <div class="form-group mb-0">
-                                    <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" rows="5" id="message" name="message" required>{{ old('message') }}</textarea>
+                                    <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" rows="5" id="message" name="message" required autofocus>{{ old('message') }}</textarea>
                                     @if ($errors->has('message'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('message') }}</strong>
@@ -66,7 +67,9 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <button class="btn btn-link float-right" type="submit">Send</button>
+                            <div class="col-md-12 col-lg-12">
+                                <button class="btn btn-secondary float-right" type="submit">Send</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

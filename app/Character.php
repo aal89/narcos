@@ -17,7 +17,7 @@ class Character extends Model
 
     public static function findByName($name)
     {
-        return Character::where('name', $name)->first();
+        return Character::where('name', $name)->firstOrFail();
     }
 
     /**
