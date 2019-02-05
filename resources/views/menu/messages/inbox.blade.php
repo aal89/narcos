@@ -2,7 +2,7 @@
 
 @section('message-page')
 <div class="container">
-    @if (count(Auth::user()->character->messagesInbox) == 0)
+    @if (count(Auth::user()->character->messagesInbox) === 0)
         <p class="text-center"><i>No new inbox messages.</i></p>
     @endif
     @foreach (Auth::user()->character->messagesInbox as $message)
