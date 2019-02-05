@@ -19,7 +19,7 @@
                         <td>
                             <div class="col-md-8 col-lg-6">
                                 <div class="input-group input-group-sm">
-                                    <input id="character" type="input" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') }}" required>
+                                    <input id="character" type="input" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') ? old('character') : $character }}" required>
                                     <br><small class="form-text text-muted">Enter the exact character name for which this message is meant.</small>
                                     @if ($errors->has('character'))
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                         <td>
                             <div class="col-md-8 col-lg-6">
                                 <div class="input-group input-group-sm">
-                                    <input id="subject" type="input" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" name="subject" value="{{ old('subject') }}" required>
+                                    <input id="subject" type="input" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" name="subject" value="{{ old('subject') ? old('subject') : $subject }}" required>
                                     @if ($errors->has('subject'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('subject') }}</strong>

@@ -45,9 +45,9 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getCompose()
+    public function getCompose($character = '', $subject = '')
     {
-        return view('menu.messages.compose');
+        return view('menu.messages.compose')->with(['character' => $character])->with(['subject' => $subject]);
     }
 
     /**
@@ -59,7 +59,7 @@ class MessageController extends Controller
     public function postCompose(Request $request)
     {
         $this->validate($request, [
-            'character' => 'required|max:255',
+            'character' => 'required|min:3|max:255',
             'subject' => 'required|max:255',
             'message' => 'required|max:500',
         ]);
@@ -88,6 +88,22 @@ class MessageController extends Controller
         $msg->recipient_id = $recipient->id;
         $msg->save();
 
-        return view('menu.messages.outbox');
+        return redirect('/messages/outbox');
+    }
+
+    /**
+     * Removes the messages if the logged in user happens to be the
+     * owner of said message.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postDelete($id = 0)
+    {
+        try {
+            Message::where('id', $id)->where('owner_id', Auth::user()->character->id)->firstOrFail()->delete();
+            return redirect()->back();
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['unknown_message' => 'Hmm, this message does not seem to belong to you.']);
+        }
     }
 }
