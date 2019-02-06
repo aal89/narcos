@@ -112,12 +112,12 @@ class Character extends Model
 
     public function messagesOutbox()
     {
-        return $this->hasMany('App\Message', 'sender_id')->where('owner_id', $this->id);
+        return $this->hasMany('App\Message', 'sender_id')->where('owner_id', $this->id)->orderBy('created_at', 'desc');;
     }
 
     public function messagesInbox()
     {
-        return $this->hasMany('App\Message', 'recipient_id')->where('owner_id', $this->id);
+        return $this->hasMany('App\Message', 'recipient_id')->where('owner_id', $this->id)->orderBy('created_at', 'desc');;
     }
 
     public function user()
