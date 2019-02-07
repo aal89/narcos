@@ -57,9 +57,11 @@ class CharacterController extends Controller
 
         try {
             if(!isForbiddenCharacterName($request->name)) {
-                Auth::user()->character()->create([
+                $char = Auth::user()->character()->create([
                     'name' => $request->name
-                ])->profile()->create();
+                ]);
+                $char->profile()->create();
+                $char->bank()->create();
             } else {
                 return redirect()->back()->withErrors(['name' => 'This name is not allowed. Please pick another.']);
             }

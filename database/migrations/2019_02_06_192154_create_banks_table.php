@@ -15,6 +15,9 @@ class CreateBanksTable extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('character_id')->unique();
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+            $table->bigInteger('money')->default('0');
             $table->timestamps();
         });
     }

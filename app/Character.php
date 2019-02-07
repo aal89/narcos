@@ -129,4 +129,9 @@ class Character extends Model
     {
         return $this->hasOne('App\Profile');
     }
+
+    public function bank()
+    {
+        return $this->hasOne('App\Bank');
+    }
 }
