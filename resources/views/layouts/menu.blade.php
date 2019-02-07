@@ -14,7 +14,7 @@
             <td>
                 <div class="collapse show" id="col">
                     - <a href="/">News</a><br>
-                    - Banking<br>
+                    - <a href="/banking">Banking</a><br>
                     - Travel<br>
                     - Assets<br>
                     - Statistics<br>

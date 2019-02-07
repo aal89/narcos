@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Message;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -25,7 +27,16 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')
-        //          ->hourly();
+        //         ->everyMinute();
+        $schedule->call(function () {
+            $msg = new Message();
+            $msg->owner_id = 1;
+            $msg->sender_id = 1;
+            $msg->recipient_id = 1;
+            $msg->subject = 'Hello';
+            $msg->message = '...every message';
+            $msg->save();
+        })->everyMinute();
     }
 
     /**

@@ -34,6 +34,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/messages/compose', 'MessageController@postCompose');
     Route::get('/messages/delete/{id}', 'MessageController@postDelete');
     
+    Route::get('/banking', 'BankController@getIndex');
+    Route::post('/banking', 'BankController@postIndex');
 });
 
 // SPECIAL CASES
