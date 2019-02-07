@@ -28,15 +28,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //         ->everyMinute();
-        $schedule->call(function () {
-            $msg = new Message();
-            $msg->owner_id = 1;
-            $msg->sender_id = 1;
-            $msg->recipient_id = 1;
-            $msg->subject = 'Hello';
-            $msg->message = '...every message';
-            $msg->save();
-        })->everyMinute();
+        // $schedule->call(function () {
+        //     $msg = new Message();
+        //     $msg->owner_id = 1;
+        //     $msg->sender_id = 1;
+        //     $msg->recipient_id = 1;
+        //     $msg->subject = 'Hello';
+        //     $msg->message = '...every message';
+        //     $msg->save();
+        // })->everyMinute();
     }
 
     /**
