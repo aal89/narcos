@@ -5,7 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-use App\Message;
+use App\Character;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,17 +26,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //         ->everyMinute();
-        // $schedule->call(function () {
-        //     $msg = new Message();
-        //     $msg->owner_id = 1;
-        //     $msg->sender_id = 1;
-        //     $msg->recipient_id = 1;
-        //     $msg->subject = 'Hello';
-        //     $msg->message = '...every message';
-        //     $msg->save();
-        // })->everyMinute();
+        $schedule->call(function () {
+            Character::all()->each(function ($char) {
+                if ($char->bank->money > 0 && $char->bank->hoursSinceLastAction() === 0) {
+                    $char->money += $char->bank->moneyWithInterest();
+                    $char->save();
+                    $char->bank->money = 0;
+                    $char->bank->save();
+                }
+            });
+        })->everyThirtyMinutes();
     }
 
     /**

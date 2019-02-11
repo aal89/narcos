@@ -4,7 +4,7 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('Banking') }}</h3>
 <p>
     By saving up money in the bank for 24hr you will generate interest over time. You can safely store your money here. Each withdrawal
-    or deposit action will reset the (24hr) timer.
+    or deposit action will reset the (24hr) timer. Interest pay-outs can be delayed by up to 30 mins.
 </p>
 <p>
     <strong>Your current balance:</strong> &euro;{{ Auth::user()->character->bank->money }},-
@@ -33,7 +33,14 @@
         </tr>
     </thead>
     <tbody>
-        
+        <tr>
+            <td>
+                <small>></small> &euro;0,-
+            </td>
+            <td>
+                12%
+            </td>
+        </tr>
         <tr>
             <td>
                 <small>></small> &euro;50.000,-

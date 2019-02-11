@@ -24,4 +24,9 @@ class Bank extends Model
     {
         return $this->DAY_IN_HOURS - min($this->DAY_IN_HOURS, $this->updated_at->diffInHours(Carbon::now()));
     }
+
+    public function moneyWithInterest()
+    {
+        return inflateAmount($this->money);
+    }
 }
