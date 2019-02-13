@@ -15,9 +15,9 @@
                 <div class="collapse show" id="col">
                     - <a href="/">News</a><br>
                     - <a href="/banking">Banking</a><br>
-                    - Travel<br>
+                    - <a href="/travel">Travel</a><br>
                     - Assets<br>
-                    - Statistics<br>
+                    - Online players<br>
                 </div>
             </td>
         </tr>
@@ -38,7 +38,6 @@
                 <div class="collapse show" id="col2">
                     - Trivial crime<br>
                     - Organized crime<br>
-                    - Car theft<br>
                     - Narcotics trade<br>
                     - Kill<br>
                 </div>

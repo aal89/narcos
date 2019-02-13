@@ -36,6 +36,9 @@ Route::group(['middleware' => $condMiddlewares], function () {
     
     Route::get('/banking', 'BankController@getIndex');
     Route::post('/banking', 'BankController@postIndex');
+
+    Route::get('/travel', 'TravelController@getIndex');
+    Route::post('/travel', 'TravelController@postIndex');
 });
 
 // SPECIAL CASES
