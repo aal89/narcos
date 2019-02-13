@@ -1,7 +1,7 @@
 @extends('layouts.basic')
 
 @section('page')
-<h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('Banking') }}</h3>
+<h3 class="page-title"><span aria-hidden="true" class="li_banknote"></span> {{ __('Banking') }}</h3>
 <p>
     By saving up money in the bank for 24hr you will generate interest over time. You can safely store your money here. Each withdrawal
     or deposit action will reset the (24hr) timer. Interest pay-outs can be delayed by up to 30 mins.
