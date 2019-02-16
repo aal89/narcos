@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Character;
+use Carbon\Carbon;
 
 class TravelController extends Controller
 {
@@ -58,9 +59,15 @@ class TravelController extends Controller
             return redirect()->back()->withErrors(['country' => 'You\'re already in this country.']);
         }
 
+        if (!$char->can->travel()) {
+            return redirect()->back()->withErrors(['country' => 'You have to wait untill you can travel again; '.$char->can->travelInMinutes().' minutes left.']);
+        }
+
         $char->money -= $travelCost;
         $char->country = $request->country;
+        $char->can->travel = Carbon::now()->addMinutes(cooldownForAsset($char->transport));
         $char->save();
+        $char->can->save();
 
         return redirect()->back();
     }

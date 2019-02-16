@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #5</h5>
+    </div>
+    <div class="row">
+        - You can now deposit and withdraw money at the bank.<br>
+        - You can now travel between the different countries.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">16-02-2019 16:07 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #4</h5>
     </div>
     <div class="row">

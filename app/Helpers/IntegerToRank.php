@@ -34,6 +34,11 @@ if (!function_exists('integerToRank')) {
             return 'Drug lord';
         }
 
+        if ($exp > 1000001)
+        {
+            return 'Kingpin';
+        } 
+
         return 'Low-life';
     }
 }
