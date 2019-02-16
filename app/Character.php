@@ -134,4 +134,9 @@ class Character extends Model
     {
         return $this->hasOne('App\Bank');
     }
+
+    public function can()
+    {
+        return $this->hasOne('App\Cooldown');
+    }
 }
