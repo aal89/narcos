@@ -36,6 +36,13 @@ class Kernel extends ConsoleKernel
                 }
             });
         })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            Character::all()->each(function ($char) {
+                $char->money += 100;
+                $char->save();
+            });
+        })->everyMinute();
     }
 
     /**
