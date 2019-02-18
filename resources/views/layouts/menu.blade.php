@@ -16,7 +16,7 @@
                     - <a href="/">News</a><br>
                     - <a href="/banking">Banking</a><br>
                     - <a href="/travel">Travel</a><br>
-                    - Assets<br>
+                    - <a href="/store">Store</a><br>
                     - Online players<br>
                 </div>
             </td>
