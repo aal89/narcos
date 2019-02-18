@@ -39,6 +39,9 @@ Route::group(['middleware' => $condMiddlewares], function () {
 
     Route::get('/travel', 'TravelController@getIndex');
     Route::post('/travel', 'TravelController@postIndex');
+
+    Route::get('/store', 'StoreController@getIndex');
+    Route::post('/store', 'StoreController@postIndex');
 });
 
 // SPECIAL CASES
