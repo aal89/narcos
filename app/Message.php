@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Character;
+use App\Observers\MessageObserver;
 
 class Message extends Model
 {
@@ -15,6 +16,11 @@ class Message extends Model
     protected $fillable = [
         'subject', 'message',
     ];
+
+    public static function boot() {
+        parent::boot();
+        self::observe(new MessageObserver);
+    }
 
     /**
      * Returns the number of unread messages for a given character.
