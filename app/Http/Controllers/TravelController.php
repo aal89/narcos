@@ -34,7 +34,7 @@ class TravelController extends Controller
      */
     public function getIndex()
     {
-        return view('menu.travel.travel');
+        return view('menu.travel.index');
     }
 
     /**
