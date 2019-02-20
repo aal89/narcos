@@ -5,7 +5,7 @@
 
 {{ $msg->message }}
 
-@component('mail::button', ['url' => '{{ env('APP_URL') }}/messages/inbox'])
+@component('mail::button', ['url' => env('APP_URL').'/messages/inbox'])
 Open Messages
 @endcomponent
 
