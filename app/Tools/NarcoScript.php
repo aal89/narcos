@@ -31,7 +31,7 @@ class NarcoScript
     private $singles = array(
         ':br:' => '<br>',
         ':link:' => '<a href="',
-        ':-link:' => '">',
+        ':-link:' => '" target="_blank">',
         ':/link:' => '</a>'
 
     );

@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <small><span aria-hidden="true" class="li_paperplane"></span> {{ $message->created_at }}<span aria-hidden="true" class="li_eye pl-2"></span> {{ $message->updated_at }}</small>
+                            <small><span aria-hidden="true" class="li_paperplane"></span> {{ $message->created_at }}</small>
                             <a class="float-right pl-2" href="/messages/delete/{{ $message->id }}">Delete</a><a class="float-right" href="/messages/compose/{{ $message->recipient->name }}/AD:{{ $message->subject }}">Addendum</a>
                         </td>
                     </tr>
