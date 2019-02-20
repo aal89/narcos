@@ -1,7 +1,5 @@
 @component('mail::message')
-# You received an in-game message!
-
-**{{ $msg->sender->name }}** sent: 
+# **{{ $msg->sender->name }}** sent: 
 
 {{ $msg->message }}
 
@@ -9,6 +7,4 @@
 Open Messages
 @endcomponent
 
-Regards,<br>
-{{ config('app.name') }}
 @endcomponent

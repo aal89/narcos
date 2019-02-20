@@ -8,6 +8,9 @@ use App\Character;
 
 class BankController extends Controller
 {
+    // 10%
+    private $transferFee = 0.9;
+
     /**
      * Create a new controller instance.
      *
@@ -26,7 +29,7 @@ class BankController extends Controller
      */
     public function getIndex()
     {
-        return view('menu.banking.banking');
+        return view('menu.banking.index');
     }
 
     /**
@@ -36,11 +39,15 @@ class BankController extends Controller
      */
     public function postIndex(Request $request)
     {
-        $this->validate($request, [
-            'amount' => 'required|integer',
-        ]);
-
         $char = Auth::user()->character;
+
+        $this->validate($request, [
+            'amount' => 'integer',
+            'transfer_to' => 'not_in:'.$char->name,
+            'transfer_amount' => 'integer',
+        ], [
+            'not_in' => 'You cannot send yourself money.'
+        ]);
 
         switch($request->action)
         {
@@ -58,8 +65,30 @@ class BankController extends Controller
                 } catch(\Exception $e) {
                     return redirect()->back()->withErrors(['amount' => $e->getMessage()]);
                 }
+            case 'transfer':
+                try {
+                    $this->transfer(abs(intval($request->transfer_amount)), $char, Character::findByName($request->transfer_to));
+                    return redirect()->back();
+                } catch(\Exception $e) {
+                    return redirect()->back()->withErrors(['transfer_amount' => $e->getMessage()]);
+                }
             default: return redirect()->back()->withErrors(['amount' => 'Hmm, you might have to try that again.']);
         }
+    }
+
+    /**
+     * Tries to transfer any given amount from a character to another.
+     */
+    private function transfer(int $amount, \App\Character $char, \App\Character $recipient)
+    {
+        if ($char->money >= $amount) {
+            $char->money -= $amount;
+            $recipient->money += floor($amount * $this->transferFee);
+            $char->save();
+            $recipient->save();
+            return;
+        }
+        throw new \Exception('Insufficient funds on hand.');
     }
 
     /**
