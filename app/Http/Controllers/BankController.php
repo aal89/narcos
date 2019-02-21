@@ -81,14 +81,14 @@ class BankController extends Controller
      */
     private function transfer(int $amount, \App\Character $char, \App\Character $recipient)
     {
-        if ($char->money >= $amount) {
+        if ($char->money >= $amount && $amount >= 100) {
             $char->money -= $amount;
             $deflatedAmount = floor($amount * $this->transferFee);
             $recipient->money += $deflatedAmount;
             $char->save();
             $recipient->save();
             // Composes an in-game message (inbox and outbox)
-            messageComposer($char->id, $recipient->id, 'Money received!', 'I just sent you €'.$deflatedAmount.'!');
+            messageComposer($char->id, $recipient->id, 'Money received!', 'I just sent you €'.$deflatedAmount.'!', true);
             return;
         }
         throw new \Exception('Insufficient funds on hand.');
