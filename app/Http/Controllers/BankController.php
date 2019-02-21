@@ -68,7 +68,7 @@ class BankController extends Controller
             case 'transfer':
                 try {
                     $this->transfer(abs(intval($request->transfer_amount)), $char, Character::findByName($request->transfer_to));
-                    return redirect()->back();
+                    return redirect()->back()->with(['status' => 'Transfered €'.$request->transfer_amount.' to '.$request->transfer_to.'.']);
                 } catch(\Exception $e) {
                     return redirect()->back()->withErrors(['transfer_amount' => $e->getMessage()]);
                 }
