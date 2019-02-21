@@ -49,7 +49,7 @@
                     @endif
                 </div>
                 <div class="input-group input-group-sm mb-1">
-                    <input id="character" type="number" maxlength="25" class="form-control{{ $errors->has('transfer_amount') ? ' is-invalid' : '' }}" name="transfer_amount" value="{{ old('transfer_amount') }}" placeholder="Amount (e.g. 100)" required>
+                    <input id="character" type="number" maxlength="25" class="form-control{{ $errors->has('transfer_amount') ? ' is-invalid' : '' }}" name="transfer_amount" min="100" value="{{ old('transfer_amount') }}" placeholder="Amount (e.g. 100)" required>
                     @if ($errors->has('transfer_amount'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('transfer_amount') }}</strong>
