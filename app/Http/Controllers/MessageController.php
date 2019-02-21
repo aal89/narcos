@@ -75,18 +75,7 @@ class MessageController extends Controller
             return redirect()->back()->withInput()->withErrors(['character' => 'You cannot send yourself a message.']);
         }
 
-        $msg = new Message($request->all());
-        $msg->owner_id = $me->id;
-        $msg->sender_id = $me->id;
-        $msg->recipient_id = $recipient->id;
-        $msg->read = true;
-        $msg->save();
-
-        $msg = new Message($request->all());
-        $msg->owner_id = $recipient->id;
-        $msg->sender_id = $me->id;
-        $msg->recipient_id = $recipient->id;
-        $msg->save();
+        messageComposer($me->id, $recipient->id, $request->subject, $request->message);
 
         return redirect('/messages/outbox');
     }

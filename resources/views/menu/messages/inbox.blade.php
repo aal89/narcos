@@ -10,7 +10,7 @@
             <table class="table table-sm table-dark">
                 <thead>
                     <tr>
-                        <th colspan="2"><span aria-hidden="true" class="li_user"></span> <a href="/profile/{{ $message->sender->name }}">{{ $message->sender->name }}</a></th>
+                        <th colspan="2"><span aria-hidden="true" class="li_user"></span> <a href="/profile/{{ $message->sender->name }}">{{ $message->sender->name }}</a> {!! $message->trusted ? '<small><font color=green><b><i>verified</i></b></font></small>' : '' !!}</th>
                     </tr>
                 </thead>
                 <tbody>

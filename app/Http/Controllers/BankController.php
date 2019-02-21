@@ -68,7 +68,7 @@ class BankController extends Controller
             case 'transfer':
                 try {
                     $this->transfer(abs(intval($request->transfer_amount)), $char, Character::findByName($request->transfer_to));
-                    return redirect()->back();
+                    return redirect()->back()->with(['status' => 'Transfered €'.$request->transfer_amount.' to '.$request->transfer_to.'.']);
                 } catch(\Exception $e) {
                     return redirect()->back()->withErrors(['transfer_amount' => $e->getMessage()]);
                 }
@@ -81,14 +81,14 @@ class BankController extends Controller
      */
     private function transfer(int $amount, \App\Character $char, \App\Character $recipient)
     {
-        if ($char->money >= $amount) {
+        if ($char->money >= $amount && $amount >= 100) {
             $char->money -= $amount;
             $deflatedAmount = floor($amount * $this->transferFee);
             $recipient->money += $deflatedAmount;
             $char->save();
             $recipient->save();
             // Composes an in-game message (inbox and outbox)
-            messageComposer($char->id, $recipient->id, 'Money received!', 'I just sent you €'.$deflatedAmount.'!');
+            messageComposer($char->id, $recipient->id, 'Money received!', 'I just sent you €'.$deflatedAmount.'!', true);
             return;
         }
         throw new \Exception('Insufficient funds on hand.');

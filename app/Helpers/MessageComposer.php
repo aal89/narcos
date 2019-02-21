@@ -12,8 +12,9 @@ if (!function_exists('messageComposer')) {
      * @param string $to Character id.
      * @param string $subject
      * @param string $msg
+     * @param boolean $trusted
      */
-    function messageComposer($from, $to, $subject, $msg)
+    function messageComposer($from, $to, $subject, $msg, $trusted = false)
     {
         $inbox = new Message();
         $inbox->owner_id = $to;
@@ -21,6 +22,7 @@ if (!function_exists('messageComposer')) {
         $inbox->recipient_id = $to;
         $inbox->subject = $subject;
         $inbox->message = $msg;
+        $inbox->trusted = $trusted;
         $inbox->save();
         $outbox = new Message();
         $outbox->owner_id = $from;
@@ -29,6 +31,7 @@ if (!function_exists('messageComposer')) {
         $outbox->subject = $subject;
         $outbox->message = $msg;
         $outbox->read = true;
+        $outbox->trusted = $trusted;
         $outbox->save();
     }
 }
