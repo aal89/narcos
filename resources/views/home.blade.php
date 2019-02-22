@@ -4,6 +4,17 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #6</h5>
+    </div>
+    <div class="row">
+        - Added money transfer options at banking.<br>
+        - Added a store where you can buy a transportation vehicle.<br>
+        - Changed the way error messages and good messages are displayed.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">22-02-2019 21:25 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #5</h5>
     </div>
     <div class="row">
