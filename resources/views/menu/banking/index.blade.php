@@ -10,6 +10,7 @@
     Using the bank you can also transfer money between players. This money is transfered from your on-hand cash and the bank takes a 10%
     fee.
 </p>
+@include('session.status')
 <div class="row">
     <div class="col-sm">
         <p>

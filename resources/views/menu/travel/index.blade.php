@@ -6,14 +6,7 @@
     Traveling allows you buy and sell narcotics in other countries. This can be lucrative business. In different countries you'll have
     different map layouts. Try to find an open spot and setup a farm to further increase your income.
 </p>
-@if ($errors->has('country'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ $errors->first('country') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
+@include('session.status')
 <form method="POST" action="/travel">
 @csrf
     <table class="table table-sm table-dark">

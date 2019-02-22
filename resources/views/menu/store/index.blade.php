@@ -7,14 +7,7 @@
     your travel time is 90 minutes. Whenever you buy a vehicle while you already own one then this vehicle will be sold automatically for you,
     prior buying the new one. Selling back property happens at a 75% rate.
 </p>
-@if ($errors->has('asset'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ $errors->first('asset') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
+@include('session.status')
 <form method="POST" action="/store">
 @csrf
     <table class="table table-sm table-dark">

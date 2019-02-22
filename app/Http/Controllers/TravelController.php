@@ -52,15 +52,15 @@ class TravelController extends Controller
         $travelCost = $this->countries[$request->country];
 
         if ($char->money < $travelCost) {
-            return redirect()->back()->withErrors(['country' => 'Insufficient funds.']);
+            return redirect()->back()->withErrors(['general' => 'Insufficient funds.']);
         }
 
         if ($char->country === $request->country) {
-            return redirect()->back()->withErrors(['country' => 'You\'re already in this country.']);
+            return redirect()->back()->withErrors(['general' => 'You\'re already in this country.']);
         }
 
         if (!$char->can->travel()) {
-            return redirect()->back()->withErrors(['country' => 'You have to wait untill you can travel again; '.$char->can->travelInMinutes().' minutes left.']);
+            return redirect()->back()->withErrors(['general' => 'You have to wait untill you can travel again; '.$char->can->travelInMinutes().' minutes left.']);
         }
 
         $char->money -= $travelCost;
@@ -69,6 +69,6 @@ class TravelController extends Controller
         $char->save();
         $char->can->save();
 
-        return redirect()->back();
+        return redirect()->back()->with(['status' => 'You just traveled to '.$char->country().', you can travel again in '.$char->can->travelInMinutes().' minutes.']);
     }
 }

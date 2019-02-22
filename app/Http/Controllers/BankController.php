@@ -72,7 +72,7 @@ class BankController extends Controller
                 } catch(\Exception $e) {
                     return redirect()->back()->withErrors(['transfer_amount' => $e->getMessage()]);
                 }
-            default: return redirect()->back()->withErrors(['amount' => 'Hmm, you might have to try that again.']);
+            default: return redirect()->back()->withErrors(['general' => 'Hmm, you might have to try that again.']);
         }
     }
 
