@@ -67,6 +67,15 @@ class Character extends Model
     }
 
     /**
+     * This Characters weapon formatted in a human preferable way. E.g. Plane,
+     * instead of plane.
+     */
+    public function weapon()
+    {
+        return ucfirst($this->weapon);
+    }
+
+    /**
      * Indication if this character has died.
      */
     public function isDead()
