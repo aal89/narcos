@@ -13,7 +13,7 @@
     <table class="table table-sm table-dark">
         <thead>
             <tr>
-                <th colspan="3">{{ __('Store') }}</th>
+                <th colspan="3">{{ __('Transport') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +57,114 @@
                 <td colspan="3">
                     <button class="btn btn-secondary" type="submit" name="action" value="buy">Buy</button>
                     <button class="btn btn-secondary" type="submit" name="action" value="sell">Sell</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<p>
+    The more expensive your weapon the more damage you can do to your opponents. Choose wisely. Buying and selling principles of vehicles
+    also apply here.
+</p>
+<form method="POST" action="/store">
+@csrf
+    <table class="table table-sm table-dark">
+        <thead>
+            <tr>
+                <th colspan="2">{{ __('Weaponry') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="asset" id="radio1" value="motor" checked>
+                        <label class="form-check-label" for="radio1">
+                            Glock
+                        </label>
+                    </div>
+                </td>
+                <td>&euro;4.000,-</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="asset" id="radio2" value="boat">
+                        <label class="form-check-label" for="radio2">
+                            Shotgun
+                        </label>
+                    </div>
+                </td>
+                <td>&euro;10.000,-</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="asset" id="radio3" value="plane">
+                        <label class="form-check-label" for="radio3">
+                            Ak-47
+                        </label>
+                    </div>
+                </td>
+                <td>&euro;35.000,-</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="asset" id="radio3" value="plane">
+                        <label class="form-check-label" for="radio3">
+                            M-16
+                        </label>
+                    </div>
+                </td>
+                <td>&euro;75.000,-</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-secondary" type="submit" name="action" value="buy">Buy</button>
+                    <button class="btn btn-secondary" type="submit" name="action" value="sell">Sell</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<p>
+    Each day around noon a random amount of bullets are produced by the bulletfactories and put up for sale. They are expensive and hard to
+    come by. Buy them while you can.
+</p>
+<form method="POST" action="/store">
+@csrf
+    <table class="table table-sm table-dark">
+        <thead>
+            <tr>
+                <th colspan="2">{{ __('Bullets') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    Currently in stock: 1236 bullets.<br>
+                    Sold for: &euro;800,- a piece.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="amount" class="col-form-label">{{ __('Amount') }}</label>
+                </td>
+                <td>
+                    <div class="input-group input-group-sm mb-1 w-50">
+                        <input id="amount" type="number" maxlength="25" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}" placeholder="Amount (e.g. 100)" required>
+                        @if ($errors->has('amount'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('amount') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-secondary" type="submit" name="action" value="buy">Buy</button>
                 </td>
             </tr>
         </tbody>
