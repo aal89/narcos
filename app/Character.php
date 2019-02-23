@@ -40,6 +40,14 @@ class Character extends Model
     }
 
     /**
+     * Returns an indication of the wealth this player has accumulated 
+     */
+    public function wealth()
+    {
+        return moneyToWealth($this->money);
+    }
+
+    /**
      * This Characters country formatted in a human preferable way. E.g. United
      * States of America, instead of united states of america.
      */

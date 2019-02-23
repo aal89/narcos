@@ -34,19 +34,10 @@
         <tr>
             <td>
                 <span aria-hidden="true" class="li_banknote"></span>
-                <span>{{ __('Money') }}</span>
+                <span>{{ __('Wealth') }}</span>
             </td>
             <td>
-                <span>&euro;{{ $character->money() }},-</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span aria-hidden="true" class="li_truck"></span>
-                <span>{{ __('Contraband') }}</span>
-            </td>
-            <td>
-                <span>{{ $character->contraband() }}kg</span>
+                <span>{{ $character->wealth() }}</span>
             </td>
         </tr>
         <tr>
