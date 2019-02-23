@@ -15,6 +15,15 @@
         </tr>
         <tr>
             <td>
+                <span aria-hidden="true" class="li_bulb"></span>
+                <span>{{ __('Online') }}</span>
+            </td>
+            <td>
+                <span>{!! $character->isOnline() ? '<font color=green>Yes</font>' : '<font color=red>No</font>' !!}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <span aria-hidden="true" class="li_data"></span>
                 <span>{{ __('Rank') }}</span>
             </td>
@@ -56,6 +65,15 @@
             </td>
             <td>
                 <span>{{ $character->transport() }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span aria-hidden="true" class="li_clock"></span>
+                <span>{{ __('Since') }}</span>
+            </td>
+            <td>
+                <span>{{ $character->created_at }}</span>
             </td>
         </tr>
         <tr>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Character extends Model
 {
@@ -79,6 +80,11 @@ class Character extends Model
     public function isAlive()
     {
         return $this->life > 0;
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 
     /**
