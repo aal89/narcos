@@ -14,7 +14,7 @@ class CreateWeaponBulletsColumnCharactersTable extends Migration
     public function up()
     {
         Schema::table('characters', function (Blueprint $table) {
-            $table->enum('weapon', ['none', 'glock', 'shotgun', 'ak 47', 'm-16'])->default('none');
+            $table->enum('weapon', ['none', 'glock', 'shotgun', 'ak-47', 'm-16'])->default('none');
             $table->integer('bullets')->default(0);
         });
     }
