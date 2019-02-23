@@ -9,32 +9,32 @@ if (!function_exists('integerToRank')) {
      */
     function integerToRank($exp)
     {
-        if ($exp < 100)
+        if ($exp < 101)
         {
             return 'Low-life';
         }
 
-        if ($exp > 101 && $exp < 1000)
+        if ($exp > 100 && $exp < 1001)
         {
             return 'Falcon';
         }
 
-        if ($exp > 1001 && $exp < 10000)
+        if ($exp > 1000 && $exp < 10001)
         {
             return 'Hitmen';
         }
 
-        if ($exp > 10001 && $exp < 100000)
+        if ($exp > 10000 && $exp < 100001)
         {
             return 'Lieutenant';
         }
 
-        if ($exp > 100001 && $exp < 1000000)
+        if ($exp > 100000 && $exp < 1000001)
         {
             return 'Drug lord';
         }
 
-        if ($exp > 1000001)
+        if ($exp > 1000000)
         {
             return 'Kingpin';
         } 

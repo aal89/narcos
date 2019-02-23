@@ -9,32 +9,32 @@ if (!function_exists('moneyToWealth')) {
      */
     function moneyToWealth($money)
     {
-        if ($money < 1000)
+        if ($money < 1001)
         {
             return 'Broke';
         }
 
-        if ($money > 1001 && $money < 100000)
+        if ($money > 1000 && $money < 100001)
         {
             return 'Getting by';
         }
 
-        if ($money > 100001 && $money < 1000000)
+        if ($money > 100000 && $money < 1000001)
         {
             return 'Rich';
         }
 
-        if ($money > 1000001 && $money < 10000000)
+        if ($money > 1000000 && $money < 10000001)
         {
             return 'Nouveau riche';
         }
 
-        if ($money > 10000001 && $money < 200000000)
+        if ($money > 10000000 && $money < 200000001)
         {
             return 'Plutocrat';
         }
 
-        if ($money > 200000001)
+        if ($money > 200000000)
         {
             return 'Parvenu';
         } 
