@@ -8,6 +8,8 @@
     </div>
     <div class="row">
         - Added two store options (you can now buy a weapon and bullets).<br>
+        - Changed what you see on the profile page.<br>
+        - Added online indicator to the profile page.<br>
     </div>
     <div class="row">
         <span class="small mt-2 mb-2">24-02-2019 23:34 by aal</span>
