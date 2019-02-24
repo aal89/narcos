@@ -10,7 +10,7 @@
                 <span>{{ __('Health') }}</span>
             </td>
             <td>
-                <span>{{ $character->life }}%</span>
+                <span>{{ $character->life() }}</span>
             </td>
         </tr>
         <tr>

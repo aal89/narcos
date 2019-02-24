@@ -75,6 +75,15 @@ class Character extends Model
     }
 
     /**
+     * This Characters life status simplified into two terms (alive or dead).
+     * If live is above 0 returns alive, dead otherwise.
+     */
+    public function life()
+    {
+        return $this->life > 0 ? 'Alive' : 'Dead';
+    }
+
+    /**
      * This Characters weapon formatted in a human preferable way. E.g. Plane,
      * instead of plane.
      */
