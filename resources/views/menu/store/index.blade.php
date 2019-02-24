@@ -8,7 +8,7 @@
     prior buying the new one. Selling back property happens at a 75% rate.
 </p>
 @include('session.status')
-<form method="POST" action="/store">
+<form method="POST" action="/store/transport">
 @csrf
     <table class="table table-sm table-dark">
         <thead>
@@ -66,7 +66,7 @@
     The more expensive your weapon the more damage you can do to your opponents. Choose wisely. Buying and selling principles of vehicles
     also apply here.
 </p>
-<form method="POST" action="/store">
+<form method="POST" action="/store/weaponry">
 @csrf
     <table class="table table-sm table-dark">
         <thead>
@@ -78,8 +78,8 @@
             <tr>
                 <td class="">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="asset" id="radio1" value="motor" checked>
-                        <label class="form-check-label" for="radio1">
+                        <input class="form-check-input" type="radio" name="weapon" id="radio4" value="glock" checked>
+                        <label class="form-check-label" for="radio4">
                             Glock
                         </label>
                     </div>
@@ -89,8 +89,8 @@
             <tr>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="asset" id="radio2" value="boat">
-                        <label class="form-check-label" for="radio2">
+                        <input class="form-check-input" type="radio" name="weapon" id="radio5" value="shotgun">
+                        <label class="form-check-label" for="radio5">
                             Shotgun
                         </label>
                     </div>
@@ -100,8 +100,8 @@
             <tr>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="asset" id="radio3" value="plane">
-                        <label class="form-check-label" for="radio3">
+                        <input class="form-check-input" type="radio" name="weapon" id="radio6" value="ak-47">
+                        <label class="form-check-label" for="radio6">
                             Ak-47
                         </label>
                     </div>
@@ -111,8 +111,8 @@
             <tr>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="asset" id="radio3" value="plane">
-                        <label class="form-check-label" for="radio3">
+                        <input class="form-check-input" type="radio" name="weapon" id="radio7" value="m-16">
+                        <label class="form-check-label" for="radio7">
                             M-16
                         </label>
                     </div>
@@ -132,7 +132,7 @@
     Each day around noon a random amount of bullets are produced by the bulletfactories and put up for sale. They are expensive and hard to
     come by. Buy them while you can.
 </p>
-<form method="POST" action="/store">
+<form method="POST" action="/store/bullets">
 @csrf
     <table class="table table-sm table-dark">
         <thead>

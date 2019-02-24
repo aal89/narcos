@@ -9,11 +9,19 @@ class StoreController extends Controller
 {
     private $sellRate = 0.75;
 
-    private $prices = [
+    private $vehiclePrices = [
         'none' => 0,
         'motor' => 1200,
         'boat' => 24000,
         'plane' => 105000,
+    ];
+
+    private $weaponPrices = [
+        'none' => 0,
+        'glock' => 4000,
+        'shotgun' => 10000,
+        'ak-47' => 35000,
+        'm-16' => 75000
     ];
 
     /**
@@ -38,31 +46,75 @@ class StoreController extends Controller
     }
 
     /**
-     * Buy an asset from the store and update characters money and status.
+     * Buy a vehicle from the store and update characters money and status.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function postIndex(Request $request)
+    public function postTransport(Request $request)
     {
         switch($request->action)
         {
-            case 'buy': return $this->buy($request);
-            case 'sell': return $this->sell($request);
-            default: return redirect()->back()->withErrors(['asset' => 'Hmm, you might have to try that again.']);
+            case 'buy': return $this->buyTransport($request);
+            case 'sell': return $this->sellTransport($request);
+            default: return redirect()->back()->withErrors(['general' => 'Hmm, you might have to try that again.']);
         }
     }
 
-    private function sell(Request $request)
+    /**
+     * Buy a weapin from the store and update characters money and status.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postWeaponry(Request $request)
+    {
+        switch($request->action)
+        {
+            case 'buy': return $this->buyWeapon($request);
+            case 'sell': return $this->sellWeapon($request);
+            default: return redirect()->back()->withErrors(['general' => 'Hmm, you might have to try that again.']);
+        }
+    }
+
+    private function buyTransport(Request $request)
     {
         $this->validate($request, [
-            'asset' => 'required|in:'.implode(',', array_keys($this->prices)),
+            'asset' => 'required|in:'.implode(',', array_keys($this->vehiclePrices)),
         ]);
 
         $char = Auth::user()->character;
-        $assetCost = $this->prices[$request->asset];
+        $currentVehicleValue = $this->vehiclePrices[$char->transport];
+        $assetCost = $this->vehiclePrices[$request->asset];
+
+        // Adding the currentVehicleValue first is equivalent to selling the current vehicle first
+        // then buying the new asset. This is only saved when all conditions are met.
+        $char->money += floor($currentVehicleValue * $this->sellRate);
+
+        if ($char->transport === $request->asset) {
+            return redirect()->back()->withErrors(['general' => 'You already own this type of vehicle.']);
+        }
+
+        if ($char->money < $assetCost) {
+            return redirect()->back()->withErrors(['general' => 'Insufficient funds.']);
+        }
+
+        $char->money -= $assetCost;
+        $char->transport = $request->asset;
+        $char->save();
+
+        return redirect()->back()->with(['status' => 'You just bought a '.$char->transport().'.']);
+    }
+
+    private function sellTransport(Request $request)
+    {
+        $this->validate($request, [
+            'asset' => 'required|in:'.implode(',', array_keys($this->vehiclePrices)),
+        ]);
+
+        $char = Auth::user()->character;
+        $assetCost = $this->vehiclePrices[$request->asset];
 
         if ($char->transport !== $request->asset) {
-            return redirect()->back()->withErrors(['asset' => 'You don\'t own this type of vehicle.']);
+            return redirect()->back()->withErrors(['general' => 'You don\'t own this type of vehicle.']);
         }
 
         $char->money += floor($assetCost * $this->sellRate);
@@ -72,32 +124,52 @@ class StoreController extends Controller
         return redirect()->back()->with(['status' => 'You just sold your property.']);
     }
 
-    private function buy(Request $request)
+    private function buyWeapon(Request $request)
     {
         $this->validate($request, [
-            'asset' => 'required|in:'.implode(',', array_keys($this->prices)),
+            'weapon' => 'required|in:'.implode(',', array_keys($this->weaponPrices)),
         ]);
 
         $char = Auth::user()->character;
-        $currentVehicleValue = $this->prices[$char->transport];
-        $assetCost = $this->prices[$request->asset];
+        $currentWeaponValue = $this->weaponPrices[$char->weapon];
+        $weaponCost = $this->weaponPrices[$request->weapon];
 
         // Adding the currentVehicleValue first is equivalent to selling the current vehicle first
         // then buying the new asset. This is only saved when all conditions are met.
-        $char->money += floor($currentVehicleValue * $this->sellRate);
+        $char->money += floor($currentWeaponValue * $this->sellRate);
 
-        if ($char->transport === $request->asset) {
-            return redirect()->back()->withErrors(['asset' => 'You already own this type of vehicle.']);
+        if ($char->weapon === $request->weapon) {
+            return redirect()->back()->withErrors(['general' => 'You already own this weapon.']);
         }
 
-        if ($char->money < $assetCost) {
-            return redirect()->back()->withErrors(['asset' => 'Insufficient funds.']);
+        if ($char->money < $weaponCost) {
+            return redirect()->back()->withErrors(['general' => 'Insufficient funds.']);
         }
 
-        $char->money -= $assetCost;
-        $char->transport = $request->asset;
+        $char->money -= $weaponCost;
+        $char->weapon = $request->weapon;
         $char->save();
 
-        return redirect()->back()->with(['status' => 'You just bought a '.$char->transport]);
+        return redirect()->back()->with(['status' => 'You just bought a '.$char->weapon().'.']);
+    }
+
+    private function sellWeapon(Request $request)
+    {
+        $this->validate($request, [
+            'weapon' => 'required|in:'.implode(',', array_keys($this->weaponPrices)),
+        ]);
+
+        $char = Auth::user()->character;
+        $weaponCost = $this->weaponPrices[$request->weapon];
+
+        if ($char->weapon !== $request->weapon) {
+            return redirect()->back()->withErrors(['general' => 'You don\'t own this weapon.']);
+        }
+
+        $char->money += floor($weaponCost * $this->sellRate);
+        $char->weapon = 'none';
+        $char->save();
+
+        return redirect()->back()->with(['status' => 'You just sold your weapon.']);
     }
 }
