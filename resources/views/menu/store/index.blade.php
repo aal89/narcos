@@ -143,8 +143,8 @@
         <tbody>
             <tr>
                 <td colspan="2">
-                    Currently in stock: 1236 bullets.<br>
-                    Sold for: &euro;800,- a piece.
+                    Currently in stock: {{ $bulletQuantity }} bullets.<br>
+                    Sold for: &euro;{{ $bulletCost }},- a piece.
                 </td>
             </tr>
             <tr>

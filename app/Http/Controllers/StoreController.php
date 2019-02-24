@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class StoreController extends Controller
 {
+    private $oneDayInMinutes = 3600;
     private $sellRate = 0.75;
-
     private $vehiclePrices = [
         'none' => 0,
         'motor' => 1200,
         'boat' => 24000,
         'plane' => 105000,
     ];
-
     private $weaponPrices = [
         'none' => 0,
         'glock' => 4000,
@@ -42,7 +42,13 @@ class StoreController extends Controller
      */
     public function getIndex()
     {
-        return view('menu.store.index');
+        $bullets = 0;
+        $cost = 0;
+        if (Cache::has('daily-bullets-quantity') && Cache::has('daily-bullets-cost')) {
+            $bullets = Cache::get('daily-bullets-quantity');
+            $cost = Cache::get('daily-bullets-cost');
+        }
+        return view('menu.store.index')->with(['bulletQuantity' => $bullets, 'bulletCost' => $cost]);
     }
 
     /**
@@ -61,7 +67,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Buy a weapin from the store and update characters money and status.
+     * Buy a weapon from the store and update characters money and status.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -73,6 +79,46 @@ class StoreController extends Controller
             case 'sell': return $this->sellWeapon($request);
             default: return redirect()->back()->withErrors(['general' => 'Hmm, you might have to try that again.']);
         }
+    }
+
+    /**
+     * Buy bullets from the store and update characters money and status.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postBullets(Request $request)
+    {
+        // todo: this section should be based on cache locks, therefore we should
+        // switch over to memcached or redis to make use of such locking, for now
+        // ordinary hacking in cache with possibilities for race conditions
+
+        $this->validate($request, [
+            'amount' => 'required|integer|min:1',
+        ]);
+
+        if (Cache::has('daily-bullets-quantity') && Cache::has('daily-bullets-cost')) {
+            $char = Auth::user()->character;
+            $bullets = Cache::get('daily-bullets-quantity');
+            $cost = Cache::get('daily-bullets-cost');
+
+            if ($char->money < $request->amount * $cost) {
+                return redirect()->back()->withErrors(['amount' => 'Insufficient funds.']);
+            }
+
+            if ($bullets - $request->amount < 0) {
+                return redirect()->back()->withErrors(['amount' => 'There aren\'t that many bullets up for sale.']);
+            }
+
+            $char->money -= $request->amount * $cost;
+            $char->bullets += $request->amount;
+            $char->save();
+
+            Cache::put('daily-bullets-quantity', $bullets - $request->amount, $this->oneDayInMinutes);
+
+            return redirect()->back()->with(['status' => 'You just bought '.$request->amount.' bullets.']);
+        }
+
+        return redirect()->back()->withErrors(['general' => 'Hmm, you might have to try that again.']);
     }
 
     private function buyTransport(Request $request)

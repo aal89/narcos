@@ -4,11 +4,13 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Cache;
 
 use App\Character;
 
 class Kernel extends ConsoleKernel
 {
+    private $oneDayInMinutes = 3600;
     /**
      * The Artisan commands provided by your application.
      *
@@ -40,6 +42,24 @@ class Kernel extends ConsoleKernel
                 }
             });
         })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            $bulletsAndCost = generateBulletsAndCost();
+            $bullets = $bulletsAndCost[0];
+            $cost = $bulletsAndCost[1];
+            // todo: this section should be based on cache locks, therefore we should
+            // switch over to memcached or redis to make use of such locking, for now
+            // ordinary hacking in cache with possibilities for race conditions
+            // use something like this:
+            // Cache::lock('daily-bullets-quantity')->get(function () {
+            //     Cache::put('daily-bullets-quantity', $bullets, $this->oneDayInMinutes);
+            // });
+            // Cache::lock('daily-bullets-cost')->get(function () {
+            //     Cache::put('daily-bullets-cost', $cost, $this->oneDayInMinutes);
+            // });
+            Cache::put('daily-bullets-quantity', $bullets, $this->oneDayInMinutes);
+            Cache::put('daily-bullets-cost', $cost, $this->oneDayInMinutes);
+        })->dailyAt('12:00');
     }
 
     /**
