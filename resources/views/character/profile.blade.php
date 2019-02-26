@@ -10,7 +10,16 @@
                 <span>{{ __('Health') }}</span>
             </td>
             <td>
-                <span>{{ $character->life }}%</span>
+                <span>{{ $character->life() }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span aria-hidden="true" class="li_bulb"></span>
+                <span>{{ __('Online') }}</span>
+            </td>
+            <td>
+                <span>{!! $character->isOnline() ? '<font color=green>Yes</font>' : '<font color=red>No</font>' !!}</span>
             </td>
         </tr>
         <tr>
@@ -25,19 +34,10 @@
         <tr>
             <td>
                 <span aria-hidden="true" class="li_banknote"></span>
-                <span>{{ __('Money') }}</span>
+                <span>{{ __('Wealth') }}</span>
             </td>
             <td>
-                <span>&euro;{{ $character->money() }},-</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span aria-hidden="true" class="li_truck"></span>
-                <span>{{ __('Contraband') }}</span>
-            </td>
-            <td>
-                <span>{{ $character->contraband() }}kg</span>
+                <span>{{ $character->wealth() }}</span>
             </td>
         </tr>
         <tr>
@@ -56,6 +56,15 @@
             </td>
             <td>
                 <span>{{ $character->transport() }}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span aria-hidden="true" class="li_clock"></span>
+                <span>{{ __('Since') }}</span>
+            </td>
+            <td>
+                <span>{{ $character->created_at }}</span>
             </td>
         </tr>
         <tr>

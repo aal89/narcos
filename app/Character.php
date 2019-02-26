@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Character extends Model
 {
@@ -39,6 +40,14 @@ class Character extends Model
     }
 
     /**
+     * Returns an indication of the wealth this player has accumulated 
+     */
+    public function wealth()
+    {
+        return moneyToWealth($this->money);
+    }
+
+    /**
      * This Characters country formatted in a human preferable way. E.g. United
      * States of America, instead of united states of america.
      */
@@ -66,6 +75,24 @@ class Character extends Model
     }
 
     /**
+     * This Characters life status simplified into two terms (alive or dead).
+     * If live is above 0 returns alive, dead otherwise.
+     */
+    public function life()
+    {
+        return $this->life > 0 ? 'Alive' : 'Dead';
+    }
+
+    /**
+     * This Characters weapon formatted in a human preferable way. E.g. Plane,
+     * instead of plane.
+     */
+    public function weapon()
+    {
+        return ucfirst($this->weapon);
+    }
+
+    /**
      * Indication if this character has died.
      */
     public function isDead()
@@ -79,6 +106,11 @@ class Character extends Model
     public function isAlive()
     {
         return $this->life > 0;
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
     }
 
     /**

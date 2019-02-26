@@ -4,6 +4,17 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #7</h5>
+    </div>
+    <div class="row">
+        - Added two store options (you can now buy a weapon and bullets).<br>
+        - Changed what you see on the profile page.<br>
+        - Added online indicator to the profile page.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">24-02-2019 23:34 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #6</h5>
     </div>
     <div class="row">
