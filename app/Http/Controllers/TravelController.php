@@ -59,16 +59,15 @@ class TravelController extends Controller
             return redirect()->back()->withErrors(['general' => 'You\'re already in this country.']);
         }
 
-        if (!$char->can->travel()) {
-            return redirect()->back()->withErrors(['general' => 'You have to wait untill you can travel again; '.$char->can->travelInMinutes().' minutes left.']);
+        if (!$char->can()->travel()) {
+            return redirect()->back()->withErrors(['general' => 'You have to wait untill you can travel again; '.$char->can()->travelInMinutes().' minutes left.']);
         }
 
         $char->money -= $travelCost;
         $char->country = $request->country;
-        $char->can->travel = Carbon::now()->addMinutes(cooldownForAsset($char->transport));
+        $char->can()->resetTravel();
         $char->save();
-        $char->can->save();
 
-        return redirect()->back()->with(['status' => 'You just traveled to '.$char->country().', you can travel again in '.$char->can->travelInMinutes().' minutes.']);
+        return redirect()->back()->with(['status' => 'You just traveled to '.$char->country().', you can travel again in '.$char->can()->travelInMinutes().' minutes.']);
     }
 }
