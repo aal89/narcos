@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use App\Tools\Cooldown;
 
 class Character extends Model
 {
@@ -169,6 +170,6 @@ class Character extends Model
 
     public function can()
     {
-        return $this->hasOne('App\Cooldown');
+        return new Cooldown($this);
     }
 }
