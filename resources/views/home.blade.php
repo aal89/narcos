@@ -4,6 +4,15 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #9</h5>
+    </div>
+    <div class="row">
+        - Added online characters view and logic.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">27-02-2019 21:35 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #8</h5>
     </div>
     <div class="row">
