@@ -4,6 +4,24 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #9</h5>
+    </div>
+    <div class="row">
+        - Added online characters view and logic.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">27-02-2019 21:35 by aal</span>
+    </div>
+    <div class="row">
+        <h5 class="text-secondary">Update #8</h5>
+    </div>
+    <div class="row">
+        - Changed the way cooldowns are handled. It used to be in the backend datastore as persistent data. Now it is all saved in a cache.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">26-02-2019 23:30 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #7</h5>
     </div>
     <div class="row">
