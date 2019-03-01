@@ -34,8 +34,7 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\LogUserActivity::class
+            \Illuminate\Routing\Middleware\SubstituteBindings::class
         ],
 
         'api' => [
@@ -65,7 +64,8 @@ class Kernel extends HttpKernel
         'user.misses.character' => \App\Http\Middleware\UserMissesCharacter::class,
         'is.allowed.access' => \App\Http\Middleware\IsAllowedAccess::class,
         'is.not.allowed.access' => \App\Http\Middleware\IsBanned::class,
-        'mark.messages.read' => \App\Http\Middleware\MarkMessagesRead::class
+        'mark.messages.read' => \App\Http\Middleware\MarkMessagesRead::class,
+        'log.user.activity' => \App\Http\Middleware\LogUserActivity::class
     ];
 
     /**
