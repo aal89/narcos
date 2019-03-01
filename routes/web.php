@@ -48,6 +48,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/online-players', 'OnlineController@getIndex');
 
     Route::get('/trivial-crime', 'CrimeController@getIndex');
+    Route::post('/trivial-crime', 'CrimeController@postIndex');
 });
 
 // SPECIAL CASES

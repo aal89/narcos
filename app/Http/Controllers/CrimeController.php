@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CrimeController extends Controller
 {
@@ -24,6 +25,18 @@ class CrimeController extends Controller
      */
     public function getIndex()
     {
-        return view('menu.trivial-crime.index');
+        $char = Auth::user()->character;
+        return view('menu.trivial-crime.index')->with(['count' => $char->counter->trivial_crime]);
+    }
+
+    /**
+     * Commit a crime.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postIndex()
+    {
+        $char = Auth::user()->character;
+        return view('menu.trivial-crime.index')->with(['count' => $char->counter->trivial_crime]);
     }
 }
