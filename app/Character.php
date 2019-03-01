@@ -168,6 +168,11 @@ class Character extends Model
         return $this->hasOne('App\Bank');
     }
 
+    public function counter()
+    {
+        return $this->hasOne('App\Counter');
+    }
+
     public function can()
     {
         return new Cooldown($this);
