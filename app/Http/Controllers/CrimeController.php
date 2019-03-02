@@ -27,7 +27,11 @@ class CrimeController extends Controller
     public function getIndex()
     {
         $char = Auth::user()->character;
-        return view('menu.trivial-crime.index')->with(['count' => $char->counter->trivial_crime]);
+        return view('menu.trivial-crime.index')->with([
+            'crime1Percentage' => calculateCrimePercentage($char->counter->trivial_crime, 1),
+            'crime2Percentage' => calculateCrimePercentage($char->counter->trivial_crime, 2),
+            'crime3Percentage' => calculateCrimePercentage($char->counter->trivial_crime, 3)
+        ]);
     }
 
     /**
@@ -42,20 +46,32 @@ class CrimeController extends Controller
         ]);
 
         $char = Auth::user()->character;
-        $crimeCount = $char->counter->trivial_crime;
-        $travelCost = $this->countries[$request->country];
 
         if (!$char->can()->trivialCrime()) {
-            return redirect()->back()->withErrors(['general' => 'You have to wait untill you can travel again; '.$char->can()->trivialCrimeInMinutes().' minutes left.']);
+            return redirect()->back()->withErrors(['general' => 'You have to wait until you can commit crimes again; '.$char->can()->trivialCrimeInSeconds().' seconds left.']);
         }
 
-        $char->money += 10;
-        $char->experience += 10;
+        $crimePercentage = calculateCrimePercentage($char->counter->trivial_crime, $request->crime);
+        // very simple and naive calculation, use gaussian mixture in the future?
+        $p = rand(0,99);
+
+        // update the character already, except for loot handling this is state depend (successful crime or not)
+        $loot = calculateCrimeLoot($request->crime);
+        $exp = calculateCrimeExperience($request->crime);
+        $char->experience += $exp;
         $char->counter->trivial_crime += 1;
         $char->can()->resetTrivialCrime();
+
+        if ($p >= $crimePercentage) {
+            $char->counter->save();
+            $char->save();
+            return redirect()->back()->withErrors(['general' => 'Ah! You failed try again in '.$char->can()->trivialCrimeInSeconds().' seconds.']);
+        }
+        
+        $char->money += $loot;
         $char->counter->save();
         $char->save();
 
-        return redirect()->back()->with(['status' => 'You just traveled to 10, you can travel again in '.$char->can()->trivialCrimeInMinutes().' minutes.']);
+        return redirect()->back()->with(['status' => 'Success! You managed to take &euro;'.$loot.',-']);
     }
 }

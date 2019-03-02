@@ -62,10 +62,10 @@ class Cooldown
     /**
      * Calculates and return an integer indicating when the cooldown passes.
      */
-    public function trivialCrimeInMinutes()
+    public function trivialCrimeInSeconds()
     {
         if (Cache::has('trivial-crime-cooldown-'.$this->character->name)) {
-            return Carbon::parse(Cache::get('trivial-crime-cooldown-'.$this->character->name))->diffInMinutes(Carbon::now());
+            return Carbon::parse(Cache::get('trivial-crime-cooldown-'.$this->character->name))->diffInSeconds(Carbon::now());
         }
         return 0;
     }
