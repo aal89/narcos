@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #10</h5>
+    </div>
+    <div class="row">
+        - Changed and rewrote internal logics for some operational parts.<br>
+        - Introduced trivial crimes, you can now make money and level up your character.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">02-03-2019 14:37 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #9</h5>
     </div>
     <div class="row">
