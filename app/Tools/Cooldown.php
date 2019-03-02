@@ -12,6 +12,7 @@ use Carbon\Carbon;
 class Cooldown
 {
     private $character;
+    private $trivialCrimeCooldown = 2;
     /**
      * Create a new cooldown instance.
      *
@@ -48,5 +49,32 @@ class Cooldown
     {
         $cooldown = cooldownForAsset($this->character->transport);
         Cache::put('travel-cooldown-'.$this->character->name, Carbon::now()->addMinutes($cooldown), $cooldown);
+    }
+
+    /**
+     * Determines if you can commit a trivial crime. Returns true if you can, false otherwise.
+     */
+    public function trivialCrime()
+    {
+        return !Cache::has('trivial-crime-cooldown-'.$this->character->name);
+    }
+
+    /**
+     * Calculates and return an integer indicating when the cooldown passes.
+     */
+    public function trivialCrimeInSeconds()
+    {
+        if (Cache::has('trivial-crime-cooldown-'.$this->character->name)) {
+            return Carbon::parse(Cache::get('trivial-crime-cooldown-'.$this->character->name))->diffInSeconds(Carbon::now());
+        }
+        return 0;
+    }
+
+    /**
+     * Resets the trivial crime cooldown in the Cache.
+     */
+    public function resetTrivialCrime()
+    {
+        Cache::put('trivial-crime-cooldown-'.$this->character->name, Carbon::now()->addMinutes($this->trivialCrimeCooldown), $this->trivialCrimeCooldown);
     }
 }

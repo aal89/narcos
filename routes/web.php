@@ -11,7 +11,7 @@
 |
 */
 
-$condMiddlewares = ['auth', 'is.allowed.access', 'verified', 'user.has.character'];
+$condMiddlewares = ['auth', 'is.allowed.access', 'verified', 'user.has.character', 'log.user.activity'];
 $condMiddlewares = App::isLocal() ? array_filter($condMiddlewares, 'notVerified') : $condMiddlewares;
 
 Auth::routes(['verify' => true]);
@@ -46,6 +46,9 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/store/bullets', 'StoreController@postBullets');
 
     Route::get('/online-players', 'OnlineController@getIndex');
+
+    Route::get('/trivial-crime', 'CrimeController@getIndex');
+    Route::post('/trivial-crime', 'CrimeController@postIndex');
 });
 
 // SPECIAL CASES
