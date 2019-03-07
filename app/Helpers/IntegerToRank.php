@@ -21,7 +21,7 @@ if (!function_exists('integerToRank')) {
 
         if ($exp > 1000 && $exp < 10001)
         {
-            return 'Hitmen';
+            return 'Hitman';
         }
 
         if ($exp > 10000 && $exp < 100001)
