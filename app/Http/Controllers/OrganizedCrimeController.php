@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\OrganizedCrime;
 use App\Character;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrganizedCrimeController extends Controller
 {
-    private $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br><a href="#" class="btn btn-link">Join</a>';
+    private $inviteExpireInSeconds = 300;
     /**
      * Create a new controller instance.
      *
@@ -23,7 +24,9 @@ class OrganizedCrimeController extends Controller
     }
 
     /**
-     * Creates and sends an in-game message to some player as an invite to an organized crime attempt.
+     * Creates a cached secret and sends an in-game message to a player as an invite to an organized crime attempt.
+     * The cached secret is used as a mechanism to validate the invites. An invite is valid for 5 minutes, expires
+     * afterwards.
      *
      * @param Character $inviter Origin of the message.
      * @param Character $invitee Recipient of the message.
@@ -31,7 +34,15 @@ class OrganizedCrimeController extends Controller
      */
     private function sendOrganizedCrimeInvite(Character $inviter, Character $invitee, string $position)
     {
-        messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $this->ocInviteMessage, true);
+        // In the cache we save a key like: oc-invite-charactername-d6s4d5f4w55 which indicates the invitee character and the secret
+        // for value we store who invited the invitee and for what position. Expires after some time. Iff the invitee uses the link
+        // with the secret within the expiration time we can be sure the invite is real and sent by the system.
+        $secret = md5(rand(0, 1000000));
+        Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInSeconds);
+        $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br>
+        <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
+        <i><small>This invite expires in '.($this->inviteExpireInSeconds/60).' minutes.</small></i>';
+        messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
     }
 
     /**
@@ -43,6 +54,31 @@ class OrganizedCrimeController extends Controller
     {
         $party = OrganizedCrime::getParty(Auth::user()->character);
         return view('menu.organized-crime.index')->with(['party' => $party]);
+    }
+
+    /**
+     * Attempts to join (or create) a party associated with the secret.
+     */
+    public function getJoin(Request $request, string $secret)
+    {
+        // use pull, this way the cached value will be discarded immediately, rendering the invite invalid (use once only)
+        $invite = Cache::pull('oc-invite-'.$char->name.'-'.$secret);
+        if ($invite) {
+            $char = Auth::user()->character;
+            $inviter = Character::findByName($invite[0]);
+            $position = $invite[1];
+            // once the invite is valid we have to do a couple of checks, firstly:
+            if (!OrganizedCrime::canJoin($char)) {
+                // if we cant join a party notify the user and stop setting up the party
+                return view('menu.organized-crime.index')->with(['party' => null])->withErrors([ 'general' => 'You\'re already enrolled in another party, leave that one first.' ]);
+            }
+            // Then we are checking if the party of the inviter exists, if not we create one, if yes we will check for vacancy
+            // on our position, if that one, passes, we join the party. Fails otherwise.
+            // LOH
+            return view('menu.organized-crime.index')->with(['party' => null]);
+        }
+        // the invite no longer exists, invalid, notify the user
+        return view('menu.organized-crime.index')->with(['party' => null])->withErrors([ 'general' => 'This invite is no longer valid, ask for a new one.' ]);
     }
 
     /**

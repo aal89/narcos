@@ -51,6 +51,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/trivial-crime', 'CrimeController@postIndex');
 
     Route::get('/organized-crime', 'OrganizedCrimeController@getIndex');
+    Route::get('/organized-crime/join/{secret}', 'OrganizedCrimeController@getJoin');
     Route::post('/organized-crime/invite/{position}', 'OrganizedCrimeController@postInvite');
 });
 

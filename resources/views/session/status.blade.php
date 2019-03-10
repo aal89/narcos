@@ -1,4 +1,7 @@
-@if (session('status'))
+@if (isset($status))
+    {!! '<p><font color=green><strong>'.$status.'</strong></font></p>' !!}
+@endif
+@if (session('status') || isset($status))
     {!! '<p><font color=green><strong>'.session('status').'</strong></font></p>' !!}
 @endif
 @if ($errors->has('general'))
