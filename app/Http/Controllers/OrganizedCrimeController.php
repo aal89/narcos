@@ -52,7 +52,8 @@ class OrganizedCrimeController extends Controller
      */
     public function getIndex()
     {
-        $party = OrganizedCrime::getParty(Auth::user()->character);
+        $char = Auth::user()->character;
+        $party = OrganizedCrime::getParty($char);
         return view('menu.organized-crime.index')->with(['party' => $party]);
     }
 
@@ -62,6 +63,7 @@ class OrganizedCrimeController extends Controller
     public function getJoin(Request $request, string $secret)
     {
         // use pull, this way the cached value will be discarded immediately, rendering the invite invalid (use once only)
+        $char = Auth::user()->character;
         $invite = Cache::pull('oc-invite-'.$char->name.'-'.$secret);
         if ($invite) {
             $char = Auth::user()->character;
@@ -70,15 +72,29 @@ class OrganizedCrimeController extends Controller
             // once the invite is valid we have to do a couple of checks, firstly:
             if (!OrganizedCrime::canJoin($char)) {
                 // if we cant join a party notify the user and stop setting up the party
-                return view('menu.organized-crime.index')->with(['party' => null])->withErrors([ 'general' => 'You\'re already enrolled in another party, leave that one first.' ]);
+                return redirect('/organized-crime')->withErrors([ 'general' => 'You\'re already enrolled in another party, leave that one first.' ]);
             }
             // Then we are checking if the party of the inviter exists, if not we create one, if yes we will check for vacancy
-            // on our position, if that one, passes, we join the party. Fails otherwise.
-            // LOH
-            return view('menu.organized-crime.index')->with(['party' => null]);
+            // on our position, if that one passes, we join the party. Fails otherwise.
+            $inviterParty = OrganizedCrime::getParty($inviter);
+            if ($inviterParty) {
+                if ($inviterParty->$position === null) {
+                    $inviterParty->{$position.'_id'} = $char->id;
+                    $inviterParty->save();
+                    return redirect('/organized-crime')->with(['status' => 'You have joined as a '.$position.'!' ]);
+                }
+                return redirect('/organized-crime')->withErrors([ 'general' => 'The spot '.$position.' has already been taken by somebody else!' ]);
+            } else {
+                // create a party with the leader
+                $party = new OrganizedCrime();
+                $party->robber_id = $inviter->id;
+                $party->{$position.'_id'} = $char->id;
+                $party->save();
+                return redirect('/organized-crime')->with([ 'status' => 'You have joined as a '.$position.'!' ]);
+            }
         }
         // the invite no longer exists, invalid, notify the user
-        return view('menu.organized-crime.index')->with(['party' => null])->withErrors([ 'general' => 'This invite is no longer valid, ask for a new one.' ]);
+        return redirect('/organized-crime')->withErrors([ 'general' => 'This invite is no longer valid, ask for a new one.' ]);
     }
 
     /**

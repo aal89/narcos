@@ -43,8 +43,3 @@
         <b>You</b>
     </div>
 </div>
-<div class="row mt-5">
-    <div class="col-sm text-center">
-        <button type="button" class="btn btn-primary btn-lg">Attempt</button>
-    </div>
-</div>
