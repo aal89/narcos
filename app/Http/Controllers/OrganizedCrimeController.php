@@ -168,9 +168,20 @@ class OrganizedCrimeController extends Controller
                 messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$driversTake.'.', true);
                 messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$spottersTake.'.', true);
                 $party->delete();
-                return redirect()->back()->with([ 'status' => 'Oh yes! You took €'.$money.' (your take €'.$robbersTake.')' ]);
+                return redirect()->back()->with([ 'status' => 'Oh yes! You took €'.$money.' (your take €'.$robbersTake.').' ]);
             } else {
-                // fail, we notify the robber straight away, the others we send a message to. also disband the party 
+                // fail, we notify the robber straight away, the others we send a message to. also disband the party
+                // you do get exp when a oc fails
+                $exp = calculateOrganizedCrimeLoot()[1];
+
+                $party->robber->experience += $exp;
+                $party->driver->experience += $exp;
+                $party->spotter->experience += $exp;
+
+                $party->robber->save();
+                $party->driver->save();
+                $party->spotter->save();
+
                 messageComposer($party->robber->id, $party->driver->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);
                 messageComposer($party->robber->id, $party->spotter->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);
                 $party->delete();
