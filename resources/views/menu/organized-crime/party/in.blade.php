@@ -18,16 +18,20 @@
     <div class="col-sm text-center">
         <h4>The robber</h4>
         <p>Minimum rank required: <b>Lieutenant</b>. Payout: 50%.</p>
-        <div class="">
-            {{-- LOH: this include is probably not necessary, removing will probably simplify the options view too. Research. --}}
-            @include('menu.organized-crime.member.options', ['member' => 'robber'])
+        @if ($party->robber->name === Auth::user()->character->name)
+            <b>You</b> are leader.
+        @else
+            <b><a href="/profile/{{ $party->robber->name }}">{{ $party->robber->name }}</a></b> is leader.
+        @endif
+    </div>
+</div>
+@if ($party->driver !== null && $party->robber !== null && $party->spotter !== null && $party->robber->name === Auth::user()->character->name)
+<form method="POST" action="/organized-crime/attempt">
+@csrf
+    <div class="row mt-5">
+        <div class="col-sm text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Attempt</button>
         </div>
     </div>
-</div>
-@if ($party->driver !== null && $party->robber !== null && $party->spotter !== null)
-<div class="row mt-5">
-    <div class="col-sm text-center">
-        <button type="button" class="btn btn-primary btn-lg">Attempt</button>
-    </div>
-</div>
+</form>
 @endif

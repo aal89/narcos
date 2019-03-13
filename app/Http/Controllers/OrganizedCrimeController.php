@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class OrganizedCrimeController extends Controller
 {
     private $inviteExpireInSeconds = 300;
+    private $driverShare = 0.2;
+    private $spotterShare = 0.3;
+    private $robberShare = 0.5;
     /**
      * Create a new controller instance.
      *
@@ -21,28 +24,6 @@ class OrganizedCrimeController extends Controller
     {
         // We could add middleware specific for this controller like so:
         // $this->middleware('auth');
-    }
-
-    /**
-     * Creates a cached secret and sends an in-game message to a player as an invite to an organized crime attempt.
-     * The cached secret is used as a mechanism to validate the invites. An invite is valid for 5 minutes, expires
-     * afterwards.
-     *
-     * @param Character $inviter Origin of the message.
-     * @param Character $invitee Recipient of the message.
-     * @param string $position The spot to get when the invite is accepted.
-     */
-    private function sendOrganizedCrimeInvite(Character $inviter, Character $invitee, string $position)
-    {
-        // In the cache we save a key like: oc-invite-charactername-d6s4d5f4w55 which indicates the invitee character and the secret
-        // for value we store who invited the invitee and for what position. Expires after some time. Iff the invitee uses the link
-        // with the secret within the expiration time we can be sure the invite is real and sent by the system.
-        $secret = md5(rand(0, 1000000));
-        Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInSeconds);
-        $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br>
-        <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
-        <i><small>This invite expires in '.($this->inviteExpireInSeconds/60).' minutes.</small></i>';
-        messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
     }
 
     /**
@@ -64,7 +45,11 @@ class OrganizedCrimeController extends Controller
     {
         // use pull, this way the cached value will be discarded immediately, rendering the invite invalid (use once only)
         $char = Auth::user()->character;
+        if (!$char->can()->organizedCrime()) {
+            return redirect('/organized-crime')->withErrors([ 'general' => 'You\'re laying low, you\'ve recently already committed organized crime. Wait for '.$char->can()->organizedCrimeInMinutes().' more minutes.' ]);
+        }
         $invite = Cache::pull('oc-invite-'.$char->name.'-'.$secret);
+        // check if we dont have a cooldown and the invite is valid
         if ($invite) {
             $char = Auth::user()->character;
             $inviter = Character::findByName($invite[0]);
@@ -105,17 +90,94 @@ class OrganizedCrimeController extends Controller
      */
     public function postInvite(Request $request, string $position)
     {
+        $char = Auth::user()->character;
         // only the party leader can send invitations (which requires a minimum rank of Lieutenant)
         // todo: same todo as below, regarding the formalisation of these experience magic numbers
-        if (Auth::user()->character->experience < 10000) {
+        if ($char->experience < 10000) {
             return redirect()->back()->withErrors([ 'general' => 'You have to be at least a Lieutenant in order to send invites.' ]);
         }
-        $party = OrganizedCrime::getParty(Auth::user()->character);
+        // and the party leader may not be on a cooldown!
+        if (!$char->can()->organizedCrime()) {
+            return redirect()->back()->withErrors([ 'general' => 'You\'re laying low, you\'ve recently already committed organized crime. Wait for '.$char->can()->organizedCrimeInMinutes().' more minutes.' ]);
+        }
+        $party = OrganizedCrime::getParty($char);
         switch ($position) {
             case 'driver': return $this->inviteDriver($request, $party);
             case 'spotter': return $this->inviteSpotter($request, $party);
             default: return redirect()->back()->with([ 'party' => $party ]);
         }
+    }
+
+    /**
+     * Attempts to remove a given character from it's party.
+     */
+    public function postRemove(Request $request, string $character)
+    {
+        try {
+            $givenCharacter = Character::findByName($character);
+            $givenCharacterParty = OrganizedCrime::getParty($givenCharacter);
+            $loggedCharacter = Auth::user()->character;
+            // We may only remove someone of a party when it is ourself, or when we are the team leader
+            if ($givenCharacter->name === $loggedCharacter->name || $givenCharacterParty->robber->name === $loggedCharacter->name) {
+                $position = $this->getPosition($givenCharacter, $givenCharacterParty);
+                $givenCharacterParty->{$position.'_id'} = null;
+                $givenCharacterParty->save();
+            }
+            return redirect()->back();
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors([ 'general' => 'Could not remove character '.$character.' from the party.' ]);
+        }
+    }
+
+    /**
+     * Attempts to do a organized crime.
+     */
+    public function postAttempt()
+    {
+        $char = Auth::user()->character;
+        $party = OrganizedCrime::getParty($char);
+        if($party->driver && $party->spotter && $party->robber && $party->robber->name === $char->name) {
+            // set cooldown for all characters straight away
+            $party->robber->can()->resetOrganizedCrime();
+            $party->driver->can()->resetOrganizedCrime();
+            $party->spotter->can()->resetOrganizedCrime();
+            // todo: get rid of the hardcoded 65% probability for organized crimes
+            $p = rand(0, 99);
+            if ($p < 65) {
+                // succes, we notify the robber straight away, the others we send a message to
+                // also update the characters exp and money
+                $loot = calculateOrganizedCrimeLoot();
+                $money = $loot[0];
+                $exp = $loot[1];
+
+                $robbersTake = floor($money * $this->robberShare);
+                $driversTake = floor($money * $this->driverShare);
+                $spottersTake = floor($money * $this->spotterShare);
+
+                $party->robber->experience += $exp;
+                $party->robber->money += $robbersTake;
+                $party->driver->experience += $exp;
+                $party->driver->money += $driversTake;
+                $party->spotter->experience += $exp;
+                $party->spotter->money += $spottersTake;
+                
+                $party->robber->save();
+                $party->driver->save();
+                $party->spotter->save();
+
+                messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$driversTake.'.', true);
+                messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$spottersTake.'.', true);
+                $party->delete();
+                return redirect()->back()->with([ 'status' => 'Oh yes! You took €'.$money.' (your take €'.$robbersTake.')' ]);
+            } else {
+                // fail, we notify the robber straight away, the others we send a message to. also disband the party 
+                messageComposer($party->robber->id, $party->driver->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);
+                messageComposer($party->robber->id, $party->spotter->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);
+                $party->delete();
+                return redirect()->back()->withErrors([ 'general' => 'Ah! Too bad, this attempt failed. Try again in 6hrs.' ]);
+            }
+        }
+        return redirect()->back()->withErrors([ 'general' => 'The party isn\'t ready yet.' ]);
     }
 
     private function inviteDriver(Request $request, OrganizedCrime $party = null)
@@ -146,6 +208,45 @@ class OrganizedCrimeController extends Controller
             return redirect()->back()->withErrors([ 'spotter' => 'No character found for '.$request->spotter ]);
         } catch(\Exception $e) {
             return redirect()->back()->withErrors([ 'spotter' => $e->getMessage() ]);
+        }
+    }
+
+    /**
+     * Creates a cached secret and sends an in-game message to a player as an invite to an organized crime attempt.
+     * The cached secret is used as a mechanism to validate the invites. An invite is valid for 5 minutes, expires
+     * afterwards.
+     *
+     * @param Character $inviter Origin of the message.
+     * @param Character $invitee Recipient of the message.
+     * @param string $position The spot to get when the invite is accepted.
+     */
+    private function sendOrganizedCrimeInvite(Character $inviter, Character $invitee, string $position)
+    {
+        // In the cache we save a key like: oc-invite-charactername-d6s4d5f4w55 which indicates the invitee character and the secret
+        // for value we store who invited the invitee and for what position. Expires after some time. Iff the invitee uses the link
+        // with the secret within the expiration time we can be sure the invite is real and sent by the system.
+        $secret = md5(rand(0, 1000000));
+        Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInSeconds);
+        $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br>
+        <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
+        <i><small>This invite expires in '.($this->inviteExpireInSeconds/60).' minutes.</small></i>';
+        messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
+    }
+
+    /**
+     * Gets the position for a character in a party.
+     * @return string
+     */
+    private function getPosition(Character $char, OrganizedCrime $party)
+    {
+        if ($party->driver && $party->driver->name === $char->name) {
+            return 'driver';
+        }
+        if ($party->spotter && $party->spotter->name === $char->name) {
+            return 'spotter';
+        }
+        if ($party->robber && $party->robber->name === $char->name) {
+            return 'robber';
         }
     }
 }

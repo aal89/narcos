@@ -40,6 +40,6 @@
     <div class="col-sm text-center">
         <h4>The robber</h4>
         <p>Minimum rank required: <b>Lieutenant</b>. Payout: 50%.</p>
-        <b>You</b>
+        <b>You</b> are leader.
     </div>
 </div>
