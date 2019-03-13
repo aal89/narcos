@@ -7,6 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Cache;
 
 use App\Character;
+use App\OrganizedCrime;
+
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -39,6 +42,15 @@ class Kernel extends ConsoleKernel
                     $char->save();
                     $char->bank->money = 0;
                     $char->bank->save();
+                }
+            });
+        })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            OrganizedCrime::all()->each(function ($oc) {
+                // kill every inactive party
+                if (Carbon::parse($oc->updated_at)->diffInMinutes(Carbon::now()) > 60) {
+                    $oc->delete();
                 }
             });
         })->everyThirtyMinutes();

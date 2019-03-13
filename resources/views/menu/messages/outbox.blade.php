@@ -27,7 +27,13 @@
                             <span>Message</span>
                         </td>
                         <td>
-                            <span class="not-bold text-wrap">{{ $message->message }}</span>
+                            <span class="not-bold text-wrap">
+                                @if ($message->trusted)
+                                    {!! $message->message !!}
+                                @else
+                                    {{ $message->message }}
+                                @endif
+                            </span>
                         </td>
                     </tr>
                     <tr>
