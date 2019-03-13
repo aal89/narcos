@@ -100,6 +100,10 @@ class OrganizedCrimeController extends Controller
         if (!$char->can()->organizedCrime()) {
             return redirect()->back()->withErrors([ 'general' => 'You\'re laying low, you\'ve recently already committed organized crime. Wait for '.$char->can()->organizedCrimeInMinutes().' more minutes.' ]);
         }
+        // and you cannot invite yourself
+        if ($char->name === $request->driver ?? $char->name) {
+            return redirect()->back()->withErrors([ 'general' => 'You cannot invite yourself.' ]);
+        }
         $party = OrganizedCrime::getParty($char);
         switch ($position) {
             case 'driver': return $this->inviteDriver($request, $party);
@@ -116,6 +120,9 @@ class OrganizedCrimeController extends Controller
         try {
             $givenCharacter = Character::findByName($character);
             $givenCharacterParty = OrganizedCrime::getParty($givenCharacter);
+            if (!$givenCharacterParty) {
+                throw new \Exception('No party found.');
+            }
             $loggedCharacter = Auth::user()->character;
             // We may only remove someone of a party when it is ourself, or when we are the team leader
             if ($givenCharacter->name === $loggedCharacter->name || $givenCharacterParty->robber->name === $loggedCharacter->name) {
