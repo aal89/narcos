@@ -72,6 +72,6 @@ class CrimeController extends Controller
         $char->counter->save();
         $char->save();
 
-        return redirect()->back()->with(['status' => 'Success! You managed to take &euro;'.$loot.',-']);
+        return redirect()->back()->with(['status' => 'Success! You managed to take €'.$loot.',-']);
     }
 }
