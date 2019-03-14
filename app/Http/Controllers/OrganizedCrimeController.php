@@ -66,6 +66,7 @@ class OrganizedCrimeController extends Controller
                 if ($inviterParty->$position === null) {
                     $inviterParty->{$position.'_id'} = $char->id;
                     $inviterParty->save();
+                    messageComposer($char->id, $inviter->id, 'I\'m your '.$position.'!', 'Let\'s do this!', true);
                     return redirect('/organized-crime')->with(['status' => 'You have joined as a '.$position.'!' ]);
                 }
                 return redirect('/organized-crime')->withErrors([ 'general' => 'The spot '.$position.' has already been taken by somebody else!' ]);
@@ -75,6 +76,7 @@ class OrganizedCrimeController extends Controller
                 $party->robber_id = $inviter->id;
                 $party->{$position.'_id'} = $char->id;
                 $party->save();
+                messageComposer($char->id, $inviter->id, 'I\'m your '.$position.'!', 'Let\'s do this!', true);
                 return redirect('/organized-crime')->with([ 'status' => 'You have joined as a '.$position.'!' ]);
             }
         }
@@ -101,7 +103,7 @@ class OrganizedCrimeController extends Controller
             return redirect()->back()->withErrors([ 'general' => 'You\'re laying low, you\'ve recently already committed organized crime. Wait for '.$char->can()->organizedCrimeInMinutes().' more minutes.' ]);
         }
         // and you cannot invite yourself
-        if ($char->name === $request->driver ?? $char->name) {
+        if (strtolower($char->name) === strtolower($request->driver ?? $char->name)) {
             return redirect()->back()->withErrors([ 'general' => 'You cannot invite yourself.' ]);
         }
         $party = OrganizedCrime::getParty($char);
