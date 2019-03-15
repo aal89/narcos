@@ -103,7 +103,7 @@ class OrganizedCrimeController extends Controller
             return redirect()->back()->withErrors([ 'general' => 'You\'re laying low, you\'ve recently already committed organized crime. Wait for '.$char->can()->organizedCrimeInMinutes().' more minutes.' ]);
         }
         // and you cannot invite yourself
-        if (strtolower($char->name) === strtolower($request->driver ?? $char->name)) {
+        if (strtolower($char->name) === strtolower($request->$position ?? $char->name)) {
             return redirect()->back()->withErrors([ 'general' => 'You cannot invite yourself.' ]);
         }
         $party = OrganizedCrime::getParty($char);
