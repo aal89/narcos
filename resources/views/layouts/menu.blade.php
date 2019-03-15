@@ -18,6 +18,7 @@
                     - <a href="/travel">Travel</a><br>
                     - <a href="/store">Store</a><br>
                     - <a href="/online-players">Online players</a><br>
+                    - <a href="/all-players">Find players</a><br>
                 </div>
             </td>
         </tr>
