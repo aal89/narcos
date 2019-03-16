@@ -18,7 +18,6 @@
         <tr>
             <td>
                 <span aria-hidden="true" class="li_banknote"></span> &euro;{{ Auth::user()->character->money() }},-
-                <span aria-hidden="true" class="li_truck pl-2"></span> {{ Auth::user()->character->contraband() }}kg
                 <span aria-hidden="true" class="li_location pl-2"></span> {{ Auth::user()->character->country() }}
                 <span aria-hidden="true" class="li_world pl-2"></span> {{ Auth::user()->character->transport() }}
                 <img src="/weapon_icon.svg" class="pl-2" height="11"> {{ Auth::user()->character->weapon() }}

@@ -4,6 +4,18 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #11</h5>
+    </div>
+    <div class="row">
+        - Refactored contraband data, logics and migrations to support multiple types of contraband to buy and sell in the future.<br>
+        - Finished organized crime, you can now attempt them!<br>
+        - Added an all players page and restyled the online players page, they also have pagination now.<br>
+        - Fixed several smaller issues.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">16-03-2019 14:32 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #10</h5>
     </div>
     <div class="row">
