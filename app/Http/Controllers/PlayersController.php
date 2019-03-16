@@ -27,9 +27,9 @@ class PlayersController extends Controller
     public function getOnlineIndex()
     {
         $onlineCharacters = [];
-        foreach (Character::all() as $character) {
+        foreach (Character::simplePaginate(15) as $character) {
             if (Cache::has('user-is-online-' . $character->id)) {
-                $onlineCharacters[] = $character->name;
+                $onlineCharacters[] = $character;
             }
         }
         return view('menu.online-players.index')->with(['onlineCharacters' => $onlineCharacters]);
