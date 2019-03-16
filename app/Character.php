@@ -58,15 +58,6 @@ class Character extends Model
     }
 
     /**
-     * This Characters contraband formatted in a human preferable way. E.g. 1.200,
-     * instead of 1200.
-     */
-    public function contraband()
-    {
-        return number_format($this->contraband, 0, '.', '.');
-    }
-
-    /**
      * This Characters transport formatted in a human preferable way. E.g. Plane,
      * instead of plane.
      */
@@ -171,6 +162,11 @@ class Character extends Model
     public function counter()
     {
         return $this->hasOne('App\Counter');
+    }
+
+    public function contraband()
+    {
+        return $this->hasOne('App\Contraband');
     }
 
     public function can()

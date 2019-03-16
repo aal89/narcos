@@ -63,6 +63,7 @@ class CharacterController extends Controller
                 $char->profile()->create();
                 $char->counter()->create();
                 $char->bank()->create();
+                $char->contraband()->create();
             } else {
                 return redirect()->back()->withErrors(['name' => 'This name is not allowed. Please pick another.']);
             }
