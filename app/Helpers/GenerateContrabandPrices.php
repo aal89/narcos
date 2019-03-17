@@ -23,7 +23,7 @@ if (!function_exists('generateContrabandPrices')) {
             return rand(400, 600);
         }, array_fill(0, $nrCountries * $nrNarcoticTypes, 0));
         // add one higher than the rest
-        $prices[0] = rand(700, 900);
+        $prices[0] = rand(750, 950);
         // shuffle the array so that the drug route becomes random
         shuffle($prices);
         return [
