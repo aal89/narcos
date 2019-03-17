@@ -56,6 +56,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/organized-crime/invite/{position}', 'OrganizedCrimeController@postInvite');
     Route::post('/organized-crime/remove/{character}', 'OrganizedCrimeController@postRemove');
     Route::post('/organized-crime/attempt', 'OrganizedCrimeController@postAttempt');
+
+    Route::get('/narcotics-trade', 'NarcoticsController@getIndex');
 });
 
 // SPECIAL CASES

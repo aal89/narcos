@@ -39,7 +39,7 @@
                 <div class="collapse show" id="col2">
                     - <a href="/trivial-crime">Trivial crime</a><br>
                     - <a href="/organized-crime">Organized crime</a><br>
-                    - Narcotics trade<br>
+                    - <a href="/narcotics-trade">Narcotics trade</a><br>
                     - Kill<br>
                 </div>
             </td>
