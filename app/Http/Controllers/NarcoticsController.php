@@ -42,4 +42,14 @@ class NarcoticsController extends Controller
         $pricesForCountryOfChar = $this->getCurrentPrices()[$char->country];
         return view('menu.narcotics-trade.index')->with('prices', $pricesForCountryOfChar);
     }
+
+    public function postBuy(Request $request)
+    {
+        return null;
+    }
+
+    public function postSell(Request $request)
+    {
+        return null;
+    }
 }

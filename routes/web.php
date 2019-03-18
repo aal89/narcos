@@ -58,6 +58,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/organized-crime/attempt', 'OrganizedCrimeController@postAttempt');
 
     Route::get('/narcotics-trade', 'NarcoticsController@getIndex');
+    Route::post('/narcotics-trade/buy', 'NarcoticsController@postBuy');
+    Route::post('/narcotics-trade/sell', 'NarcoticsController@postSell');
 });
 
 // SPECIAL CASES
