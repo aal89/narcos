@@ -40,11 +40,15 @@ class NarcoticsController extends Controller
     {
         $char = Auth::user()->character;
         $pricesForCountryOfChar = $this->getCurrentPrices()[$char->country];
-        return view('menu.narcotics-trade.index')->with('prices', $pricesForCountryOfChar);
+        $carryCapacity = $char->contraband->carryCapacity();
+        return view('menu.narcotics-trade.index')->with('prices', $pricesForCountryOfChar)->with('carryCapacity', $carryCapacity);
     }
 
     public function postBuy(Request $request)
     {
+        // $this->validate($request, [
+        //     'narcotic' => 'required|integer|min:1',
+        // ]);
         return null;
     }
 

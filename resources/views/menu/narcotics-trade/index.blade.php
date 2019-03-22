@@ -7,7 +7,7 @@
     (changes every 24hrs). Your rank determines how much kilograms you can carry.
 </p>
 <p>
-    <b>You can carry:</b> 2kg
+    <b>You can carry:</b> {{ $carryCapacity }}kg.
 </p>
 <table class="table table-sm table-dark">
     <thead>
