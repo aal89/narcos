@@ -32,16 +32,19 @@
             </td>
             <td>
                 <div class="form-group input-group-sm mb-0">
-                    <input id="buysell" type="number" class="form-control{{ $errors->has('buysell') ? ' is-invalid' : '' }} w-50" name="buysell" value="{{ old('buysell') }}" placeholder="Amount (e.g. 1)" required autofocus>
-                    @if ($errors->has('buysell'))
+                    <input form="form-{{ $narcotic }}" id="{{ $narcotic }}" type="number" class="form-control{{ $errors->has($narcotic) ? ' is-invalid' : '' }} w-50" name="{{ $narcotic }}" value="{{ old($narcotic) }}" placeholder="Amount (e.g. 1)" required>
+                    @if ($errors->has($narcotic))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('buysell') }}</strong>
+                            <strong>{{ $errors->first($narcotic) }}</strong>
                         </span>
                     @endif
                 </div>
             </td>
             <td class="cell-fit">
-                <button class="btn btn-link">Buy</button><button class="btn btn-link">Sell</button>
+                <form method="POST" action="/narcotics-trade/trade/{{ $narcotic }}" id="form-{{ $narcotic }}">
+                    @csrf
+                    <button class="btn btn-link" type="submit" name="action" value="buy">Buy</button><button class="btn btn-link" type="submit" name="action" value="sell">Sell</button>
+                </form>
             </td>
         </tr>
     @endforeach

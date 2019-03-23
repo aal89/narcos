@@ -44,16 +44,62 @@ class NarcoticsController extends Controller
         return view('menu.narcotics-trade.index')->with('prices', $pricesForCountryOfChar)->with('carryCapacity', $carryCapacity);
     }
 
-    public function postBuy(Request $request)
+    public function postTrade(Request $request, string $narcotic)
     {
-        // $this->validate($request, [
-        //     'narcotic' => 'required|integer|min:1',
-        // ]);
+        switch($narcotic) {
+            case 'weed': return $this->buyWeed($request);
+            case 'lsd': return $this->buyLsd($request);
+            case 'speed': return $this->buySpeed($request);
+            case 'cocaine': return $this->buyCocaine($request);
+            default: return $this->buyWeed($request);
+        }
+    }
+
+    public function buyWeed(Request $request)
+    {
+        $this->validate($request, [
+            'weed' => 'required|integer|min:1'
+        ]);
+        $isBuying = $request->action === 'buy' ? true : false;
+
+        var_dump($request);
+
         return null;
     }
 
-    public function postSell(Request $request)
+    public function buyLsd(Request $request)
     {
+        $this->validate($request, [
+            'lsd' => 'required|integer|min:1'
+        ]);
+        $isBuying = $request->action === 'buy' ? true : false;
+
+        var_dump($request);
+
+        return null;
+    }
+
+    public function buySpeed(Request $request)
+    {
+        $this->validate($request, [
+            'speed' => 'required|integer|min:1'
+        ]);
+        $isBuying = $request->action === 'buy' ? true : false;
+
+        var_dump($request);
+
+        return null;
+    }
+
+    public function buyCocaine(Request $request)
+    {
+        $this->validate($request, [
+            'cocaine' => 'required|integer|min:1'
+        ]);
+        $isBuying = $request->action === 'buy' ? true : false;
+
+        var_dump($request);
+
         return null;
     }
 }
