@@ -59,6 +59,10 @@ small {
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
 }
+.cell-fit {
+    width: 1% !important;
+    white-space: nowrap !important;
+}
 .bg-dark {
     background-color: #292B2E !important;
 }

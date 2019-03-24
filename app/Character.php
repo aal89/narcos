@@ -28,7 +28,16 @@ class Character extends Model
      */
     public function rank()
     {
-        return integerToRank($this->experience);
+        return integerToRank($this->experience)[1];
+    }
+
+    /**
+     * Return the rank of this character represented as an integer. For example
+     * Low-life is rank level 1.
+     */
+    public function rankLevel()
+    {
+        return integerToRank($this->experience)[0];
     }
 
     /**

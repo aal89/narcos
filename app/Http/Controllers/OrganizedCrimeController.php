@@ -51,8 +51,12 @@ class OrganizedCrimeController extends Controller
         $invite = Cache::pull('oc-invite-'.$char->name.'-'.$secret);
         // check if we dont have a cooldown and the invite is valid
         if ($invite) {
-            $char = Auth::user()->character;
             $inviter = Character::findByName($invite[0]);
+            // check if the inviting party also can do an oc attempt
+            if (!$inviter->can()->organizedCrime()) {
+                return redirect('/organized-crime')->withErrors([ 'general' => $inviter->name.' is laying low, you can\'t group with this person right now.' ]);
+            }
+            $char = Auth::user()->character;
             $position = $invite[1];
             // once the invite is valid we have to do a couple of checks, firstly:
             if (!OrganizedCrime::canJoin($char)) {
@@ -145,7 +149,12 @@ class OrganizedCrimeController extends Controller
     {
         $char = Auth::user()->character;
         $party = OrganizedCrime::getParty($char);
+        // check if the party is full and you're the leader
         if($party->driver && $party->spotter && $party->robber && $party->robber->name === $char->name) {
+            // check if all the party members are in the same country as the leader (robber)
+            if ($party->robber->country !== $party->driver->country || $party->robber->country !== $party->spotter->country) {
+                return redirect('/organized-crime')->withErrors([ 'general' => 'Your party is missing! Get everyone to your location before attempting the robbery.' ]);
+            }
             // set cooldown for all characters straight away
             $party->robber->can()->resetOrganizedCrime();
             $party->driver->can()->resetOrganizedCrime();
