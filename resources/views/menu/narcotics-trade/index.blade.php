@@ -9,6 +9,7 @@
 <p>
     <b>You can carry:</b> {{ $carryCapacity }}kg.
 </p>
+@include('session.status')
 <table class="table table-sm table-dark">
     <thead>
         <tr>
@@ -25,7 +26,8 @@
     @foreach ($prices as $narcotic => $price)
         <tr>
             <td>
-                <b>{{ ucfirst($narcotic) }}</b>
+                <b>{{ ucfirst($narcotic) }}</b><br>
+                <small>Currently carrying: <b>{{ Auth::user()->character->contraband->$narcotic }}kgs</b></small>
             </td>
             <td>
                 &euro;{{ $price }},-

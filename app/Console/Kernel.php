@@ -14,6 +14,7 @@ use Carbon\Carbon;
 class Kernel extends ConsoleKernel
 {
     private $oneDayInMinutes = 3600;
+    private $oneHourInMinutes = 60;
     /**
      * The Artisan commands provided by your application.
      *
@@ -75,7 +76,7 @@ class Kernel extends ConsoleKernel
 
         // Daily at 6 in the morning randomize the drugroute
         $schedule->call(function () {
-            Cache::put('contraband-prices', generateContrabandPrices(), $this->oneDayInMinutes);
+            Cache::put('contraband-prices', generateContrabandPrices(), $this->oneDayInMinutes + $this->oneHourInMinutes);
         })->dailyAt('6:00');
     }
 
