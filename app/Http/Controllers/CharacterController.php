@@ -52,7 +52,7 @@ class CharacterController extends Controller
     public function postCreate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:3|max:25|unique:characters',
+            'name' => 'required|min:3|max:25|alpha_dash|unique:characters',
         ]);
 
         try {
