@@ -4,6 +4,18 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #12</h5>
+    </div>
+    <div class="row">
+        - Implemented narcotics trade, you can now buy and sell drugs around the globe.<br>
+        - You can no longer create player names containing non alpanumeric characters.<br>
+        - Resolved a bug where joining a party wouldn't check if the inviter was not on a cooldown (it only checked if the invitee was not on a cooldown).<br>
+        - Attempting a robbery (organized crime) now requires all party members to be in the same country.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">24-03-2019 19:50 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #11</h5>
     </div>
     <div class="row">
