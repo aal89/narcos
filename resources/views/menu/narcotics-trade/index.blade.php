@@ -3,8 +3,7 @@
 @section('page')
 <h3 class="page-title"><span aria-hidden="true" class="li_truck"></span> {{ __('Narcotics trade') }}</h3>
 <p>
-    Smuggling narcotics into other countries can be a lucrative business. Buy low and sell high, be sure to ask around for the current drugroute
-    (changes every 24hrs). Your rank determines how much kilograms you can carry.
+    Smuggling narcotics into other countries can be a lucrative business. Buy low and sell high! Your rank determines how much kilograms you can carry.
 </p>
 <p>
     <b>You can carry:</b> {{ $carryCapacity }}kg.
