@@ -27,7 +27,7 @@
                     </div>
                 </td>
                 <td>&euro;1.200,-</td>
-                <td>Saves an additional 30 minutes for a total of 60 minutes travel time.</td>
+                <td>Saves an additional 10 minutes for a total of 80 minutes travel time.</td>
             </tr>
             <tr>
                 <td>
@@ -39,7 +39,7 @@
                     </div>
                 </td>
                 <td>&euro;24.000,-</td>
-                <td>Saves an additional 15 minutes for a total of 45 minutes travel time.</td>
+                <td>Saves an additional 15 minutes for a total of 65 minutes travel time.</td>
             </tr>
             <tr>
                 <td>
@@ -51,7 +51,7 @@
                     </div>
                 </td>
                 <td>&euro;105.000,-</td>
-                <td>Saves an additional 10 minutes for a total of 35 minutes travel time.</td>
+                <td>Saves an additional 30 minutes for a total of 35 minutes travel time.</td>
             </tr>
             <tr>
                 <td colspan="3">

@@ -12,8 +12,8 @@ if (!function_exists('cooldownForAsset')) {
         switch ($asset)
         {
             case 'none': return 90;
-            case 'motor': return 60;
-            case 'boat': return 45; 
+            case 'motor': return 80;
+            case 'boat': return 65; 
             case 'plane': return 35;
         }
     }
