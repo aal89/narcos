@@ -174,14 +174,20 @@ class OrganizedCrimeController extends Controller
 
                 $party->robber->experience += $exp;
                 $party->robber->money += $robbersTake;
+                $party->robber->counter->organized_crime += 1;
                 $party->driver->experience += $exp;
                 $party->driver->money += $driversTake;
+                $party->driver->counter->organized_crime += 1;
                 $party->spotter->experience += $exp;
                 $party->spotter->money += $spottersTake;
+                $party->spotter->counter->organized_crime += 1;
                 
                 $party->robber->save();
+                $party->robber->counter->save();
                 $party->driver->save();
+                $party->driver->counter->save();
                 $party->spotter->save();
+                $party->spotter->counter->save();
 
                 messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$driversTake.'.', true);
                 messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$spottersTake.'.', true);
@@ -193,12 +199,18 @@ class OrganizedCrimeController extends Controller
                 $exp = calculateOrganizedCrimeLoot()[1];
 
                 $party->robber->experience += $exp;
+                $party->robber->counter->organized_crime += 1;
                 $party->driver->experience += $exp;
+                $party->driver->counter->organized_crime += 1;
                 $party->spotter->experience += $exp;
+                $party->spotter->counter->organized_crime += 1;
 
                 $party->robber->save();
+                $party->robber->counter->save();
                 $party->driver->save();
+                $party->driver->counter->save();
                 $party->spotter->save();
+                $party->spotter->counter->save();
 
                 messageComposer($party->robber->id, $party->driver->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);
                 messageComposer($party->robber->id, $party->spotter->id, 'We failed', 'I couldn\'t take anything, we got nothing. Lay low for a while.', true);

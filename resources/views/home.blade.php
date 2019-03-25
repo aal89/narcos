@@ -4,6 +4,18 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #13</h5>
+    </div>
+    <div class="row">
+        - Fix for internal counter for organized crime attempts per character.<br>
+        - Fixed input size for smaller viewports on the organized crime page.<br>
+        - Reversed cooldown times for traveling.<br>
+        - Removed implicit text from narcotics trade page.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">25-03-2019 23:09 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #12</h5>
     </div>
     <div class="row">
