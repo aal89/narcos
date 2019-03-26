@@ -1,9 +1,10 @@
 @extends('layouts.basic')
 
 @section('page')
-<h3 class="page-title"><span aria-hidden="true" class="li_truck"></span> {{ __('Kill') }}</h3>
+<h3 class="page-title"><img src="/bullet_icon.svg" height="11"> {{ __('Kill') }}</h3>
 <p>
     Attempt to kill another character.
 </p>
 @include('session.status')
-hello world
+<p>Hello world</p>
+@endsection
