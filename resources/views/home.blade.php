@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #14</h5>
+    </div>
+    <div class="row">
+        - Fixed several scheduled jobs which cleanedup or refreshed obsolete data.<br>
+        - Implemented killing logic, you can now attempt killing each ohter. Death is forever, so think twice!<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">26-03-2019 18:14 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #13</h5>
     </div>
     <div class="row">
