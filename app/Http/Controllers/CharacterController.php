@@ -77,6 +77,22 @@ class CharacterController extends Controller
     }
 
     /**
+     * Returns character kill view.
+     */
+    public function getKill()
+    {
+        return view('menu.kill.index');
+    }
+
+    /**
+     * Attempt to kill another character.
+     */
+    public function postKill()
+    {
+        return redirect('/kill');
+    }
+
+    /**
      * Returns character death view.
      * 
      * @return \Illuminate\Contracts\Support\Renderable
