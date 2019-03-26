@@ -60,8 +60,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/narcotics-trade', 'NarcoticsController@getIndex');
     Route::post('/narcotics-trade/trade/{narcotic}', 'NarcoticsController@postTrade');
 
-    Route::get('/kill', 'CharacterController@getKill');
-    Route::post('/kill', 'CharacterController@postKill');
+    Route::get('/kill', 'KillController@getKill');
+    Route::post('/kill', 'KillController@postKill');
 });
 
 // SPECIAL CASES
