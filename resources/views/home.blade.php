@@ -7,7 +7,8 @@
         <h5 class="text-secondary">Update #14</h5>
     </div>
     <div class="row">
-        - Fixed several scheduled jobs which cleanedup or refreshed obsolete data.<br>
+        - Fixed a bug regarding the expiration of oc invites.<br>
+        - Resolved two caching bugs. Oc groups now automatically disbanden and narcotic prices now vary every day.<br>
         - Implemented killing logic, you can now attempt killing each ohter. Death is forever, so think twice!<br>
     </div>
     <div class="row">
