@@ -19,7 +19,7 @@ if (!function_exists('cooldownForAsset')) {
         // it's lowest bound and what it actually is, so the random is between
         // exp -10 and exp.
         $result = rand(($experience - 10), $experience);
-        // then set the cutoffs at 0 and 100, mix in the $result and return it
-        return min(100, max(0, $result));
+        // then set the cutoffs at 0 and 95, mix in the $result and return it
+        return min(95, max(0, $result));
     }
 }
