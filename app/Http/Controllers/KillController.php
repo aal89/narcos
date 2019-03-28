@@ -21,8 +21,15 @@ class KillController extends Controller
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function postKill()
+    public function postKill(Request $request)
     {
-        return redirect('/kill');
+        $this->validate($request, [
+            'character' => 'required|min:3|max:25|alpha_dash',
+            'bullets' => 'required|integer|min:1'
+        ]);
+
+        // todo actual killing logic
+
+        return redirect()->back();
     }
 }
