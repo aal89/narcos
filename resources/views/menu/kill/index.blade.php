@@ -3,8 +3,7 @@
 @section('page')
 <h3 class="page-title"><img src="/weapon_icon.svg" height="23"> {{ __('Kill') }}</h3>
 <p>
-    Beef with someone? Or the next guy in line being weaker and holding you up? Solve it yourself. Death is forever, plus
-    if you're succesful you can rob the person too. Make some money while you're at it.
+    Beef with someone? Or the next guy in line being weaker and holding you up? Solve it yourself. Death is forever.
 </p>
 @include('session.status')
 <form method="POST" action="/kill" id="form-1">
