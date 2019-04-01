@@ -11,6 +11,9 @@
         - Resolved two caching bugs. Oc groups now automatically disbanden and narcotic prices now vary every day.<br>
         - Implemented killing logic, you can now attempt killing each ohter. Death is forever, so think twice!<br>
         - Lowered the trivial crime percentage cap to 95%.<br>
+        - Fixed an issue regarding html in received mails.<br>
+        - Increased oc invite & oc party disbanden timeouts.<br>
+        - Fixed some typos in the oc messages.<br>
     </div>
     <div class="row">
         <span class="small mt-2 mb-2">26-03-2019 18:14 by aal</span>
