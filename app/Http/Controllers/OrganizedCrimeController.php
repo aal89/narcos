@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrganizedCrimeController extends Controller
 {
-    private $inviteExpireInMinutes = 5;
+    private $inviteExpireInMinutes = 240;
     private $driverShare = 0.2;
     private $spotterShare = 0.3;
     private $robberShare = 0.5;
