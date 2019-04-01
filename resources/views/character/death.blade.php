@@ -25,10 +25,18 @@
                                 <button type="submit" class="btn btn-danger">
                                     {{ __('Release character') }}
                                 </button>
+                                <a href="{{ route('logout') }}" class="btn btn-link float-right"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+            </form>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
             </form>
         </div>
     </div>
