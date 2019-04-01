@@ -12,7 +12,7 @@
         - Implemented killing logic, you can now attempt killing each ohter. Death is forever, so think twice!<br>
         - Lowered the trivial crime percentage cap to 95%.<br>
         - Fixed an issue regarding html in received mails.<br>
-        - Increased oc invite & oc party disbanden timeouts.<br>
+        - Increased oc invite & oc party disband timeouts.<br>
         - Fixed some typos in the oc messages.<br>
     </div>
     <div class="row">
