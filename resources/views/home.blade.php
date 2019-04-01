@@ -4,6 +4,21 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #14</h5>
+    </div>
+    <div class="row">
+        - Fixed a bug regarding the expiration of oc invites.<br>
+        - Resolved two caching bugs. Oc groups now automatically disbanden and narcotic prices now vary every day.<br>
+        - Implemented killing logic, you can now attempt killing each ohter. Death is forever, so think twice!<br>
+        - Lowered the trivial crime percentage cap to 95%.<br>
+        - Fixed an issue regarding html in received mails.<br>
+        - Increased oc invite & oc party disband timeouts.<br>
+        - Fixed some typos in the oc messages.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">02-04-2019 00:25 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #13</h5>
     </div>
     <div class="row">

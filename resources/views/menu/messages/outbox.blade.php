@@ -6,6 +6,9 @@
         <p class="text-center"><i>No new outbox messages.</i></p>
     @endif
     @foreach (Auth::user()->character->messagesOutbox as $message)
+        @if($message->isSystemMessage())
+            @continue
+        @endif
         <div class="row">
             <table class="table table-sm table-dark">
                 <thead>

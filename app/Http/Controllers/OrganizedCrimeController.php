@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrganizedCrimeController extends Controller
 {
-    private $inviteExpireInSeconds = 300;
+    private $inviteExpireInMinutes = 240;
     private $driverShare = 0.2;
     private $spotterShare = 0.3;
     private $robberShare = 0.5;
@@ -189,8 +189,8 @@ class OrganizedCrimeController extends Controller
                 $party->spotter->save();
                 $party->spotter->counter->save();
 
-                messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$driversTake.'.', true);
-                messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$spottersTake.'.', true);
+                messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got €'.$driversTake.'.', true);
+                messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got €'.$spottersTake.'.', true);
                 $party->delete();
                 return redirect()->back()->with([ 'status' => 'Oh yes! You took €'.$money.' (your take €'.$robbersTake.').' ]);
             } else {
@@ -267,10 +267,10 @@ class OrganizedCrimeController extends Controller
         // for value we store who invited the invitee and for what position. Expires after some time. Iff the invitee uses the link
         // with the secret within the expiration time we can be sure the invite is real and sent by the system.
         $secret = md5(rand(0, 1000000));
-        Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInSeconds);
-        $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br>
-        <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
-        <i><small>This invite expires in '.($this->inviteExpireInSeconds/60).' minutes.</small></i>';
+        Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInMinutes);
+        $ocInviteMessage = 'Would you like to join me to rob a bank?<br>
+        <a href="'.url('/organized-crime/join/'.$secret).'" class="btn btn-link">Join</a><br>
+        <i><small>This invite expires in '.($this->inviteExpireInMinutes).' minutes.</small></i>';
         messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
     }
 

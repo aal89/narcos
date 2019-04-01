@@ -32,6 +32,10 @@ class InGameMessage extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('You\'ve received an in-game message!')->markdown('mail.message');
+        if ($this->msg->isSystemMessage()) {
+            return $this->subject('You\'ve received an in-game message!')->markdown('mail.system.message');
+        } else {
+            return $this->subject('You\'ve received an in-game message!')->markdown('mail.message');
+        }
     }
 }

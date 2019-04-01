@@ -22,6 +22,11 @@ class Character extends Model
         return Character::where('name', $name)->firstOrFail();
     }
 
+    public static function randomInCountry($country)
+    {
+        return Character::where('country', $country)->inRandomOrder()->firstOrFail();
+    }
+
     /**
      * Calculates the rank belonging to this character based on it's experience.
      * It is a derived value.

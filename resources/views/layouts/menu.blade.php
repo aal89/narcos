@@ -40,7 +40,7 @@
                     - <a href="/trivial-crime">Trivial crime</a><br>
                     - <a href="/organized-crime">Organized crime</a><br>
                     - <a href="/narcotics-trade">Narcotics trade</a><br>
-                    - Kill<br>
+                    - <a href="/kill">Kill</a><br>
                 </div>
             </td>
         </tr>

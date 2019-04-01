@@ -40,6 +40,15 @@ class Message extends Model
     }
 
     /**
+     * Indicates if this message is a system message. Returns true if owner_id
+     * sender_id and recipient_id are all equal.
+     */
+    public function isSystemMessage()
+    {
+        return $this->owner_id === $this->sender_id && $this->sender_id === $this->recipient_id;
+    }
+
+    /**
      * Returns the character which owns this message.
      */
     public function owner()

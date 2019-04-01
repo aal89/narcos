@@ -48,9 +48,18 @@ class Kernel extends ConsoleKernel
         })->everyThirtyMinutes();
 
         $schedule->call(function () {
+            // heal all players whom its life is lower than 100
+            Character::where('life', '<', 100)->each(function ($char) {
+                // heal with 20% daily
+                $char->life = min(100, $char->life + 20);
+                $char-save();
+            });
+        })->dailyAt('6:00');
+
+        $schedule->call(function () {
             OrganizedCrime::all()->each(function ($oc) {
-                // kill every inactive party
-                if (Carbon::parse($oc->updated_at)->diffInMinutes(Carbon::now()) > 60) {
+                // kill every inactive party (24hr timeout)
+                if (Carbon::parse($oc->updated_at)->diffInMinutes(Carbon::now()) > 1440) {
                     $oc->delete();
                 }
             });
