@@ -269,7 +269,7 @@ class OrganizedCrimeController extends Controller
         $secret = md5(rand(0, 1000000));
         Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInMinutes);
         $ocInviteMessage = 'Would you like to join me to rob a bank?<br>
-        <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
+        <a href="'.url('/organized-crime/join/'.$secret).'" class="btn btn-link">Join</a><br>
         <i><small>This invite expires in '.($this->inviteExpireInMinutes).' minutes.</small></i>';
         messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
     }
