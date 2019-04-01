@@ -189,8 +189,8 @@ class OrganizedCrimeController extends Controller
                 $party->spotter->save();
                 $party->spotter->counter->save();
 
-                messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$driversTake.'.', true);
-                messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got: €'.$spottersTake.'.', true);
+                messageComposer($party->robber->id, $party->driver->id, 'We did it!', 'I took a total of €'.$money.'. You got €'.$driversTake.'.', true);
+                messageComposer($party->robber->id, $party->spotter->id, 'We did it!', 'I took a total of €'.$money.'. You got €'.$spottersTake.'.', true);
                 $party->delete();
                 return redirect()->back()->with([ 'status' => 'Oh yes! You took €'.$money.' (your take €'.$robbersTake.').' ]);
             } else {
@@ -268,7 +268,7 @@ class OrganizedCrimeController extends Controller
         // with the secret within the expiration time we can be sure the invite is real and sent by the system.
         $secret = md5(rand(0, 1000000));
         Cache::put('oc-invite-'.$invitee->name.'-'.$secret, [$inviter->name, $position], $this->inviteExpireInMinutes);
-        $ocInviteMessage = 'Would you like to join me to do an organized crime attempt?<br>
+        $ocInviteMessage = 'Would you like to join me to rob a bank?<br>
         <a href="/organized-crime/join/'.$secret.'" class="btn btn-link">Join</a><br>
         <i><small>This invite expires in '.($this->inviteExpireInMinutes).' minutes.</small></i>';
         messageComposer($inviter->id, $invitee->id, 'I need a '.$position.'!', $ocInviteMessage, true);
