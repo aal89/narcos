@@ -42,10 +42,9 @@ class Character extends Model
             ->orderBy('updated_at', 'desc')
             ->limit(50)
             ->get()
-            ->toArray();
+            ->shuffle();
 
-        shuffle($fetchedChars);
-        return array_pop($fetchedChars);
+        return count($fetchedChars) > 0 ? $fetchedChars[0] : null;
     }
 
     /**
