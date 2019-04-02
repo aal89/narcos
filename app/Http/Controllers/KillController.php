@@ -74,6 +74,9 @@ class KillController extends Controller
             }
             // withdraw bullets from char and save
             $char->bullets -= $request->bullets;
+            // decide whether to up the kill fail or kill success counters
+            $targetChar->isAlive() ? $char->counter->kill_fail += 1 : $char->counter->kill_success += 1;
+            $char->counter->save();
             $char->save();
             // roll if witnessed only once. it can mean two things:
             // 1) when the target is dead, it will decide if somebody else witnessed the attack
