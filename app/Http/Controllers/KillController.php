@@ -34,7 +34,6 @@ class KillController extends Controller
         try {
             $char = Auth::user()->character;
             $targetChar = Character::findByName($request->character);
-            $status = 'You didn\'t kill '.$targetChar->name.', but you did get to him!';
             // check if targetchar is alive
             if ($targetChar->isDead()) {
                 return redirect()->back()->withErrors(['general' => 'You can\'t kill somebody who\'s already dead!']);
@@ -68,31 +67,48 @@ class KillController extends Controller
             // withdraw the damage and save target character
             $targetChar->life = max(0, $targetChar->life - $damage);
             $targetChar->save();
-            // withdraw bullets from char
-            $char->bullets -= $request->bullets;
             // withdraw cost of crew from attacker if he used the option
             $withCrew = $request->crew === 'on';
             if ($withCrew) {
                 $char->money -= $this->bringCrewCost;
             }
+            // withdraw bullets from char and save
+            $char->bullets -= $request->bullets;
             $char->save();
-            // when the target character is dead send a witness report to somebody random in the country, if
-            // somebody witnessed it at all
+            // roll if witnessed only once. it can mean two things:
+            // 1) when the target is dead, it will decide if somebody else witnessed the attack
+            // or
+            // 2) when the target survived, it will decide if the target saw who did it
             $gotWitnessed = $this->gotWitnessed($withCrew);
-            if ($targetChar->isDead()) {
-                $status = 'You outsmarted '.$targetChar->name.' and made him pay.';
-                // send witness report to random char in country, iff somebody saw it
+            if ($targetChar->isAlive()) {
+                // prepare message for char
+                $general = 'You didn\'t kill '.$targetChar->name.'!';
+                // prepare a message for targetChar, depends on whether or not he recognized the attacker
                 if ($gotWitnessed) {
-                    $status .= ' Somebody witnessed this murder!';
-                    $randomChar = Character::randomInCountry($targetChar->country);
-                    systemMessageComposer($randomChar, 'You witnessed a murder attempt!', 'You saw <a href="'.url('/profile/'.$char->name).'">'.$char->name.'</a> attacking <a href="'.url('/profile/'.$targetChar->name).'">'.$targetChar->name.'</a>!');
+                    // append extra notice to general message for char
+                    $general .= ' Watch your back, '.$targetChar->name.' recognized you!';
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You survived and saw who did it! (<a href="'.url('/profile/'.$char->name).'">'.$char->name.'</a>)');
+                } else {
+                    // targetChar couldnt really see who attacked him
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You survived, but you couldn\'t really see who it was!');
                 }
-            } else if ($gotWitnessed) {
-                // in any other case we notify the target character who got attacked, iff he could see it
-                $status .= ' Watch your back, '.$targetChar->name.' recognized you!';
-                systemMessageComposer($targetChar, 'You got attacked!', 'You survived and remembered who (<a href="'.url('/profile/'.$char->name).'">'.$char->name.'</a>) did it!');
+                return redirect()->back()->withErrors(['general' => $general]);
             }
-            return redirect()->back()->with('status', $status);
+            if ($targetChar->isDead()) {
+                // prepare message for char
+                $status = 'You outsmarted '.$targetChar->name.' and made him pay!';
+                // send witness report to random char in country, iff somebody saw it and this somebody exists (the next query can return null)
+                $randomChar = Character::randomActiveInCountry($targetChar->country, $char, $targetChar);
+                if ($gotWitnessed && $randomChar) {
+                    $status .= ' Somebody saw you do it, run!';
+                    systemMessageComposer($randomChar, 'You witnessed a fatal attack!', 'You saw <a href="'.url('/profile/'.$char->name).'">'.$char->name.'</a> attacking <a href="'.url('/profile/'.$targetChar->name).'">'.$targetChar->name.'</a>!');
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Somebody witnessed your murder!');
+                } else {
+                    // in any other case we just notify the targetChar, this system message will end up in their mailbox
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Apparently there were no witnesses!');
+                }
+                return redirect()->back()->with('status', $status);
+            }
         } catch(\Exception $e) {
             return redirect()->back()->withErrors(['general' => 'I can\'t seem to find '.$request->character.'.']);
         }
