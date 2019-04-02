@@ -82,7 +82,7 @@ class KillController extends Controller
             $gotWitnessed = $this->gotWitnessed($withCrew);
             if ($targetChar->isAlive()) {
                 // prepare message for char
-                $general = 'You didn\'t kill '.$targetChar->name.'!';
+                $general = 'Your attack failed on '.$targetChar->name.'!';
                 // prepare a message for targetChar, depends on whether or not he recognized the attacker
                 if ($gotWitnessed) {
                     // append extra notice to general message for char
@@ -102,10 +102,10 @@ class KillController extends Controller
                 if ($gotWitnessed && $randomChar) {
                     $status .= ' Somebody saw you do it, run!';
                     systemMessageComposer($randomChar, 'You witnessed a fatal attack!', 'You saw <a href="'.url('/profile/'.$char->name).'">'.$char->name.'</a> attacking <a href="'.url('/profile/'.$targetChar->name).'">'.$targetChar->name.'</a>!');
-                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Somebody witnessed your murder!');
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Somebody witnessed your murder.');
                 } else {
                     // in any other case we just notify the targetChar, this system message will end up in their mailbox
-                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Apparently there were no witnesses!');
+                    systemMessageComposer($targetChar, 'You got attacked!', 'You were killed! Apparently there were no witnesses.');
                 }
                 return redirect()->back()->with('status', $status);
             }
