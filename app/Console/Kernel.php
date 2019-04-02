@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
             Character::where('life', '<', 100)->each(function ($char) {
                 // heal with 20% daily
                 $char->life = min(100, $char->life + 20);
-                $char-save();
+                $char->save();
             });
         })->dailyAt('6:00');
 
