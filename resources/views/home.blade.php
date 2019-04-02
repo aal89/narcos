@@ -4,6 +4,18 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #15</h5>
+    </div>
+    <div class="row">
+        - Decreased the amount of experience given by the third trivial crime.<br>
+        - The random witness for attacks is now chosen between the last 50 active characters in the same country.<br>
+        - Failed and successful attacks are now being recorded.<br>
+        - The attacked target in Kill is now always notified of the attack, however he/she does not always see who did it.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">02-04-2019 19:48 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #14</h5>
     </div>
     <div class="row">

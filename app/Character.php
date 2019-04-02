@@ -22,9 +22,29 @@ class Character extends Model
         return Character::where('name', $name)->firstOrFail();
     }
 
-    public static function randomInCountry($country)
+    /**
+     * Selects a random character out of the last 50 active ones in a particular country.
+     * Rules out any character given in the $except parameter. Returns null if no
+     * character could be selected.
+     * 
+     * @param string $country
+     * @param Character ...$except
+     */
+    public static function randomActiveInCountry($country, Character ...$except)
     {
-        return Character::where('country', $country)->inRandomOrder()->firstOrFail();
+        $characters = Character::where('country', $country);
+
+        foreach($except as $character) {
+            $characters->where('id', '!=', $character->id);
+        }
+
+        $fetchedChars = $characters
+            ->orderBy('updated_at', 'desc')
+            ->limit(50)
+            ->get()
+            ->shuffle();
+
+        return count($fetchedChars) > 0 ? $fetchedChars[0] : null;
     }
 
     /**
