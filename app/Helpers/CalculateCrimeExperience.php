@@ -13,7 +13,7 @@ if (!function_exists('calculateCrimeExperience')) {
         {
             case 1: return rand(5, 25);
             case 2: return rand(15, 85);
-            case 3: return rand(55, 255);
+            case 3: return rand(55, 155);
             default: return rand(5, 25);
         }
     }
