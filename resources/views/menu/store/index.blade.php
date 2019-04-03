@@ -129,7 +129,7 @@
     </table>
 </form>
 <p>
-    Each day around noon a random amount of bullets are produced by the bulletfactories and put up for sale. They are expensive and hard to
+    Each saturday around 11:00 a random amount of bullets are produced by the bulletfactories and put up for sale. They are expensive and hard to
     come by. Buy them while you can.
 </p>
 <form method="POST" action="/store/bullets">
