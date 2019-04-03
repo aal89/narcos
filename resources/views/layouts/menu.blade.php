@@ -59,7 +59,7 @@
         <tr>
             <td>
                 <div class="collapse show" id="col3">
-                    - Numbers game<br>
+                    - <a href="/numbers-game">Numbers game</a><br>
                     - Roulette<br>
                 </div>
             </td>
