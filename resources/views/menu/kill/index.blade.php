@@ -8,7 +8,7 @@
 @include('session.status')
 <form method="POST" action="/kill" id="form-1">
 @csrf
-    <table class="table table-sm table-dark w-75">
+    <table class="table table-sm table-dark">
         <thead>
             <tr>
                 <th colspan="2">{{ __('Kill') }}</th>
@@ -20,13 +20,15 @@
                     Character
                 </td>
                 <td>
-                    <div class="form-group input-group-sm mb-0">
-                        <input form="form-1" type="text" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') }}" placeholder="Character" required>
-                        @if ($errors->has('character'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('character') }}</strong>
-                            </span>
-                        @endif
+                    <div class="col-md-8 col-lg-6 pl-0">
+                        <div class="form-group input-group-sm mb-0">
+                            <input form="form-1" type="text" class="form-control{{ $errors->has('character') ? ' is-invalid' : '' }}" name="character" value="{{ old('character') }}" placeholder="Character" required>
+                            @if ($errors->has('character'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('character') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -35,13 +37,15 @@
                     Bullets
                 </td>
                 <td>
-                    <div class="form-group input-group-sm mb-0">
-                        <input form="form-1" type="number" class="form-control{{ $errors->has('bullets') ? ' is-invalid' : '' }}" name="bullets" value="{{ old('bullets') }}" placeholder="Amount (e.g. 1)" required>
-                        @if ($errors->has('bullets'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('bullets') }}</strong>
-                            </span>
-                        @endif
+                    <div class="col-md-8 col-lg-6 pl-0">
+                        <div class="form-group input-group-sm mb-0">
+                            <input form="form-1" type="number" class="form-control{{ $errors->has('bullets') ? ' is-invalid' : '' }}" name="bullets" value="{{ old('bullets') }}" placeholder="Amount (e.g. 1)" required>
+                            @if ($errors->has('bullets'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('bullets') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 </td>
             </tr>
