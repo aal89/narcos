@@ -48,8 +48,8 @@ class Kernel extends ConsoleKernel
         })->everyThirtyMinutes();
 
         $schedule->call(function () {
-            // heal all players whom its life is lower than 100
-            Character::where('life', '<', 100)->each(function ($char) {
+            // heal all alive players whom its life is lower than 100
+            Character::where('life', '<', 100)->where('life', '>', 0)->each(function ($char) {
                 // heal with 20% daily
                 $char->life = min(100, $char->life + 20);
                 $char->save();
@@ -86,7 +86,7 @@ class Kernel extends ConsoleKernel
         // Daily at 6 in the morning randomize the drugroute
         $schedule->call(function () {
             Cache::put('contraband-prices', generateContrabandPrices(), $this->oneDayInMinutes + $this->oneHourInMinutes);
-        })->dailyAt('6:00');
+        })->weekly()->saturdays()->at('11:00');
     }
 
     /**
