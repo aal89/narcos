@@ -14,7 +14,7 @@ class KillController extends Controller
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getKill()
+    public function getIndex()
     {
         return view('menu.kill.index');
     }
@@ -24,7 +24,7 @@ class KillController extends Controller
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function postKill(Request $request)
+    public function postIndex(Request $request)
     {
         $this->validate($request, [
             'character' => 'required|min:3|max:25|alpha_dash',
