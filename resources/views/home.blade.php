@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #16</h5>
+    </div>
+    <div class="row">
+        - Updated two views (oc and store) to reflect changes of earlier updates.<br>
+        - You can now offer a wager in a numbers game.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">03-04-2019 20:03 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #15</h5>
     </div>
     <div class="row">
