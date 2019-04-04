@@ -81,12 +81,12 @@ class Kernel extends ConsoleKernel
             // });
             Cache::put('daily-bullets-quantity', $bullets, $this->oneDayInMinutes);
             Cache::put('daily-bullets-cost', $cost, $this->oneDayInMinutes);
-        })->dailyAt('12:00');
+        })->weekly()->saturdays()->at('11:00');
 
         // Daily at 6 in the morning randomize the drugroute
         $schedule->call(function () {
             Cache::put('contraband-prices', generateContrabandPrices(), $this->oneDayInMinutes + $this->oneHourInMinutes);
-        })->weekly()->saturdays()->at('11:00');
+        })->dailyAt('6:00');
     }
 
     /**
