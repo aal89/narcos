@@ -13,7 +13,7 @@
         <div class="d-none d-sm-block col-md-3 col-lg-3">
             <img src="/roulette.png" class="img-fluid" />
         </div>
-        <div class="col-5 col-md-2 col-lg-2">
+        <div class="col-5 col-md-2 col-lg-2 my-auto">
             <div class="form-group row mb-1">
                 <div class="col">
                     <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="1st 12">
@@ -24,9 +24,39 @@
                     <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="1 to 18">
                 </div>
             </div>
-            <div class="form-group row mb-1">
+            <div class="form-group row mb-2">
                 <div class="col">
                     <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="Even">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="2nd 12">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center roulette-red" min="1" placeholder="Red">
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center roulette-black" min="1" placeholder="Black">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="3rd 12">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="Odd">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col">
+                    <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="19 to 36">
                 </div>
             </div>
         </div>

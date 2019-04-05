@@ -191,3 +191,11 @@ table tbody tr td:first-child {
     float: left;
     margin-right: 1em;
 }
+.roulette-red {
+    background-color: red !important;
+    color: white !important;
+}
+.roulette-black {
+    background-color: black !important;
+    color: white !important;
+}
