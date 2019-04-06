@@ -67,7 +67,7 @@
         </div>
         <div class="col-7">
             <div class="form-group mb-2 row">
-                <div class="col-6 col-md-3 col-lg-3 ml-5">
+                <div class="col-12 col-md-6 col-lg-6">
                     <input type="number" class="form-control form-control-sm text-center" min="1" placeholder="0">
                 </div>
             </div>
