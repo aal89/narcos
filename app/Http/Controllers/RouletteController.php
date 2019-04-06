@@ -89,7 +89,7 @@ class RouletteController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $validator->errors()->add('general', '123!');
+            $validator->errors()->add('general', 'One or more inputs have wrong values, only positive integers allowed!');
             return redirect()->back()->withInput()->withErrors($validator);
         }
 
