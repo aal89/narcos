@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RouletteController extends Controller
 {
@@ -34,10 +36,62 @@ class RouletteController extends Controller
      */
     public function postIndex(Request $request)
     {
-        $this->validate($request, [
-            'guess' => 'required|integer|min:1|max:10',
-            'bet' => 'required|integer|min:100|max:100000'
+        $validator = Validator::make($request->all(), [
+            'n1st12' => 'nullable|integer|min:1',
+            'n1to18' => 'nullable|integer|min:1',
+            'neven' => 'nullable|integer|min:1',
+            'n2nd12' => 'nullable|integer|min:1',
+            'nred' => 'nullable|integer|min:1',
+            'nblack' => 'nullable|integer|min:1',
+            'n3rd12' => 'nullable|integer|min:1',
+            'nodd' => 'nullable|integer|min:1',
+            'n19to36' => 'nullable|integer|min:1',
+            'n0' => 'nullable|integer|min:1',
+            'n1' => 'nullable|integer|min:1',
+            'n2' => 'nullable|integer|min:1',
+            'n3' => 'nullable|integer|min:1',
+            'n4' => 'nullable|integer|min:1',
+            'n5' => 'nullable|integer|min:1',
+            'n6' => 'nullable|integer|min:1',
+            'n7' => 'nullable|integer|min:1',
+            'n8' => 'nullable|integer|min:1',
+            'n9' => 'nullable|integer|min:1',
+            'n10' => 'nullable|integer|min:1',
+            'n11' => 'nullable|integer|min:1',
+            'n12' => 'nullable|integer|min:1',
+            'n13' => 'nullable|integer|min:1',
+            'n14' => 'nullable|integer|min:1',
+            'n15' => 'nullable|integer|min:1',
+            'n16' => 'nullable|integer|min:1',
+            'n17' => 'nullable|integer|min:1',
+            'n18' => 'nullable|integer|min:1',
+            'n19' => 'nullable|integer|min:1',
+            'n20' => 'nullable|integer|min:1',
+            'n21' => 'nullable|integer|min:1',
+            'n22' => 'nullable|integer|min:1',
+            'n23' => 'nullable|integer|min:1',
+            'n24' => 'nullable|integer|min:1',
+            'n25' => 'nullable|integer|min:1',
+            'n26' => 'nullable|integer|min:1',
+            'n27' => 'nullable|integer|min:1',
+            'n28' => 'nullable|integer|min:1',
+            'n29' => 'nullable|integer|min:1',
+            'n30' => 'nullable|integer|min:1',
+            'n31' => 'nullable|integer|min:1',
+            'n32' => 'nullable|integer|min:1',
+            'n33' => 'nullable|integer|min:1',
+            'n34' => 'nullable|integer|min:1',
+            'n35' => 'nullable|integer|min:1',
+            'n36' => 'nullable|integer|min:1',
+            'n2to11' => 'nullable|integer|min:1',
+            'n2to12' => 'nullable|integer|min:1',
+            'n2to13' => 'nullable|integer|min:1'
         ]);
+
+        if ($validator->fails()) {
+            $validator->errors()->add('general', '123!');
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
 
         $char = Auth::user()->character;
 
