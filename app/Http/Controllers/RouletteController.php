@@ -124,10 +124,10 @@ class RouletteController extends Controller
         // For some reason this couldn't go up there straight with the other class members. We have to set
         // gameRules in this fashion.
         $this->gameRules = [
-            'n1st12' => 2,
-            'n1to18' => 1,
-            'neven' => 1,
-            'n2nd12' => 2,
+            'n1st12' => function ($nr) { return $nr <= 12; },
+            'n1to18' => function ($nr) { return $nr <= 18; },
+            'neven' => function ($nr) { return $nr % 2 === 0 },
+            'n2nd12' => function ($nr) { return $nr >= 12 && $nr <= 24; },
             'nred' => 1,
             'nblack' => 1,
             'n3rd12' => 2,
