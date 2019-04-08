@@ -249,11 +249,15 @@ class RouletteController extends Controller
         $char->money += floor($payout);
         $char->save();
 
-        if ($payout > 0) {
-            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr);
+        if ($payout === 0) {
+            return redirect()->back()->withInput()->with('status', 'You didn\'t win, but you didn\'t lose either. The winning number was: '.$winnr.'.');
         }
 
-        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr]);
+        if ($payout > 0) {
+            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr.'.');
+        }
+
+        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr.'.']);
     }
 
 }
