@@ -187,60 +187,9 @@ class RouletteController extends Controller
             'n34' => function ($nr) { return $nr === 34; },
             'n35' => function ($nr) { return $nr === 35; },
             'n36' => function ($nr) { return $nr === 36; },
-            'n2to11' => function ($nr) { return $nr === 1 ||
-                $nr === 4 ||
-                $nr === 7 ||
-                $nr === 10 ||
-                $nr === 13 ||
-                $nr === 12 ||
-                $nr === 14 ||
-                $nr === 16 ||
-                $nr === 18 ||
-                $nr === 19 || 
-                $nr === 21 ||
-                $nr === 23 ||
-                $nr === 25 ||
-                $nr === 27 ||
-                $nr === 30 ||
-                $nr === 32 ||
-                $nr === 34 ||
-                $nr === 36; },
-            'n2to12' => function ($nr) { return $nr === 1 ||
-                $nr === 3 ||
-                $nr === 5 ||
-                $nr === 7 ||
-                $nr === 9 ||
-                $nr === 12 ||
-                $nr === 14 ||
-                $nr === 16 ||
-                $nr === 18 ||
-                $nr === 19 || 
-                $nr === 21 ||
-                $nr === 23 ||
-                $nr === 25 ||
-                $nr === 27 ||
-                $nr === 30 ||
-                $nr === 32 ||
-                $nr === 34 ||
-                $nr === 36; },
-            'n2to13' => function ($nr) { return $nr === 1 ||
-                $nr === 3 ||
-                $nr === 5 ||
-                $nr === 7 ||
-                $nr === 9 ||
-                $nr === 12 ||
-                $nr === 14 ||
-                $nr === 16 ||
-                $nr === 18 ||
-                $nr === 19 || 
-                $nr === 21 ||
-                $nr === 23 ||
-                $nr === 25 ||
-                $nr === 27 ||
-                $nr === 30 ||
-                $nr === 32 ||
-                $nr === 34 ||
-                $nr === 36; }
+            'n2to11' => function ($nr) { return $nr % 3 === 1; },
+            'n2to12' => function ($nr) { return $nr % 3 === 2; },
+            'n2to13' => function ($nr) { return $nr % 3 === 0; }
         ];
     }
 
@@ -301,10 +250,10 @@ class RouletteController extends Controller
         $char->save();
 
         if ($payout > 0) {
-            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'.');
+            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr);
         }
 
-        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time.']);
+        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr]);
     }
 
 }
