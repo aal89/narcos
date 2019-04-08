@@ -4,6 +4,16 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #17</h5>
+    </div>
+    <div class="row">
+        - Resolved a bug where the bank would not pay out after 24hr.<br>
+        - You can now offer a wager in a roulette game.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">08-04-2019 18:49 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #16</h5>
     </div>
     <div class="row">
