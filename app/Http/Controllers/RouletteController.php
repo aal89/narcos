@@ -126,53 +126,121 @@ class RouletteController extends Controller
         $this->gameRules = [
             'n1st12' => function ($nr) { return $nr <= 12; },
             'n1to18' => function ($nr) { return $nr <= 18; },
-            'neven' => function ($nr) { return $nr % 2 === 0 },
+            'neven' => function ($nr) { return $nr % 2 === 0; },
             'n2nd12' => function ($nr) { return $nr >= 13 && $nr <= 24; },
-            'nred' => function ($nr) { return $nr === 1 || $nr === 3 || $nr === 5 || $nr === 7 || $nr === 9 || $nr === 12 || $nr === 14 || $nr === 14 || $nr === 16 || $nr === 18 || $nr === 19 || $nr ==== 21 || $nr === 23 || $nr === 25 || $nr === 27 || $nr === 30 || $nr === 32 || $nr === 34 || $nr === 36; },
-            'nblack' => function ($nr) { return !$this->gameRules['nred']($nr) },
-            'n3rd12' => function ($nr) { return $nr => 25 && $nr <= 36 },
-            'nodd' => function ($nr) { return $nr % 2 === 1 },
-            'n19to36' => function ($nr) { return $nr >= 19 },
+            'nred' => function ($nr) { return $nr === 1 ||
+                $nr === 3 ||
+                $nr === 5 ||
+                $nr === 7 ||
+                $nr === 9 ||
+                $nr === 12 ||
+                $nr === 14 ||
+                $nr === 16 ||
+                $nr === 18 ||
+                $nr === 19 || 
+                $nr === 21 ||
+                $nr === 23 ||
+                $nr === 25 ||
+                $nr === 27 ||
+                $nr === 30 ||
+                $nr === 32 ||
+                $nr === 34 ||
+                $nr === 36; },
+            'nblack' => function ($nr) { return !$this->gameRules['nred']($nr); },
+            'n3rd12' => function ($nr) { return $nr >= 25 && $nr <= 36; },
+            'nodd' => function ($nr) { return !$this->gameRules['neven']($nr); },
+            'n19to36' => function ($nr) { return !$this->gameRules['n1to18']($nr); },
             'n0' => function ($nr) { return $nr === 0; },
-            'n1' => 35,
-            'n2' => 35,
-            'n3' => 35,
-            'n4' => 35,
-            'n5' => 35,
-            'n6' => 35,
-            'n7' => 35,
-            'n8' => 35,
-            'n9' => 35,
-            'n10' => 35,
-            'n11' => 35,
-            'n12' => 35,
-            'n13' => 35,
-            'n14' => 35,
-            'n15' => 35,
-            'n16' => 35,
-            'n17' => 35,
-            'n18' => 35,
-            'n19' => 35,
-            'n20' => 35,
-            'n21' => 35,
-            'n22' => 35,
-            'n23' => 35,
-            'n24' => 35,
-            'n25' => 35,
-            'n26' => 35,
-            'n27' => 35,
-            'n28' => 35,
-            'n29' => 35,
-            'n30' => 35,
-            'n31' => 35,
-            'n32' => 35,
-            'n33' => 35,
-            'n34' => 35,
-            'n35' => 35,
-            'n36' => 35,
-            'n2to11' => 2,
-            'n2to12' => 2,
-            'n2to13' => 2
+            'n1' => function ($nr) { return $nr === 1; },
+            'n2' => function ($nr) { return $nr === 2; },
+            'n3' => function ($nr) { return $nr === 3; },
+            'n4' => function ($nr) { return $nr === 4; },
+            'n5' => function ($nr) { return $nr === 5; },
+            'n6' => function ($nr) { return $nr === 6; },
+            'n7' => function ($nr) { return $nr === 7; },
+            'n8' => function ($nr) { return $nr === 8; },
+            'n9' => function ($nr) { return $nr === 9; },
+            'n10' => function ($nr) { return $nr === 10; },
+            'n11' => function ($nr) { return $nr === 11; },
+            'n12' => function ($nr) { return $nr === 12; },
+            'n13' => function ($nr) { return $nr === 13; },
+            'n14' => function ($nr) { return $nr === 14; },
+            'n15' => function ($nr) { return $nr === 15; },
+            'n16' => function ($nr) { return $nr === 16; },
+            'n17' => function ($nr) { return $nr === 17; },
+            'n18' => function ($nr) { return $nr === 18; },
+            'n19' => function ($nr) { return $nr === 19; },
+            'n20' => function ($nr) { return $nr === 20; },
+            'n21' => function ($nr) { return $nr === 21; },
+            'n22' => function ($nr) { return $nr === 22; },
+            'n23' => function ($nr) { return $nr === 23; },
+            'n24' => function ($nr) { return $nr === 24; },
+            'n25' => function ($nr) { return $nr === 25; },
+            'n26' => function ($nr) { return $nr === 26; },
+            'n27' => function ($nr) { return $nr === 27; },
+            'n28' => function ($nr) { return $nr === 28; },
+            'n29' => function ($nr) { return $nr === 29; },
+            'n30' => function ($nr) { return $nr === 30; },
+            'n31' => function ($nr) { return $nr === 31; },
+            'n32' => function ($nr) { return $nr === 32; },
+            'n33' => function ($nr) { return $nr === 33; },
+            'n34' => function ($nr) { return $nr === 34; },
+            'n35' => function ($nr) { return $nr === 35; },
+            'n36' => function ($nr) { return $nr === 36; },
+            'n2to11' => function ($nr) { return $nr === 1 ||
+                $nr === 4 ||
+                $nr === 7 ||
+                $nr === 10 ||
+                $nr === 13 ||
+                $nr === 12 ||
+                $nr === 14 ||
+                $nr === 16 ||
+                $nr === 18 ||
+                $nr === 19 || 
+                $nr === 21 ||
+                $nr === 23 ||
+                $nr === 25 ||
+                $nr === 27 ||
+                $nr === 30 ||
+                $nr === 32 ||
+                $nr === 34 ||
+                $nr === 36; },
+            'n2to12' => function ($nr) { return $nr === 1 ||
+                $nr === 3 ||
+                $nr === 5 ||
+                $nr === 7 ||
+                $nr === 9 ||
+                $nr === 12 ||
+                $nr === 14 ||
+                $nr === 16 ||
+                $nr === 18 ||
+                $nr === 19 || 
+                $nr === 21 ||
+                $nr === 23 ||
+                $nr === 25 ||
+                $nr === 27 ||
+                $nr === 30 ||
+                $nr === 32 ||
+                $nr === 34 ||
+                $nr === 36; },
+            'n2to13' => function ($nr) { return $nr === 1 ||
+                $nr === 3 ||
+                $nr === 5 ||
+                $nr === 7 ||
+                $nr === 9 ||
+                $nr === 12 ||
+                $nr === 14 ||
+                $nr === 16 ||
+                $nr === 18 ||
+                $nr === 19 || 
+                $nr === 21 ||
+                $nr === 23 ||
+                $nr === 25 ||
+                $nr === 27 ||
+                $nr === 30 ||
+                $nr === 32 ||
+                $nr === 34 ||
+                $nr === 36; }
         ];
     }
 
