@@ -264,7 +264,7 @@ class RouletteController extends Controller
             return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr.'.');
         }
 
-        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr.'.']);
+        return redirect()->back()->withInput()->withErrors(['general' => 'You lost €'.abs($payout).'. Better luck next time. The winning number was: '.$winnr.'.']);
     }
 
 }
