@@ -221,6 +221,7 @@ class RouletteController extends Controller
         $bets = array_filter($request->except('_token'));
         $winnr = rand(0, 36);
         $payout = 0;
+        $totalBet = 0;
 
         if (array_sum($bets) < 100) {
             return redirect()->back()->withErrors(['general' => 'Bet has to be at least €100,- combined.']);
@@ -235,6 +236,8 @@ class RouletteController extends Controller
         }
 
         foreach($bets as $nr => $bet) {
+            // keep track of total bet
+            $totalBet += $bet;
             // of the total payout first retract any bets, this means $payour can become a negative value
             // this is ok
             $payout -= $bet;
@@ -247,13 +250,21 @@ class RouletteController extends Controller
         // we update the characters money with the $payout (which could be a negative, meaning the character
         // just lost all his bets). floor the value, just in case.
         $char->money += floor($payout);
+        $char->counter->roulette_loss += $totalBet;
+        $char->counter->roulette_win += max(0, $payout);
+        $char->counter->roulette += 1;
+        $char->counter->save();
         $char->save();
 
-        if ($payout > 0) {
-            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr);
+        if ($payout === 0) {
+            return redirect()->back()->withInput()->with('status', 'You didn\'t win, but you didn\'t lose either. The winning number was: '.$winnr.'.');
         }
 
-        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr]);
+        if ($payout > 0) {
+            return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$payout.'. The winning number was: '.$winnr.'.');
+        }
+
+        return redirect()->back()->withInput()->withErrors(['general' => 'You lost it all! Better luck next time. The winning number was: '.$winnr.'.']);
     }
 
 }

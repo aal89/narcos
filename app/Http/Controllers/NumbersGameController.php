@@ -51,11 +51,14 @@ class NumbersGameController extends Controller
         $win = $request->bet * $this->winMultiplier;
         $char->money -= $request->bet;
         $char->counter->numbers_game += 1;
+        $char->counter->numbers_game_loss += $request->bet;
         $char->counter->save();
         $char->save();
 
         if ($p === (int)$request->guess) {
             $char->money += $win;
+            $char->counter->numbers_game_win += $win;
+            $char->counter->save();
             $char->save();
             return redirect()->back()->withInput()->with('status', 'Yes! You won €'.$win.'.');
         }
