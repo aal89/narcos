@@ -65,6 +65,9 @@ Route::group(['middleware' => $condMiddlewares], function () {
 
     Route::get('/numbers-game', 'NumbersGameController@getIndex');
     Route::post('/numbers-game', 'NumbersGameController@postIndex');
+
+    Route::get('/roulette', 'RouletteController@getIndex');
+    Route::post('/roulette', 'RouletteController@postIndex');
 });
 
 // SPECIAL CASES
