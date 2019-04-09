@@ -13,7 +13,8 @@ use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
-    private $oneDayInMinutes = 3600;
+    private $oneDayInMinutes = 1440;
+    private $oneWeekInMinutes = 10080;
     private $oneHourInMinutes = 60;
     /**
      * The Artisan commands provided by your application.
@@ -73,14 +74,14 @@ class Kernel extends ConsoleKernel
             // switch over to memcached or redis to make use of such locking, for now
             // ordinary hacking in cache with possibilities for race conditions
             // use something like this:
-            // Cache::lock('daily-bullets-quantity')->get(function () {
-            //     Cache::put('daily-bullets-quantity', $bullets, $this->oneDayInMinutes);
+            // Cache::lock('bullets-quantity')->get(function () {
+            //     Cache::put('bullets-quantity', $bullets, $this->oneDayInMinutes);
             // });
-            // Cache::lock('daily-bullets-cost')->get(function () {
-            //     Cache::put('daily-bullets-cost', $cost, $this->oneDayInMinutes);
+            // Cache::lock('bullets-cost')->get(function () {
+            //     Cache::put('bullets-cost', $cost, $this->oneDayInMinutes);
             // });
-            Cache::put('daily-bullets-quantity', $bullets, $this->oneDayInMinutes);
-            Cache::put('daily-bullets-cost', $cost, $this->oneDayInMinutes);
+            Cache::put('bullets-quantity', $bullets, $this->oneWeekInMinutes + $this->oneHourInMinutes);
+            Cache::put('bullets-cost', $cost, $this->oneWeekInMinutes + $this->oneHourInMinutes);
         })->weekly()->saturdays()->at('11:00');
 
         // Daily at 6 in the morning randomize the drugroute

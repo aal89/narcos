@@ -44,9 +44,9 @@ class StoreController extends Controller
     {
         $bullets = 0;
         $cost = 0;
-        if (Cache::has('daily-bullets-quantity') && Cache::has('daily-bullets-cost')) {
-            $bullets = Cache::get('daily-bullets-quantity');
-            $cost = Cache::get('daily-bullets-cost');
+        if (Cache::has('bullets-quantity') && Cache::has('bullets-cost')) {
+            $bullets = Cache::get('bullets-quantity');
+            $cost = Cache::get('bullets-cost');
         }
         return view('menu.store.index')->with(['bulletQuantity' => $bullets, 'bulletCost' => $cost]);
     }
@@ -96,10 +96,10 @@ class StoreController extends Controller
             'amount' => 'required|integer|min:1',
         ]);
 
-        if (Cache::has('daily-bullets-quantity') && Cache::has('daily-bullets-cost')) {
+        if (Cache::has('bullets-quantity') && Cache::has('bullets-cost')) {
             $char = Auth::user()->character;
-            $bullets = Cache::get('daily-bullets-quantity');
-            $cost = Cache::get('daily-bullets-cost');
+            $bullets = Cache::get('bullets-quantity');
+            $cost = Cache::get('bullets-cost');
 
             if ($char->money < $request->amount * $cost) {
                 return redirect()->back()->withErrors(['amount' => 'Insufficient funds.']);
@@ -113,7 +113,7 @@ class StoreController extends Controller
             $char->bullets += $request->amount;
             $char->save();
 
-            Cache::put('daily-bullets-quantity', $bullets - $request->amount, $this->oneDayInMinutes);
+            Cache::put('bullets-quantity', $bullets - $request->amount, $this->oneDayInMinutes);
 
             return redirect()->back()->with(['status' => 'You just bought '.$request->amount.' bullets.']);
         }

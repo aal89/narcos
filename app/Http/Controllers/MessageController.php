@@ -50,6 +50,12 @@ class MessageController extends Controller
         return view('menu.messages.compose')->with(['character' => $character])->with(['subject' => $subject]);
     }
 
+    public function postDeleteAll()
+    {
+        Auth::user()->character->messages()->delete();
+        return redirect()->back()->with('status', 'All messages deleted.');
+    }
+
     /**
      * Add new messages to the database one for the recipient (inbox) and one
      * for the sender (outbox).
@@ -92,7 +98,7 @@ class MessageController extends Controller
             Message::where('id', $id)->where('owner_id', Auth::user()->character->id)->firstOrFail()->delete();
             return redirect()->back();
         } catch(\Exception $e) {
-            return redirect()->back()->withErrors(['top' => 'Hmm, this message does not seem to belong to you.']);
+            return redirect()->back()->withErrors(['general' => 'Hmm, this message does not seem to belong to you.']);
         }
     }
 }

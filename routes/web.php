@@ -32,6 +32,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/messages/outbox', 'MessageController@getOutbox');
     Route::get('/messages/compose/{character?}/{subject?}', 'MessageController@getCompose');
     Route::post('/messages/compose', 'MessageController@postCompose');
+    Route::post('/messages/delete/all', 'MessageController@postDeleteAll');
     Route::get('/messages/delete/{id}', 'MessageController@postDelete');
     
     Route::get('/banking', 'BankController@getIndex');
