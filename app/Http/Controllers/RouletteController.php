@@ -250,7 +250,8 @@ class RouletteController extends Controller
         // we update the characters money with the $payout (which could be a negative, meaning the character
         // just lost all his bets). floor the value, just in case.
         $char->money += floor($payout);
-        $char->counter->roulette_loss += $totalBet;
+        // we only up the roulette_loss when the payout is zero or less than 0.
+        $char->counter->roulette_loss += $payout > 0 ? 0 : $totalBet;
         $char->counter->roulette_win += max(0, $payout);
         $char->counter->roulette += 1;
         $char->counter->save();
