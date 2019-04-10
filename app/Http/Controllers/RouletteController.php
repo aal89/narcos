@@ -221,7 +221,6 @@ class RouletteController extends Controller
         $bets = array_filter($request->except('_token'));
         $winnr = rand(0, 36);
         $payout = 0;
-        $totalBet = 0;
 
         if (array_sum($bets) < 100) {
             return redirect()->back()->withErrors(['general' => 'Bet has to be at least €100,- combined.']);
@@ -236,8 +235,6 @@ class RouletteController extends Controller
         }
 
         foreach($bets as $nr => $bet) {
-            // keep track of total bet
-            $totalBet += $bet;
             // of the total payout first retract any bets, this means $payour can become a negative value
             // this is ok
             $payout -= $bet;
@@ -250,8 +247,9 @@ class RouletteController extends Controller
         // we update the characters money with the $payout (which could be a negative, meaning the character
         // just lost all his bets). floor the value, just in case.
         $char->money += floor($payout);
-        // we only up the roulette_loss when the payout is zero or less than 0.
-        $char->counter->roulette_loss += $payout > 0 ? 0 : $totalBet;
+        // when we lose it all (or won too little to be in the positive) we add the absolute value of the $payout, otherwise when
+        // we played quitte or even won money we wont ever up the roulette loss counter.
+        $char->counter->roulette_loss += ($payout > 0 xor $payout === 0) ? 0 : abs($payout);
         $char->counter->roulette_win += max(0, $payout);
         $char->counter->roulette += 1;
         $char->counter->save();
