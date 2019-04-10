@@ -4,6 +4,19 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #18</h5>
+    </div>
+    <div class="row">
+        - Fixed a bug regarding bullet regeneration and cost.<br>
+        - Added delete all messages option.<br>
+        - Added a hide option in the store.<br>
+        - Dropped life status and added whereabouts in both online and all character views.<br>
+        - A character name can now only contain 13 characters maximum.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">10-04-2019 20:45 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #17</h5>
     </div>
     <div class="row">
