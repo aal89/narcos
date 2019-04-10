@@ -170,4 +170,31 @@
         </tbody>
     </table>
 </form>
+<p>
+    Hire a bunch of look-a-like's to mask your actual location, useful in situations where you are being hunted. The look-a-like's
+    scatter and stop working for you randomly. Takes about 24hrs for your location to get visible again.
+</p>
+<form method="POST" action="/store/hide">
+@csrf
+    <table class="table table-sm table-dark">
+        <thead>
+            <tr>
+                <th colspan="2">{{ __('Hide') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    Cost: &euro;100.000,-
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-secondary" type="submit" name="action" value="hide" {{ Auth::user()->character->isHidden() ? 'disabled' : '' }}>Hire look-a-like's</button><br>
+                    <small>{{ Auth::user()->character->isHidden() ? 'Your location is currently unknown to others.' : '' }}</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
 @endsection

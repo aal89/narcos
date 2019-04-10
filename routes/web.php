@@ -45,6 +45,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/store/transport', 'StoreController@postTransport');
     Route::post('/store/weaponry', 'StoreController@postWeaponry');
     Route::post('/store/bullets', 'StoreController@postBullets');
+    Route::post('/store/hide', 'StoreController@postHide');
 
     Route::get('/online-players', 'PlayersController@getOnlineIndex');
     Route::get('/all-players', 'PlayersController@getAllIndex');

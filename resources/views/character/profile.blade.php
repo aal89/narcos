@@ -46,7 +46,7 @@
                 <span>{{ __('Whereabouts') }}</span>
             </td>
             <td>
-                <span>{{ $character->country() }}</span>
+                <span>{!! $character->isHidden() ? '<span class="text-muted">Unknown</span>' : $character->country() !!}</span>
             </td>
         </tr>
         <tr>
