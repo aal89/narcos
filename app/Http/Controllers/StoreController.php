@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Cache;
 
 class StoreController extends Controller
 {
-    private $oneDayInMinutes = 3600;
+    private $oneHourInMinutes = 60;
+    private $oneDayInMinutes = 1440;
     private $sellRate = 0.75;
     private $vehiclePrices = [
         'none' => 0,
@@ -23,6 +24,7 @@ class StoreController extends Controller
         'ak-47' => 35000,
         'm-16' => 75000
     ];
+    private $hideCost = 100000;
 
     /**
      * Create a new controller instance.
@@ -49,6 +51,30 @@ class StoreController extends Controller
             $cost = Cache::get('bullets-cost');
         }
         return view('menu.store.index')->with(['bulletQuantity' => $bullets, 'bulletCost' => $cost]);
+    }
+
+    /**
+     * Hides characters location for a certain period.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postHide(Request $request)
+    {
+        $char = Auth::user()->character;
+
+        if ($char->money < $this->hideCost) {
+            return redirect()->back()->withErrors(['general' => 'Insufficient funds.']);
+        }
+
+        if ($char->isHidden()) {
+            return redirect()->back()->withErrors(['general' => 'There still are a couple of look-a-like\'s working for you.']);
+        }
+        
+        $char->money -= $this->hideCost;
+        $char->hide();
+        $char->save();
+
+        return redirect()->back()->with(['status' => 'You got a couple of look-a-like\'s working for you.']);
     }
 
     /**
@@ -113,7 +139,7 @@ class StoreController extends Controller
             $char->bullets += $request->amount;
             $char->save();
 
-            Cache::put('bullets-quantity', $bullets - $request->amount, $this->oneDayInMinutes);
+            Cache::put('bullets-quantity', $bullets - $request->amount, $this->oneDayInMinutes + $this->oneHourInMinutes);
 
             return redirect()->back()->with(['status' => 'You just bought '.$request->amount.' bullets.']);
         }

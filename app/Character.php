@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use App\Tools\Cooldown;
@@ -176,6 +177,16 @@ class Character extends Model
     public function messagesInbox()
     {
         return $this->hasMany('App\Message', 'recipient_id')->where('owner_id', $this->id)->orderBy('created_at', 'desc');;
+    }
+
+    public function hide()
+    {
+        $this->hidden_until = Carbon::now()->addDay();
+    }
+
+    public function isHidden()
+    {
+        return $this->hidden_until ? Carbon::parse($this->hidden_until)->isFuture() : false;
     }
 
     public function user()
