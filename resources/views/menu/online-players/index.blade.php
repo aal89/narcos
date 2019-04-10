@@ -9,9 +9,9 @@
         </tr>
         <tr class="bg-dark">
             <th><span aria-hidden="true" class="li_user"></span> {{ __('Name') }}</th>
-            <th><span aria-hidden="true" class="li_heart"></span> {{ __('Status') }}</th>
             <th><span aria-hidden="true" class="li_data"></span> {{ __('Rank') }}</th>
             <th><span aria-hidden="true" class="li_banknote"></span> {{ __('Wealth') }}</th>
+            <th><span aria-hidden="true" class="li_location"></span> {{ __('Whereabouts') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -21,13 +21,13 @@
                 <b><a href="/profile/{{ $character->name }}">{{ $character->name }}</a></b>
             </td>
             <td>
-                {{ $character->life() }}
-            </td>
-            <td>
                 {{ $character->rank() }}
             </td>
             <td>
                 {{ $character->wealth() }}
+            </td>
+            <td>
+                {!! $character->isHidden() ? '<span class="text-muted">Unknown</span>' : $character->country() !!}
             </td>
         </tr>
     @endforeach
