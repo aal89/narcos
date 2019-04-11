@@ -79,7 +79,7 @@
         <tr>
             <td>
                 <div class="collapse show" id="col4">
-                    - Map<br>
+                    - <a href="/map">Map</a><br>
                 </div>
             </td>
         </tr>
