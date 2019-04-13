@@ -72,6 +72,7 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::post('/roulette', 'RouletteController@postIndex');
 
     Route::get('/map', 'MapController@getIndex');
+    Route::get('/map/{country}/{tile}', 'MapController@getTile');
 });
 
 // SPECIAL CASES

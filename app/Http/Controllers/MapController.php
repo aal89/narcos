@@ -18,12 +18,25 @@ class MapController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the map.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function getIndex()
     {
         return view('menu.map.index');
+    }
+
+    /**
+     * Get a tile for a given country and return status.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getTile(string $country, int $tile)
+    {
+        return view('menu.map.index')->with([
+            'country' => $country,
+            'tile' => $tile
+        ]);
     }
 }
