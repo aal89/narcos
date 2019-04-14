@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Character;
+use App\Property;
 
 class MapController extends Controller
 {
@@ -24,7 +27,9 @@ class MapController extends Controller
      */
     public function getIndex()
     {
-        return view('menu.map.index');
+        return view('menu.map.index')
+            ->with('chosenTile', 'none')
+            ->with('tiles', Property::byCountry(Auth::user()->character->country));
     }
 
     /**
@@ -32,11 +37,14 @@ class MapController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function getTile(string $country, int $tile)
+    public function getTile(int $tile)
     {
-        return view('menu.map.index')->with([
-            'country' => $country,
-            'tile' => $tile
-        ]);
+        $tiles = Property::byCountry(Auth::user()->character->country);
+        $chosenTile = $tiles->filter(function($item) use($tile) {
+            return $item->tile === $tile;
+        })->first();
+        return view('menu.map.index')
+            ->with('chosenTile', $chosenTile)
+            ->with('tiles', Property::byCountry(Auth::user()->character->country));
     }
 }
