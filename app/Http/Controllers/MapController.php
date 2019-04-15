@@ -45,6 +45,6 @@ class MapController extends Controller
         })->first();
         return view('menu.map.index')
             ->with('chosenTile', $chosenTile)
-            ->with('tiles', Property::byCountry(Auth::user()->character->country));
+            ->with('tiles', $tiles);
     }
 }
