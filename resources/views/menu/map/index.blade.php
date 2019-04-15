@@ -7,14 +7,16 @@
         <p>
             Owning property is status symbol along with a business. Setup any lab on the land to produce yourself
             narcotics of all kinds. Sell those kilo's straight away or smuggle them to a country in need. All
-            land taken? Try attacking the property or kill the owner.
+            land taken? Try attacking the property or killing the owner.
         </p>
         <p>@include('session.status')</p>
         <p>
             @if ($chosenTile === 'none')
                 <strong>Pick a square on the map.</strong>
-            @elseif (is_object($chosenTile))
-                @include('menu.map.tile.taken', ['character' => $chosenTile])
+            @elseif (is_object($chosenTile) && $chosenTile->character->id !== Auth::user()->character->id)
+                @include('menu.map.tile.taken', ['property' => $chosenTile])
+            @elseif (is_object($chosenTile) && $chosenTile->character->id === Auth::user()->character->id)
+                @include('menu.map.tile.mine', ['property' => $chosenTile])
             @else
                 @include('menu.map.tile.new')
             @endif
