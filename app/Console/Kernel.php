@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 use App\Character;
 use App\OrganizedCrime;
+use App\Property;
 
 use Carbon\Carbon;
 
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
     private $oneDayInMinutes = 1440;
     private $oneWeekInMinutes = 10080;
     private $oneHourInMinutes = 60;
+    private $maxYieldStore = 10;
     /**
      * The Artisan commands provided by your application.
      *
@@ -33,6 +35,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function () {
+            Property::all()->each(function ($property) {
+                if ($property->inProduction()) {
+                    $property->yield += max($this->maxYieldStore, $property->yield + generateLabYield());
+                    $property->save();
+                }
+            });
+        })->everyMinute();
+
         $schedule->call(function () {
             // todo: optimize this bit, db is normalized into char -> bank. So querying all banks
             // then for each bank decide if it should get any payout. iff thats true, then populate

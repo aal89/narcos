@@ -19,8 +19,9 @@ class CreatePropertiesTable extends Migration
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade')->nullable(false);
             $table->enum('country', ['colombia', 'mexico', 'puerto rico', 'united states of america'])->nullable(false);
             $table->integer('tile')->nullable(false);
+            $table->enum('setup', ['weed', 'lsd', 'speed', 'cocaine'])->nullable()->default(null);
+            $table->float('yield')->nullable(false)->default(0);
             $table->unique(['country', 'tile']);
-            $table->unique(['character_id', 'country', 'tile']);
             $table->timestamps();
         });
     }

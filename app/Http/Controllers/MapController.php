@@ -80,4 +80,69 @@ class MapController extends Controller
             return redirect()->back()->withErrors(['general' => 'Square #'.$tile.' has already been sold to someone else.']);
         }
     }
+
+    /**
+     * Handler to edit a tile belonging to the logged in character. Either changes a setup,
+     * collects a yield or releases a particular tile from the map.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function postEditTile(Request $request, int $tile)
+    {
+        $char = Auth::user()->character;
+        $property = $char->properties->where('country', $char->country)->where('tile', $tile)->first();
+
+        if ($property === null) {
+            return redirect()->back()->withErrors(['general' => 'This is not your property.']);
+        }
+
+        switch($request->action) {
+            case 'collect': return $this->handleCollect($char, $property);
+            case 'convert': return $this->handleConvert($char, $property, $request->setup);
+            case 'release': return $this->handleRelease($char, $property);
+            default: return redirect()->back()->withErrors(['general' => 'Unknown action.']);
+        }
+    }
+
+    /**
+     * Collects a yield from the property.
+     */
+    private function handleCollect(Character $char, Property $property)
+    {
+        if (!$char->contraband->canCarryAdditionalKgs($property->yield())) {
+            return redirect()->back()->withErrors(['general' => 'You can\'t carry that much.']);
+        }
+
+        $yieldAsInteger = $property->yield();
+        $property->yield -= $yieldAsInteger;
+        $char->contraband->{$property->setup} += $yieldAsInteger;
+
+        $property->save();
+        $char->contraband->save();
+
+        return redirect()->back()->with('status', 'You collected '.$yieldAsInteger.'kg(s) '.$property->setup.' from square #'.$property->tile.'.');
+    }
+
+    /**
+     * Collects a yield from the property.
+     */
+    private function handleConvert(Character $char, Property $property, string $setup)
+    {
+        $property->setup = $setup;
+        try {
+            $property->save();
+            return redirect()->back()->with('status', 'You changed setups for square #'.$property->tile.'.');
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['general' => 'Unknown setup.']);
+        }
+    }
+
+    /**
+     * Collects a yield from the property.
+     */
+    private function handleRelease(Character $char, Property $property)
+    {
+        $property->delete();
+        return redirect()->back()->with('status', 'You released square #'.$property->tile.'.');
+    }
 }

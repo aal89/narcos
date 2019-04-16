@@ -214,6 +214,11 @@ class Character extends Model
         return $this->hasOne('App\Contraband');
     }
 
+    public function properties()
+    {
+        return $this->hasMany('App\Property');
+    }
+
     public function can()
     {
         return new Cooldown($this);
