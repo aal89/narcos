@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Property::all()->each(function ($property) {
                 if ($property->inProduction()) {
-                    $property->yield += max($this->maxYieldStore, $property->yield + generateLabYield());
+                    $property->yield = min($this->maxYieldStore, $property->yield + generateLabYield());
                     $property->save();
                 }
             });

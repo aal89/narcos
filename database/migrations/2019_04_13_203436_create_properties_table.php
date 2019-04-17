@@ -20,6 +20,7 @@ class CreatePropertiesTable extends Migration
             $table->enum('country', ['colombia', 'mexico', 'puerto rico', 'united states of america'])->nullable(false);
             $table->integer('tile')->nullable(false);
             $table->enum('setup', ['weed', 'lsd', 'speed', 'cocaine'])->nullable()->default(null);
+            $table->dateTime('setup_updated_at')->nullable()->default(null);
             $table->float('yield')->nullable(false)->default(0);
             $table->unique(['country', 'tile']);
             $table->timestamps();

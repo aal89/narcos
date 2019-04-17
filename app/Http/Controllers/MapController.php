@@ -129,6 +129,15 @@ class MapController extends Controller
     private function handleConvert(Character $char, Property $property, string $setup)
     {
         $property->setup = $setup;
+        $property->setup_updated_at = now();
+
+        if ($property->hasYield()) {
+            return redirect()->back()->withErrors(['general' => 'You should first clean out before changing setups. Collect all narcotics.']);
+        }
+
+        // Discards left overs of the yield and start counting from 0 again
+        $property->yield = 0.0;
+
         try {
             $property->save();
             return redirect()->back()->with('status', 'You changed setups for square #'.$property->tile.'.');
