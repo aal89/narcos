@@ -4,6 +4,17 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #19</h5>
+    </div>
+    <div class="row">
+        - Fixed several bugs.<br>
+        - Cleaned up code.<br>
+        - Implemented the map feature!<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">17-04-2019 22:58 by aal</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #18</h5>
     </div>
     <div class="row">
