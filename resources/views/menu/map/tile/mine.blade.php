@@ -37,7 +37,7 @@
                     </div>
                     <br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="setup" id="radio4" value="setup" {{ $property->setup === 'cocaine' ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="setup" id="radio4" value="cocaine" {{ $property->setup === 'cocaine' ? 'checked' : '' }}>
                         <label class="form-check-label" for="radio4">Cocaine</label>
                     </div>
                 </td>

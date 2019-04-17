@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
                     $property->save();
                 }
             });
-        })->everyMinute();
+        })->everyHour();
 
         $schedule->call(function () {
             // todo: optimize this bit, db is normalized into char -> bank. So querying all banks
