@@ -12,6 +12,11 @@ class Property extends Model
         return $this->setup !== null && Carbon::parse($this->setup_updated_at)->diffInHours(Carbon::now()) >= 12;
     }
 
+    public function hasSetup()
+    {
+        return $this->setup !== null;
+    }
+
     public function yield()
     {
         return floor($this->yield);

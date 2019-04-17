@@ -109,6 +109,10 @@ class MapController extends Controller
      */
     private function handleCollect(Character $char, Property $property)
     {
+        if (!$property->hasSetup()) {
+            return redirect()->back()->withErrors(['general' => 'This property has nothing on it yet. Choose a setup first.']);
+        }
+
         if (!$char->contraband->canCarryAdditionalKgs($property->yield())) {
             return redirect()->back()->withErrors(['general' => 'You can\'t carry that much.']);
         }
