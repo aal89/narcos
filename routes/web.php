@@ -70,6 +70,11 @@ Route::group(['middleware' => $condMiddlewares], function () {
 
     Route::get('/roulette', 'RouletteController@getIndex');
     Route::post('/roulette', 'RouletteController@postIndex');
+
+    Route::get('/map', 'MapController@getIndex');
+    Route::post('/map/edit/{tile}', 'MapController@postEditTile');
+    Route::post('/map/buy/{tile}', 'MapController@postTile');
+    Route::get('/map/{tile}', 'MapController@getTile');
 });
 
 // SPECIAL CASES
