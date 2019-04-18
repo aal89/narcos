@@ -30,6 +30,16 @@ class OrganizedCrime extends Model
             ->first() ?? null;
     }
 
+    /**
+     * Returns true if this party contains zero or one members.
+     */
+    public function isEmpty()
+    {
+        return !($this->robber()->exists() && $this->spotter()->exists()
+            || $this->robber()->exists() && $this->driver()->exists()
+            || $this->spotter()->exists() && $this->driver()->exists());
+    }
+
     public function robber()
     {
         return $this->belongsTo('App\Character');

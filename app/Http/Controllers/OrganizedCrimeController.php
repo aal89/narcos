@@ -134,7 +134,11 @@ class OrganizedCrimeController extends Controller
             if ($givenCharacter->name === $loggedCharacter->name || $givenCharacterParty->robber->name === $loggedCharacter->name) {
                 $position = $this->getPosition($givenCharacter, $givenCharacterParty);
                 $givenCharacterParty->{$position.'_id'} = null;
-                $givenCharacterParty->save();
+                if ($givenCharacterParty->isEmpty()) {
+                    $givenCharacterParty->delete();
+                } else {
+                    $givenCharacterParty->save();
+                }
             }
             return redirect()->back();
         } catch(\Exception $e) {
