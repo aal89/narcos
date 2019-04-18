@@ -28,7 +28,7 @@
 @if ($party->driver !== null && $party->robber !== null && $party->spotter !== null && $party->robber->name === Auth::user()->character->name)
 <form method="POST" action="/organized-crime/attempt">
 @csrf
-    <div class="row mt-5">
+    <div class="row mt-3">
         <div class="col-sm text-center">
             <button type="submit" class="btn btn-primary btn-lg">Attempt</button>
         </div>
