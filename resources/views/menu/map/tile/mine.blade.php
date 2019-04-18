@@ -40,6 +40,10 @@
                         <input class="form-check-input" type="radio" name="setup" id="radio4" value="cocaine" {{ $property->setup === 'cocaine' ? 'checked' : '' }}>
                         <label class="form-check-label" for="radio4">Cocaine</label>
                     </div>
+                    @if (!$property->setup)
+                        <br>
+                        <small><font color=red>You have not chosen any setup yet. It won't start producing anything as long as you don't do so.</font></small>
+                    @endif
                 </td>
             </tr>
             <tr>
