@@ -16,20 +16,20 @@
         </thead>
         <tbody>
             <tr>
-                <td class="w-75">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="crime" id="radio1" value="1" checked>
+                <td>
+                    <div class="">
+                        <input class="" type="radio" name="crime" id="radio1" value="1" checked>
                         <label class="form-check-label" for="radio1">
                             Mug a teenager and sells his alcohol and cigarettes.
                         </label>
                     </div>
                 </td>
-                <td>{{ $crime1Percentage }}% chance</td>
+                <td class="cell-fit">{{ $crime1Percentage }}% chance</td>
             </tr>
             <tr>
                 <td>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="crime" id="radio2" value="2">
+                    <div class="">
+                        <input class="" type="radio" name="crime" id="radio2" value="2">
                         <label class="form-check-label" for="radio2">
                             Rob a gasstation to plunder the register.
                         </label>
@@ -39,8 +39,8 @@
             </tr>
             <tr>
                 <td>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="crime" id="radio3" value="3">
+                    <div class="">
+                        <input class="" type="radio" name="crime" id="radio3" value="3">
                         <label class="form-check-label" for="radio3">
                             Break into a home of a local narco and take the very first thing you see.
                         </label>
