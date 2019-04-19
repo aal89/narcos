@@ -18,17 +18,17 @@
             <div class="row">
                 <div class="col">
                     <a href="/1.png" target="_blank">
-                        <img class="img-fluid img-thumbnail" src="/1.png">
+                        <img class="img-fluid img-thumbnail" src="/1_tn.jpg">
                     </a>
                 </div>
                 <div class="col">
                     <a href="/2.png" target="_blank">
-                        <img class="img-fluid img-thumbnail" src="/2.png">
+                        <img class="img-fluid img-thumbnail" src="/2_tn.jpg">
                     </a>
                 </div>
                 <div class="col">
                     <a href="/3.png" target="_blank">
-                        <img class="img-fluid img-thumbnail" src="/3.png">
+                        <img class="img-fluid img-thumbnail" src="/3_tn.jpg">
                     </a>
                 </div>
             </div>
