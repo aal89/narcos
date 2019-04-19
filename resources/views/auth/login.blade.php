@@ -34,7 +34,7 @@
             </div>
             <h4 class="mt-4">Statistics</h4>
             <p>
-                {{ App\Stats::totalCharacters() }}
+            {{ App\Stats::totalCrimeAttempts() }}
             </p>
         </div>
         <div class="col-md-4 col-lg-4">
