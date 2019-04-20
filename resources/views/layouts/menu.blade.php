@@ -19,6 +19,7 @@
                     - <a href="/store">Store</a><br>
                     - <a href="/online-players">Online players</a><br>
                     - <a href="/all-players">All players</a><br>
+                    - <a href="/stats">Statistics</a><br>
                 </div>
             </td>
         </tr>

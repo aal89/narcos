@@ -43,6 +43,22 @@
                 <tbody>
                     <tr>
                         <td class="cell-fit">
+                            Last registered character
+                        </td>
+                        <td>
+                            {{ App\Stats::newestCharacter()->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cell-fit">
+                            Highest ranking character
+                        </td>
+                        <td>
+                            {{ App\Stats::highestRankingCharacter()->name }} <small>({{ App\Stats::highestRankingCharacter()->rank() }})<small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="cell-fit">
                             Money in-game
                         </td>
                         <td>
@@ -55,22 +71,6 @@
                         </td>
                         <td>
                             {{ number_format(App\Stats::totalBullets(), 0, '.', '.') }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="cell-fit">
-                            Last registered character
-                        </td>
-                        <td>
-                            {{ App\Stats::newestCharacter()->name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="cell-fit">
-                            Last registered character
-                        </td>
-                        <td>
-                            {{ App\Stats::highestRankingCharacter()->name }}
                         </td>
                     </tr>
                     <tr>
