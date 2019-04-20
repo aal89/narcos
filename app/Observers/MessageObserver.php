@@ -14,7 +14,7 @@ class MessageObserver
 
     public function saved(Message $msg) {
         // Only send mail to users who received the message (and have not read that message yet).
-        if ($msg->owner !== $msg->sender && !$msg->read) {
+        if ($msg->owner !== $msg->sender && !$msg->read && $msg->recipient->user()->exists()) {
             Mail::to($msg->recipient->user->email)->queue(new InGameMessage($msg));
         }
     }
