@@ -7,14 +7,14 @@ if (!function_exists('calculateCrimeExperience')) {
      * @param string $grade
      * @return int
      */
-    function calculateCrimeExperience(int $grade)
+    function calculateCrimeExperience(int $grade, int $multiplier = 1)
     {
         switch ($grade)
         {
-            case 1: return rand(5, 25);
-            case 2: return rand(15, 85);
-            case 3: return rand(55, 155);
-            default: return rand(5, 25);
+            case 1: return floor(rand(5, 25) * $multiplier);
+            case 2: return floor(rand(15, 85) * $multiplier);
+            case 3: return floor(rand(55, 155) * $multiplier);
+            default: return floor(rand(5, 25) * $multiplier);
         }
     }
 }
