@@ -50,6 +50,8 @@ Route::group(['middleware' => $condMiddlewares], function () {
     Route::get('/online-players', 'PlayersController@getOnlineIndex');
     Route::get('/all-players', 'PlayersController@getAllIndex');
 
+    Route::view('/stats', 'menu.stats.index');
+
     Route::get('/trivial-crime', 'CrimeController@getIndex');
     Route::post('/trivial-crime', 'CrimeController@postIndex');
 

@@ -103,6 +103,9 @@ input, textarea {
 .max-width {
     max-width: 100%;
 }
+.bold {
+    font-weight: bold !important;
+}
 .not-bold {
     font-weight: normal;
 }

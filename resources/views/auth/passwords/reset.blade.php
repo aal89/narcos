@@ -21,7 +21,7 @@
                             <td>
                                 <div class="col-md-8 col-lg-8">
                                     <div class="input-group input-group-sm">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="E-mail address" required>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -38,7 +38,7 @@
                             <td>
                                 <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
-                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -55,7 +55,7 @@
                             <td>
                                 <div class="col-md-8 col-lg-6">
                                     <div class="input-group input-group-sm">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password" required>
                                     </div>
                                 </div>
                             </td>
