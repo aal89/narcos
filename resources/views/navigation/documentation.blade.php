@@ -13,6 +13,80 @@
                 <p>All calculations, additions and substractions regarding your character and the game are described in more detail on this page. However you cannot derive any rights from this page. They are merely meant as informative. You could use it to determine a strategy.</p>
             </div>
             <div class="row">
+                <h5 class="text-secondary" id="profile">Banking</h5>
+            </div>
+            <div class="row">
+                <p>
+                    You could use the bank to hide your wealth status for others. As a nice side-effect this will also generate you money. Interest is paid out
+                    using the following table.
+                </p>
+                <table class="table table-sm table-dark">
+                    <thead>
+                        <tr>
+                            <th colspan="2">{{ __('Interest generated per amount per 24hr') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;0,-
+                            </td>
+                            <td>
+                                12%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;50.000,-
+                            </td>
+                            <td>
+                                10%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;100.000,-
+                            </td>
+                            <td>
+                                9%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;250.000,-
+                            </td>
+                            <td>
+                                8%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;500.000,-
+                            </td>
+                            <td>
+                                7%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;1.000.000,-
+                            </td>
+                            <td>
+                                6%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <small>></small> &euro;10.000.000,-
+                            </td>
+                            <td>
+                                2%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
                 <h5 class="text-secondary" id="profile">Profile</h5>
             </div>
             <div class="row">
