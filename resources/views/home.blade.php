@@ -9,6 +9,8 @@
     <div class="row">
         - Made the login/homepage more appealing.<br>
         - Added statistics page.<br>
+        - Organized crime now gives more money and experiensce.<br>
+        - Crime experience gains are now proportional to the succession rate.<br>
     </div>
     <div class="row">
         <span class="small mt-2 mb-2">20-04-2019 14:45 by aal</span>
