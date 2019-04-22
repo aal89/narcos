@@ -10,14 +10,20 @@
                 <h5 class="text-secondary">All things technical</h5>
             </div>
             <div class="row">
-                <p>All calculations, additions and substractions regarding your character and the game are described in more detail on this page. However you cannot derive any rights from this page. They are merely meant as informative. You could use it to determine a strategy.</p>
+                <p>
+                    All calculations, additions and substractions regarding your character and the game are described in more detail on this page.
+                    This page is merely meant as informative. You could use it to determine a strategy.
+                </p>
             </div>
             <div class="row">
                 <h5 class="text-secondary" id="profile">Character</h5>
             </div>
             <div class="row">
                 <p>
-                    Char.
+                    Your characters properties are highlighted on any page.
+                </p>
+                <p>
+                    <img src="/char.png" class="img-fluid" />
                 </p>
             </div>
             <div class="row">
@@ -228,6 +234,14 @@
             <div class="row">
                 <p>
                     Todo.
+                </p>
+            </div>
+            <div class="row">
+                <h5 class="text-secondary" id="profile">Helpdesk</h5>
+            </div>
+            <div class="row">
+                <p>
+                    Notice odd behaviour, suspect someone of cheating, documentation missing or incomplete? Shoot us an <a href="mailto:narcos.no.reply@gmail.com?subject=Narcos; please help!">e-mail</a>.
                 </p>
             </div>
         </div>
