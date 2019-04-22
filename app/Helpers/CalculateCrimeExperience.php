@@ -5,9 +5,10 @@ if (!function_exists('calculateCrimeExperience')) {
      * Returns an integer indicating a result from a probable successful crime.
      *
      * @param string $grade
+     * @param float $multiplier
      * @return int
      */
-    function calculateCrimeExperience(int $grade, int $multiplier = 1)
+    function calculateCrimeExperience(int $grade, float $multiplier = 1.0)
     {
         switch ($grade)
         {

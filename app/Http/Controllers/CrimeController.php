@@ -57,7 +57,8 @@ class CrimeController extends Controller
 
         // update the character already, except for loot handling this is state depend (successful crime or not)
         $loot = calculateCrimeLoot($request->crime);
-        $exp = calculateCrimeExperience($request->crime);
+        // the multiplier for crime exp is reduced when the crimePercentage is also low
+        $exp = calculateCrimeExperience($request->crime, max(0.2, $crimePercentage / 100));
         $char->experience += $exp;
         $char->counter->trivial_crime += 1;
         $char->can()->resetTrivialCrime();
