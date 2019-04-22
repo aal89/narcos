@@ -124,11 +124,11 @@
                         </tr>
                         <tr>
                             <td>:center:<font color=red>Some text</font>:/center:</td>
-                            <td><p class="text-center mb-0">Some text</p></td>
+                            <td><p class="text-center not-bold mb-0">Some text</p></td>
                         </tr>
                         <tr>
                             <td>:br:</td>
-                            <td><i>*An empty line*</i></td>
+                            <td><i class="not-bold">*An empty line*</i></td>
                         </tr>
                         <tr>
                             <td>:link:<font color=red>https://www.google.com</font>:-link:<font color=red>Google</font>:/link:</td>
@@ -146,6 +146,23 @@
                     buying property, banking, traveling or gambling are not going to level up your character. Throughout your career as a drugdealer
                     these types or crimes are increasingly important. Never give up leveling up your character. We use the experience count in the game
                     for various aspects.
+                </p>
+                <p>
+                    The payout, experience wise, for trivial crimes are proportional to the succession rate. What this means is that we take the
+                    succession rate and use it as a multiplier for the experience given on an attempt. Consider the next example.
+                </p>
+                <p>
+                    <img class="img-fluid mb-2" src="/crime-exp.png" />
+                </p>
+                <p>
+                    In the screenshot you can see the first crime having a succession rate of 23%, the second 11% and the last one 5%. For each succesful
+                    attempt you generate <code>x</code> amount of experience, this is then multiplied by your succession rate as a decimal with a minimum of 0.2.
+                    So the first crime attempt would result in a calculation like: <code>x * 0.23</code>. The second and the third are equivalent to:
+                    <code>x * 0.2</code>. The maximum success rate is 95%.
+                </p>
+                <p>
+                    There are three (trivial) crimes to do. The first one is leveled up three times quicker than the last one. The second one is leveled up twice
+                    the speed of the last one. The money payouts are propotional in the same fashion.
                 </p>
             </div>
             <div class="row">
@@ -210,7 +227,7 @@
             </div>
             <div class="row">
                 <p>
-                    Char.
+                    Todo.
                 </p>
             </div>
         </div>
