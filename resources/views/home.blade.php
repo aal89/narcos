@@ -8,13 +8,14 @@
     </div>
     <div class="row">
         - Made the login/homepage more appealing.<br>
+        - Added documentation for critical parts of the game.<br>
         - Added statistics page.<br>
-        - Organized crime now gives more money and experiensce.<br>
+        - Organized crime now gives more money and experience.<br>
         - Crime experience is now proportional to the succession rate.<br>
         - Crime loot increased for all three type of crimes.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">20-04-2019 14:45 by aal</span>
+        <span class="small mt-2 mb-2">23-04-2019 20:55</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #19</h5>
@@ -25,7 +26,7 @@
         - Implemented the map feature!<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">17-04-2019 22:58 by aal</span>
+        <span class="small mt-2 mb-2">17-04-2019 22:58</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #18</h5>
@@ -38,7 +39,7 @@
         - A character name can now only contain 13 characters maximum.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">10-04-2019 20:45 by aal</span>
+        <span class="small mt-2 mb-2">10-04-2019 20:45</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #17</h5>
@@ -48,7 +49,7 @@
         - You can now offer a wager in a roulette game.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">08-04-2019 18:49 by aal</span>
+        <span class="small mt-2 mb-2">08-04-2019 18:49</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #16</h5>
@@ -58,7 +59,7 @@
         - You can now offer a wager in a numbers game.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">03-04-2019 20:03 by aal</span>
+        <span class="small mt-2 mb-2">03-04-2019 20:03</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #15</h5>
@@ -70,7 +71,7 @@
         - The attacked target in Kill is now always notified of the attack, however he/she does not always see who did it.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">02-04-2019 19:48 by aal</span>
+        <span class="small mt-2 mb-2">02-04-2019 19:48</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #14</h5>
@@ -85,7 +86,7 @@
         - Fixed some typos in the oc messages.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">02-04-2019 00:25 by aal</span>
+        <span class="small mt-2 mb-2">02-04-2019 00:25</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #13</h5>
@@ -97,7 +98,7 @@
         - Removed implicit text from narcotics trade page.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">25-03-2019 23:09 by aal</span>
+        <span class="small mt-2 mb-2">25-03-2019 23:09</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #12</h5>
@@ -109,7 +110,7 @@
         - Attempting a robbery (organized crime) now requires all party members to be in the same country.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">24-03-2019 19:50 by aal</span>
+        <span class="small mt-2 mb-2">24-03-2019 19:50</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #11</h5>
@@ -121,7 +122,7 @@
         - Fixed several smaller issues.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">16-03-2019 14:32 by aal</span>
+        <span class="small mt-2 mb-2">16-03-2019 14:32</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #10</h5>
@@ -131,7 +132,7 @@
         - Introduced trivial crimes, you can now make money and level up your character.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">02-03-2019 14:37 by aal</span>
+        <span class="small mt-2 mb-2">02-03-2019 14:37</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #9</h5>
@@ -140,7 +141,7 @@
         - Added online characters view and logic.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">27-02-2019 21:35 by aal</span>
+        <span class="small mt-2 mb-2">27-02-2019 21:35</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #8</h5>
@@ -149,7 +150,7 @@
         - Changed the way cooldowns are handled. It used to be in the backend datastore as persistent data. Now it is all saved in a cache.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">26-02-2019 23:30 by aal</span>
+        <span class="small mt-2 mb-2">26-02-2019 23:30</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #7</h5>
@@ -160,7 +161,7 @@
         - Added online indicator to the profile page.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">24-02-2019 23:34 by aal</span>
+        <span class="small mt-2 mb-2">24-02-2019 23:34</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #6</h5>
@@ -171,7 +172,7 @@
         - Changed the way error messages and good messages are displayed.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">22-02-2019 21:25 by aal</span>
+        <span class="small mt-2 mb-2">22-02-2019 21:25</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #5</h5>
@@ -181,7 +182,7 @@
         - You can now travel between the different countries.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">16-02-2019 16:07 by aal</span>
+        <span class="small mt-2 mb-2">16-02-2019 16:07</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #4</h5>
@@ -190,7 +191,7 @@
         - You can now send messages to each other.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">06-02-2019 19:28 by aal</span>
+        <span class="small mt-2 mb-2">06-02-2019 19:28</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #3</h5>
@@ -200,7 +201,7 @@
         - Designed and created NarcoScript to enhance profile editing.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">02-02-2019 13:58 by aal</span>
+        <span class="small mt-2 mb-2">02-02-2019 13:58</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #2</h5>
@@ -214,7 +215,7 @@
         - Finalized the top menu regarding functionality.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">26-01-2019 13:28 by aal</span>
+        <span class="small mt-2 mb-2">26-01-2019 13:28</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Update #1</h5>
@@ -226,7 +227,7 @@
         - Added comments throughout code base.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">21-01-2019 21:23 by aal</span>
+        <span class="small mt-2 mb-2">21-01-2019 21:23</span>
     </div>
     <div class="row">
         <h5 class="text-secondary">Development</h5>
@@ -240,7 +241,7 @@
         - Setup deployment pipeline.<br>
     </div>
     <div class="row">
-        <span class="small mt-2 mb-2">13-01-2019 21:43 by aal</span>
+        <span class="small mt-2 mb-2">13-01-2019 21:43</span>
     </div>
 </div>
 @endsection
