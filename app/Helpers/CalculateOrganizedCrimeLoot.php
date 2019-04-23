@@ -9,6 +9,6 @@ if (!function_exists('calculateOrganizedCrimeLoot')) {
      */
     function calculateOrganizedCrimeLoot()
     {
-        return [rand(5000, 25000), rand(100, 300)];
+        return [rand(10000, 30000), rand(300, 600)];
     }
 }

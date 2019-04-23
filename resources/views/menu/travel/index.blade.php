@@ -4,7 +4,7 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_paperplane"></span> {{ __('Travel') }}</h3>
 <p>
     Traveling allows you buy and sell narcotics in other countries. This can be lucrative business. In different countries you'll have
-    different map layouts. Try to find an open spot and setup a farm to further increase your income.
+    different map layouts. Try to find an open spot and setup a lab to further increase your income.
 </p>
 @include('session.status')
 <form method="POST" action="/travel">

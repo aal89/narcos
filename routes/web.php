@@ -92,7 +92,3 @@ Route::post('/character/death', 'CharacterController@postDeath')->name('characte
 
 // Also a special case; the banned case
 Route::view('/banned', 'banned')->middleware('is.not.allowed.access');
-
-// Because we encourage people who are banned to contact the helpdesk we should also consider such an endpoint as a
-// special case.
-Route::view('/helpdesk', 'navigation.helpdesk');

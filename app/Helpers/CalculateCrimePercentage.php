@@ -1,10 +1,10 @@
 <?php
-if (!function_exists('cooldownForAsset')) {
+if (!function_exists('calculateCrimePercentage')) {
 
     /**
      * Returns an integer for a particular given 'grade' (level) and a count (
      * the amount of times that crime has already been committed). This integer
-     * is between 0 and 100, but never surpasses those bounds.
+     * is between 0 and 95, but never surpasses those bounds.
      *
      * @param int $count
      * @param int $grade

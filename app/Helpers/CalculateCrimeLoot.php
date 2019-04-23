@@ -11,9 +11,9 @@ if (!function_exists('calculateCrimeLoot')) {
     {
         switch ($grade)
         {
-            case 1: return rand(5, 25);
-            case 2: return rand(15, 85);
-            case 3: return rand(55, 255);
+            case 1: return rand(25, 65);
+            case 2: return rand(55, 125);
+            case 3: return rand(105, 255);
             default: return rand(5, 25);
         }
     }
