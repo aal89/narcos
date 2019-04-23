@@ -25,6 +25,11 @@
                 <p>
                     <img src="/char.png" class="img-fluid" />
                 </p>
+                <p>
+                    They feature your name, health, rank, unread messages, money on-hand, location, transport, weapon and bullet count. The most important
+                    one is your life. Whenever you took a shot and are no longer at 100% you will heal 20% per day. These heals occur around 6:00 in the
+                    morning for each wounded character.
+                </p>
             </div>
             <div class="row">
                 <h5 class="text-secondary" id="profile">Banking</h5>
@@ -233,7 +238,11 @@
             </div>
             <div class="row">
                 <p>
-                    Todo.
+                    Owning land might be one of the best ways to make money. Once a lab is setup on the property it will generate up to 10kgs of
+                    any narcotic. Every hour anywhere from 0.25 - 0.5 kilo is generated per lab. Since you can only collect whole kilo's there
+                    is a possibility that partials (decimals) are left (e.g. 0.83 kg), this partial is only 'visible' to the code and in the view this is
+                    rounded down to 0kg. Hitting the cap (10kg) of a lab <i>will</i> remove the decimal and round the number to 10.00kg. So
+                    collect on time to maximise profits.
                 </p>
             </div>
             <div class="row">
