@@ -10,6 +10,7 @@
             <td>Characters registered</td>
             <td>{{ number_format(App\Stats::totalCharacters(), 0, '.', '.') }}</td>
         </tr>
+        @if (App\Stats::newestCharacter())
         <tr>
             <td class="w-25">
                 Last registered character
@@ -18,6 +19,8 @@
                 <a href="/profile/{{ App\Stats::newestCharacter()->name }}">{{ App\Stats::newestCharacter()->name }}</a>
             </td>
         </tr>
+        @endif
+        @if (App\Stats::highestRankingCharacter())
         <tr>
             <td>
                 Highest ranking character
@@ -26,6 +29,7 @@
                 <a href="/profile/{{ App\Stats::highestRankingCharacter()->name }}">{{ App\Stats::highestRankingCharacter()->name }}</a> <small>({{ App\Stats::highestRankingCharacter()->rank() }})<small>
             </td>
         </tr>
+        @endif
         <tr>
             <td>
                 Money in-game (on hand)
