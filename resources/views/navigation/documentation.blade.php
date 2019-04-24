@@ -233,8 +233,8 @@
                     </tbody>
                 </table>
                 <p>
-                    There's about a 65% chance somebody witnesses you attempting a murder, regardless of a successful attempt or not. You can bring
-                    along a crew, this obfuscates who is actually shooting and effectively brings down your chance of being witnessed to about 20%.
+                    There's about a 65% chance somebody or the target witnesses you attempting the murder. You can bring along a crew, this obfuscates
+                    who is actually shooting and effectively brings down your chance of being witnessed (by either somebody else or the target) to about 20%.
                 </p>
             </div>
             <div class="row">
