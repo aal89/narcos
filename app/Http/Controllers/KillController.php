@@ -126,7 +126,7 @@ class KillController extends Controller
     private function gotWitnessed(bool $inflated)
     {
         $p = rand(0, 99);
-        $cutoff = $inflated ? 20 : 50;
+        $cutoff = $inflated ? 20 : 65;
         if ($p < $cutoff) {
             return true;
         }
