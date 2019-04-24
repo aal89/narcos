@@ -28,7 +28,7 @@ class KillController extends Controller
     {
         $this->validate($request, [
             'character' => 'required|min:3|max:25|alpha_dash',
-            'bullets' => 'required|integer|min:1'
+            'bullets' => 'required|integer|min:25'
         ]);
 
         try {
@@ -98,6 +98,8 @@ class KillController extends Controller
                 return redirect()->back()->withErrors(['general' => $general]);
             }
             if ($targetChar->isDead()) {
+                // release all the target chars properties back in the pool
+                $targetChar->properties()->delete();
                 // prepare message for char
                 $status = 'You outsmarted '.$targetChar->name.' and made him pay!';
                 // send witness report to random char in country, iff somebody saw it and this somebody exists (the next query can return null)
@@ -119,14 +121,14 @@ class KillController extends Controller
 
     /**
      * Returns true or false based on randomness. The chance is 50% by default it
-     * returns true. Inflated chances decrease the chance to 20% to return true.
+     * returns true. Deflated chances decrease the chance to 20% to return true.
      * 
-     * @param bool $inflated 
+     * @param bool $deflated 
      */
-    private function gotWitnessed(bool $inflated)
+    private function gotWitnessed(bool $deflated)
     {
         $p = rand(0, 99);
-        $cutoff = $inflated ? 20 : 65;
+        $cutoff = $deflated ? 20 : 65;
         if ($p < $cutoff) {
             return true;
         }
