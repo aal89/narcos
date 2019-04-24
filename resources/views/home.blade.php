@@ -4,6 +4,18 @@
 <h3 class="page-title"><span aria-hidden="true" class="li_news"></span> {{ __('News') }}</h3>
 <div class="container">
     <div class="row">
+        <h5 class="text-secondary">Update #21</h5>
+    </div>
+    <div class="row">
+        - Increased the chance somebody witnesses you attempting a murder.<br>
+        - Fixed a bug for statistics when the database is clean.<br>
+        - Increased the minimum bullets required to attempt a murder from 1 to 25.<br>
+        - Fixed a bug where characters who died did not release property correctly.<br>
+    </div>
+    <div class="row">
+        <span class="small mt-2 mb-2">24-04-2019 20:46</span>
+    </div>
+    <div class="row">
         <h5 class="text-secondary">Update #20</h5>
     </div>
     <div class="row">
