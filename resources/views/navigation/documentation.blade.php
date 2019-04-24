@@ -232,6 +232,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <p>
+                    There's about a 65% chance somebody witnesses you attempting a murder, regardless of a successful attempt or not. You can bring
+                    along a crew, this obfuscates who is actually shooting and effectively brings down your chance of being witnessed to about 20%.
+                </p>
             </div>
             <div class="row">
                 <h5 class="text-secondary" id="profile">Map</h5>
