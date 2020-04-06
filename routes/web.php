@@ -11,7 +11,7 @@
 |
 */
 
-$condMiddlewares = ['auth', 'is.allowed.access', 'verified', 'user.has.character', 'log.user.activity'];
+$condMiddlewares = ['auth', 'is.allowed.access', 'user.has.character', 'log.user.activity'];
 $condMiddlewares = App::isLocal() ? array_filter($condMiddlewares, 'notVerified') : $condMiddlewares;
 
 Auth::routes(['verify' => true]);
